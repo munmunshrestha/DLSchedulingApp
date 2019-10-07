@@ -1,0 +1,47 @@
+<div>
+  <h5>Enter Class Schedule/ Unavailability:</h5>
+  <form class="form-container" name="addStdSchedule" [formGroup]="form">
+    <!-- <label for="addStdSchedule"> Enter Class Schedule/ Unavailability:</label> -->
+
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70%">
+      <div fxLayout="column">
+        <label for="startTime">Start Time:</label>
+        <ngb-timepicker
+          name="startTime"
+          [(ngModel)]="time"
+          [meridian]="meridian"
+          [ngModelOptions]="{ standalone: true }"
+        ></ngb-timepicker>
+        <button class="btn btn-sm btn-outline-meridian"></button>
+
+        <label for="endTime">End Time:</label>
+        <ngb-timepicker
+          name="endTime"
+          [(ngModel)]="time"
+          [meridian]="meridian"
+          [ngModelOptions]="{ standalone: true }"
+        ></ngb-timepicker>
+        <button class="btn btn-sm btn-outline-meridian"></button>
+
+        <mat-radio-group formControlName="entryType">
+          <mat-radio-button value="1">Class</mat-radio-button>
+          <mat-radio-button value="2">Unavailable</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field>
+          <input matInput [disabled]="form.value.entryType==2" placeholder="Location" />
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="space-around end">
+          <button mat-stroked-button>Save</button>
+          <button mat-raised-button type="button" class="Discard-btn" (click)="cancel()">Cancel</button>        </div>
+      </div>
+      <div fxLayout="column">
+        <mat-checkbox>Monday</mat-checkbox>
+        <mat-checkbox>Tuesday</mat-checkbox>
+        <mat-checkbox>Wedday</mat-checkbox>
+        <mat-checkbox>Thursday</mat-checkbox>
+        <mat-checkbox>Friday</mat-checkbox>
+      </div>
+    </div>
+  </form>
+</div>
