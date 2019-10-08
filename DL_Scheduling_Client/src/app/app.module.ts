@@ -11,6 +11,7 @@ import {
   MatRadioModule,
   MatCheckboxModule,
   MatInputModule,
+  MatCardModule
   
 } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
@@ -31,6 +32,9 @@ import { TrialtableComponent } from "./components/trialtable/trialtable.componen
 import { DLscheduleComponent } from "./components/dlschedule/dlschedule.component";
 import { StdScheduleComponent } from "./components/std-schedule/std-schedule.component";
 import { StdScheduleAddComponent } from "./components/std-schedule-add/std-schedule-add.component";
+import { LoginComponent } from './components/login/login.component';
+import { DlClassAddComponent } from './components/dl-class-add/dl-class-add.component';
+import { StdRequestLeaveComponent } from './components/std-request-leave/std-request-leave.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +46,9 @@ import { StdScheduleAddComponent } from "./components/std-schedule-add/std-sched
     DLscheduleComponent,
     StdScheduleComponent,
     StdScheduleAddComponent,
+    LoginComponent,
+    DlClassAddComponent,
+    StdRequestLeaveComponent,
   ],
   entryComponents: [
     StdScheduleAddComponent
@@ -65,7 +72,8 @@ import { StdScheduleAddComponent } from "./components/std-schedule-add/std-sched
     MatInputModule,
     NgbTimepickerModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
