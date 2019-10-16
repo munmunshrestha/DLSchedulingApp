@@ -17,6 +17,8 @@ import {
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import {MatDialogModule} from '@angular/material/dialog';
+import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
+
 
 //jqwidget
 import { jqxBarGaugeModule } from "jqwidgets-ng/jqxbargauge";
@@ -27,7 +29,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 // import { StdSchedulerComponent } from './components/std-scheduler/std-scheduler.component';
-import { HomeComponent } from "./components/home/home.component";
+// import { HomeComponent } from "./components/home/home.component";
 import { TrialtableComponent } from "./components/trialtable/trialtable.component";
 import { DLscheduleComponent } from "./components/dlschedule/dlschedule.component";
 import { StdScheduleComponent } from "./components/std-schedule/std-schedule.component";
@@ -35,13 +37,19 @@ import { StdScheduleAddComponent } from "./components/std-schedule-add/std-sched
 import { LoginComponent } from './components/login/login.component';
 import { DlClassAddComponent } from './components/dl-class-add/dl-class-add.component';
 import { StdRequestLeaveComponent } from './components/std-request-leave/std-request-leave.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { UserService } from './services/user.service';
+// import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     // jqxSchedulerComponent,
     // StdSchedulerComponent,
-    HomeComponent,
+    // HomeComponent,
     TrialtableComponent,
     DLscheduleComponent,
     StdScheduleComponent,
@@ -49,6 +57,8 @@ import { StdRequestLeaveComponent } from './components/std-request-leave/std-req
     LoginComponent,
     DlClassAddComponent,
     StdRequestLeaveComponent,
+    UserListComponent,
+    UserFormComponent,
   ],
   entryComponents: [
     StdScheduleAddComponent
@@ -73,9 +83,13 @@ import { StdRequestLeaveComponent } from './components/std-request-leave/std-req
     NgbTimepickerModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
