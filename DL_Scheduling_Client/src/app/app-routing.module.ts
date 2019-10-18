@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { HomeComponent } from './components/home/home.component';
+import { StdSchedulerComponent } from './components/std-scheduler/std-scheduler.component';
 import {TrialtableComponent} from './components/trialtable/trialtable.component';
 import {StdScheduleComponent} from './components/std-schedule/std-schedule.component';
 import {DLscheduleComponent} from './components/dlschedule/dlschedule.component';
@@ -14,7 +14,7 @@ import {StdRequestLeaveComponent} from './components/std-request-leave/std-reque
 
 
 const routes: Routes = [
-  // { path: 'home', component: HomeComponent },        
+  { path: 'home', component: StdSchedulerComponent },        
   {path: 'stdAdd', component: StdScheduleAddComponent},
   {path: 'stdSchedule', component:StdScheduleComponent},
   {path: 'DLSchedule', component:DLscheduleComponent},

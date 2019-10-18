@@ -45,7 +45,7 @@ public class UserController {
 
 	 
 	    @PostMapping("/add")
-	    public void addUser(@RequestBody User user) {
+	    void addUser(@RequestBody User user) {
 	        userRepository.save(user);
 	    }
 }

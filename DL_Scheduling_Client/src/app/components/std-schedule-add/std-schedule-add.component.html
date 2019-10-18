@@ -1,15 +1,15 @@
-<div>
+<!-- <div> -->
   <!-- <h5>Enter Class Schedule/ Unavailability:</h5> -->
-  <h2 mat-dialog-title>Enter Class Schedule/ Unavailability:</h2>
+  <!-- <h2 mat-dialog-title>Enter Class Schedule/ Unavailability:</h2>
   
   <mat-dialog-content>
-    <form class="form-container" name="addStdSchedule" [formGroup]="form">
+    <form class="form-container" name="addStdSchedule" [formGroup]="form" (ngSubmit)="onSubmit()" #userForm="ngForm">
       <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70%">
         <div fxLayout="column">
           <label for="startTime">Start Time:</label>
           <ngb-timepicker
             name="startTime"
-            [(ngModel)]="time"
+            
             [meridian]="meridian"
             [ngModelOptions]="{ standalone: true }"
           ></ngb-timepicker>
@@ -18,18 +18,18 @@
           <label for="endTime">End Time:</label>
           <ngb-timepicker
             name="endTime"
-            [(ngModel)]="time"
+            
             [meridian]="meridian"
             [ngModelOptions]="{ standalone: true }"
           ></ngb-timepicker>
           <button class="btn btn-sm btn-outline-meridian"></button>
 
-          <mat-radio-group formControlName="entryType">
+          <mat-radio-group formControlName="entryType" [(ngModel)]="stdUnavailability.is_class">
             <mat-radio-button value="1">Class</mat-radio-button>
             <mat-radio-button value="2">Unavailable</mat-radio-button>
           </mat-radio-group>
 
-          <mat-form-field>
+          <mat-form-field [(ngModel)]="stdUnavailability.location">
             <input
               matInput
               [disabled]="form.value.entryType == 2"
@@ -41,7 +41,7 @@
         <div fxLayout="column">
           <mat-checkbox>Monday</mat-checkbox>
           <mat-checkbox>Tuesday</mat-checkbox>
-          <mat-checkbox>Wedday</mat-checkbox>
+          <mat-checkbox>Wednesday</mat-checkbox>
           <mat-checkbox>Thursday</mat-checkbox>
           <mat-checkbox>Friday</mat-checkbox>
         </div>
@@ -51,7 +51,7 @@
 
   <mat-dialog-actions>
   <div fxLayout="row" fxLayoutAlign="space-around end">
-    <button mat-raised-button>Save</button>
+    <button mat-raised-button type="submit">Save</button>
     <button
       mat-raised-button
       type="button"
@@ -60,4 +60,4 @@
     </button>
   </div>
 </mat-dialog-actions>
-</div>
+</div> -->

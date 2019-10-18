@@ -28,7 +28,7 @@ import { MatButtonModule } from "@angular/material/button";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-// import { StdSchedulerComponent } from './components/std-scheduler/std-scheduler.component';
+import { StdSchedulerComponent } from './components/std-scheduler/std-scheduler.component';
 // import { HomeComponent } from "./components/home/home.component";
 import { TrialtableComponent } from "./components/trialtable/trialtable.component";
 import { DLscheduleComponent } from "./components/dlschedule/dlschedule.component";
@@ -40,7 +40,7 @@ import { StdRequestLeaveComponent } from './components/std-request-leave/std-req
 import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserService } from './services/user.service';
-// import { HttpClientModule } from '@angular/common/http';
+import { StdUnavailabilityService } from './services/std-unavailability.service';
 
 
 
@@ -48,7 +48,7 @@ import { UserService } from './services/user.service';
   declarations: [
     AppComponent,
     // jqxSchedulerComponent,
-    // StdSchedulerComponent,
+    StdSchedulerComponent,
     // HomeComponent,
     TrialtableComponent,
     DLscheduleComponent,
@@ -89,7 +89,7 @@ import { UserService } from './services/user.service';
     MatListModule,
     MatIconModule
   ],
-  providers: [UserService],
+  providers: [UserService, StdUnavailabilityService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
