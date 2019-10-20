@@ -19,5 +19,5 @@ constructor(private http: HttpClient) {
   }
  
   public save(stdUnavailability: stdUnavailability) {
-    return this.http.post<stdUnavailability>(this.stdUrl.concat('stdUnavailability'), stdUnavailability);
+    return this.http.post<stdUnavailability>(this.stdUrl.concat('add'), stdUnavailability);
   }}

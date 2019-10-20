@@ -14,11 +14,12 @@ import {StdRequestLeaveComponent} from './components/std-request-leave/std-reque
 
 
 const routes: Routes = [
+  {path: 'login', component:LoginComponent},
+
   { path: 'home', component: StdSchedulerComponent },        
   {path: 'stdAdd', component: StdScheduleAddComponent},
   {path: 'stdSchedule', component:StdScheduleComponent},
   {path: 'DLSchedule', component:DLscheduleComponent},
-  {path: 'login', component:LoginComponent},
   {path: 'DLadd', component:DlClassAddComponent},
   { path: 'users', component: UserListComponent },
   { path: 'adduser', component: UserFormComponent },

@@ -1,63 +1,124 @@
-<!-- <div> -->
+<div>
   <!-- <h5>Enter Class Schedule/ Unavailability:</h5> -->
-  <!-- <h2 mat-dialog-title>Enter Class Schedule/ Unavailability:</h2>
-  
+  <h2 mat-dialog-title>Enter Class Schedule/ Unavailability:</h2>
+
   <mat-dialog-content>
-    <form class="form-container" name="addStdSchedule" [formGroup]="form" (ngSubmit)="onSubmit()" #userForm="ngForm">
+    <form
+      id="stdform"
+      class="form-container"
+      name="addStdSchedule"
+      (ngSubmit)="onSubmit()"
+      #stdAddForm="ngForm"
+    >
       <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70%">
-        <div fxLayout="column">
-          <label for="startTime">Start Time:</label>
-          <ngb-timepicker
+        <div fxLayout="column" fxFlex="70%">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Start Time"
+              [(ngModel)]="stdUnavailability.start"
+              name="startTime"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="End Time"
+              [(ngModel)]="stdUnavailability.end"
+              name="endTime"
+            />
+          </mat-form-field>
+
+          <!-- <mat-radio-group formControlName="entryType"> -->
+          <mat-radio-group
+            [(ngModel)]="stdUnavailability.std_not_class"
+            name="isClass"
+            (change)="onChange($event)"
+          >
+            <mat-radio-button value="false">Class</mat-radio-button>
+            <mat-radio-button value="true" name="notclass"
+              >Unavailable</mat-radio-button
+            >
+          </mat-radio-group>
+
+          <mat-form-field>
+            <input
+              matInput
+              name="location"
+              [disabled]="stdUnavailability.std_not_class"
+              placeholder="Location"
+              [(ngModel)]="stdUnavailability.location"
+            />
+          </mat-form-field>
+
+          <mat-form-field>
+            <input
+              matInput
+              name="courseId"
+              [disabled]="stdUnavailability.std_not_class"
+              placeholder="Course ID"
+              [(ngModel)]="stdUnavailability.course_id"
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- 
+                <label for="startTime">Start Time:</label>
+            <ngb-timepicker
             name="startTime"
             
             [meridian]="meridian"
             [ngModelOptions]="{ standalone: true }"
           ></ngb-timepicker>
-          <button class="btn btn-sm btn-outline-meridian"></button>
+          <button class="btn btn-sm btn-outline-meridian"></button> -->
 
-          <label for="endTime">End Time:</label>
-          <ngb-timepicker
+        <!-- 
+                      <label for="endTime">End Time:</label>
+<ngb-timepicker
             name="endTime"
             
             [meridian]="meridian"
             [ngModelOptions]="{ standalone: true }"
           ></ngb-timepicker>
-          <button class="btn btn-sm btn-outline-meridian"></button>
-
-          <mat-radio-group formControlName="entryType" [(ngModel)]="stdUnavailability.is_class">
-            <mat-radio-button value="1">Class</mat-radio-button>
-            <mat-radio-button value="2">Unavailable</mat-radio-button>
-          </mat-radio-group>
-
-          <mat-form-field [(ngModel)]="stdUnavailability.location">
-            <input
-              matInput
-              [disabled]="form.value.entryType == 2"
-              placeholder="Location"
-            />
-          </mat-form-field>
-        </div>
+          <button class="btn btn-sm btn-outline-meridian"></button> -->
 
         <div fxLayout="column">
-          <mat-checkbox>Monday</mat-checkbox>
-          <mat-checkbox>Tuesday</mat-checkbox>
-          <mat-checkbox>Wednesday</mat-checkbox>
+          <div *ngFor="let item of weekDays; let i = index;">
+          <mat-checkbox #ref value="{{item.name}}" name="{{item.name}}" [(ngModel)]="item.checked" >{{item.name}}</mat-checkbox>
+<!-- 
+          <mat-checkbox name="tuesday" [(ngModel)]="stdUnavailability.std_not_class">Tuesday</mat-checkbox>
+          <mat-checkbox name="wednesday" [(ngModel)]="selectedDays[2]">Wednesday</mat-checkbox>
           <mat-checkbox>Thursday</mat-checkbox>
-          <mat-checkbox>Friday</mat-checkbox>
+          <mat-checkbox>Friday</mat-checkbox> -->
         </div>
+      </div>
+    </div>
+      <div fxLayout="row" fxLayoutAlign="space-between end" fxflex="30%">
+        <button mat-raised-button type="submit">Save</button>
+        <button
+          mat-raised-button
+          type="button"
+          class="Discard-btn"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   </mat-dialog-content>
 
-  <mat-dialog-actions>
-  <div fxLayout="row" fxLayoutAlign="space-around end">
-    <button mat-raised-button type="submit">Save</button>
-    <button
-      mat-raised-button
-      type="button"
-      class="Discard-btn"
-      (click)="cancel()">Cancel
-    </button>
-  </div>
-</mat-dialog-actions>
-</div> -->
+  <!-- <mat-dialog-actions>
+    <div fxLayout="row" fxLayoutAlign="space-around end">
+      <button mat-raised-button type="submit">Save</button>
+      <button
+        mat-raised-button
+        type="button"
+        class="Discard-btn"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+    </div>
+  </mat-dialog-actions> -->
+</div>

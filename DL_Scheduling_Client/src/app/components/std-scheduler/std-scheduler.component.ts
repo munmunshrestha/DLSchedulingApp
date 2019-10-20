@@ -62,12 +62,12 @@ public stddata: any=[];
         dataType: "json",
         dataFields: [
             { name: 'id', type: 'string' },
-            { name: 'description', type: 'string' },
+            // { name: 'description', type: 'string' },
             { name: 'location', type: 'string' },
             { name: 'subject', type: 'string' },
             // { name: 'calendar', type: 'string' },
-            { name: 'start', type: 'date', format: 'yyyy-MM-dd HH:mm' },
-            { name: 'end', type: 'date', format: 'yyyy-MM-dd HH:mm' }
+            { name: 'start', type: 'date', format: 'HH:mm' },
+            { name: 'end', type: 'date', format: 'HH:mm' }
         ],
         id: 'id',
         localData: this.stddata
@@ -80,7 +80,7 @@ public stddata: any=[];
         from: "start",
         to: "end",
         id: "id",
-        description: "description",
+        // description: "description",
         location: "location",
         subject: "subject",
         // resourceId: "calendar"

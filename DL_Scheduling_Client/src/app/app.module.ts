@@ -41,6 +41,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserService } from './services/user.service';
 import { StdUnavailabilityService } from './services/std-unavailability.service';
+import { LeaveRequestService } from './services/leave-request.service';
+import { AuthService } from './services/auth.service';
 
 
 
@@ -89,7 +91,7 @@ import { StdUnavailabilityService } from './services/std-unavailability.service'
     MatListModule,
     MatIconModule
   ],
-  providers: [UserService, StdUnavailabilityService],
+  providers: [UserService, StdUnavailabilityService, LeaveRequestService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
