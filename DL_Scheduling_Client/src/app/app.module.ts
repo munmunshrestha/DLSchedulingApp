@@ -29,7 +29,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { StdSchedulerComponent } from './components/std-scheduler/std-scheduler.component';
-// import { HomeComponent } from "./components/home/home.component";
+import { HomeComponent } from "./components/home/home.component";
 import { TrialtableComponent } from "./components/trialtable/trialtable.component";
 import { DLscheduleComponent } from "./components/dlschedule/dlschedule.component";
 import { StdScheduleComponent } from "./components/std-schedule/std-schedule.component";
@@ -43,6 +43,7 @@ import { UserService } from './services/user.service';
 import { StdUnavailabilityService } from './services/std-unavailability.service';
 import { LeaveRequestService } from './services/leave-request.service';
 import { AuthService } from './services/auth.service';
+import { AppHeaderComponent } from './components/app-header/app-header.component';
 
 
 
@@ -51,7 +52,7 @@ import { AuthService } from './services/auth.service';
     AppComponent,
     // jqxSchedulerComponent,
     StdSchedulerComponent,
-    // HomeComponent,
+    HomeComponent,
     TrialtableComponent,
     DLscheduleComponent,
     StdScheduleComponent,
@@ -61,6 +62,7 @@ import { AuthService } from './services/auth.service';
     StdRequestLeaveComponent,
     UserListComponent,
     UserFormComponent,
+    AppHeaderComponent,
   ],
   entryComponents: [
     StdScheduleAddComponent

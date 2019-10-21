@@ -32,6 +32,15 @@ const ELEMENT_DATA: time_weekday[] = [
   styleUrls: ["./std-schedule.component.scss"]
 })
 export class StdScheduleComponent {
+
+  weekDays=[
+    { name: "Monday"},
+    { name:"Tuesday"},
+    { name:"Wednesday"},
+    { name:"Thursday"},
+    { name:"Friday"}
+  ]
+
   displayedColumns: string[] = [
     "time",
     "monday",

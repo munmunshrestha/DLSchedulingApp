@@ -1,69 +1,68 @@
 <div>
-  <!-- <h5>Enter Class Schedule/ Unavailability:</h5> -->
-  <h2 mat-dialog-title>Enter Class Schedule/ Unavailability:</h2>
+<h2 mat-dialog-title>Enter Class Schedule/ Unavailability:</h2>
 
-  <mat-dialog-content>
-    <form
-      id="stdform"
-      class="form-container"
-      name="addStdSchedule"
-      (ngSubmit)="onSubmit()"
-      #stdAddForm="ngForm"
-    >
-      <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70%">
-        <div fxLayout="column" fxFlex="70%">
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Start Time"
-              [(ngModel)]="stdUnavailability.start"
-              name="startTime"
-            />
-          </mat-form-field>
+<mat-dialog-content>
+  <form
+    id="stdform"
+    class="form-container"
+    name="addStdSchedule"
+    (ngSubmit)="onSubmit()"
+    #stdAddForm="ngForm"
+  >
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70%">
+      <div fxLayout="column">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Start Time"
+            [(ngModel)]="stdUnavailability.start"
+            name="startTime"
+          />
+        </mat-form-field>
 
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="End Time"
-              [(ngModel)]="stdUnavailability.end"
-              name="endTime"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="End Time"
+            [(ngModel)]="stdUnavailability.end"
+            name="endTime"
+          />
+        </mat-form-field>
 
-          <!-- <mat-radio-group formControlName="entryType"> -->
-          <mat-radio-group
-            [(ngModel)]="stdUnavailability.std_not_class"
-            name="isClass"
-            (change)="onChange($event)"
+        <!-- <mat-radio-group formControlName="entryType"> -->
+        <mat-radio-group
+          [(ngModel)]="stdUnavailability.std_not_class"
+          name="isClass"
+          (change)="onChange($event)"
+        >
+          <mat-radio-button value="false">Class</mat-radio-button>
+          <mat-radio-button value="true" name="notclass"
+            >Unavailable</mat-radio-button
           >
-            <mat-radio-button value="false">Class</mat-radio-button>
-            <mat-radio-button value="true" name="notclass"
-              >Unavailable</mat-radio-button
-            >
-          </mat-radio-group>
+        </mat-radio-group>
 
-          <mat-form-field>
-            <input
-              matInput
-              name="location"
-              [disabled]="stdUnavailability.std_not_class"
-              placeholder="Location"
-              [(ngModel)]="stdUnavailability.location"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            name="location"
+            [disabled]="stdUnavailability.std_not_class"
+            placeholder="Location"
+            [(ngModel)]="stdUnavailability.location"
+          />
+        </mat-form-field>
 
-          <mat-form-field>
-            <input
-              matInput
-              name="courseId"
-              [disabled]="stdUnavailability.std_not_class"
-              placeholder="Course ID"
-              [(ngModel)]="stdUnavailability.course_id"
-            />
-          </mat-form-field>
-        </div>
+        <mat-form-field>
+          <input
+            matInput
+            name="courseId"
+            [disabled]="stdUnavailability.std_not_class"
+            placeholder="Course ID"
+            [(ngModel)]="stdUnavailability.course_id"
+          />
+        </mat-form-field>
+      </div>
 
-        <!-- 
+      <!-- 
                 <label for="startTime">Start Time:</label>
             <ngb-timepicker
             name="startTime"
@@ -73,7 +72,7 @@
           ></ngb-timepicker>
           <button class="btn btn-sm btn-outline-meridian"></button> -->
 
-        <!-- 
+      <!-- 
                       <label for="endTime">End Time:</label>
 <ngb-timepicker
             name="endTime"
@@ -83,10 +82,16 @@
           ></ngb-timepicker>
           <button class="btn btn-sm btn-outline-meridian"></button> -->
 
-        <div fxLayout="column">
-          <div *ngFor="let item of weekDays; let i = index;">
-          <mat-checkbox #ref value="{{item.name}}" name="{{item.name}}" [(ngModel)]="item.checked" >{{item.name}}</mat-checkbox>
-<!-- 
+      <div fxLayout="column" fxLayoutAlign="space-between">
+        <div *ngFor="let item of weekDays; let i = index">
+          <mat-checkbox
+            #ref
+            value="{{ item.name }}"
+            name="{{ item.name }}"
+            [(ngModel)]="item.checked"
+            >{{ item.name }}</mat-checkbox
+          >
+          <!-- 
           <mat-checkbox name="tuesday" [(ngModel)]="stdUnavailability.std_not_class">Tuesday</mat-checkbox>
           <mat-checkbox name="wednesday" [(ngModel)]="selectedDays[2]">Wednesday</mat-checkbox>
           <mat-checkbox>Thursday</mat-checkbox>
@@ -94,21 +99,25 @@
         </div>
       </div>
     </div>
-      <div fxLayout="row" fxLayoutAlign="space-between end" fxflex="30%">
-        <button mat-raised-button type="submit">Save</button>
-        <button
-          mat-raised-button
-          type="button"
-          class="Discard-btn"
-          (click)="cancel()"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  </mat-dialog-content>
-
-  <!-- <mat-dialog-actions>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <div fxLayout="row" fxLayoutAlign="space-around end">
+    <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
+    
+      <button
+        mat-raised-button
+        type="button"
+        class="Discard-btn"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+    
+  </div>
+</mat-dialog-actions>
+</div>
+<!-- <mat-dialog-actions>
     <div fxLayout="row" fxLayoutAlign="space-around end">
       <button mat-raised-button type="submit">Save</button>
       <button
@@ -121,4 +130,3 @@
       </button>
     </div>
   </mat-dialog-actions> -->
-</div>
