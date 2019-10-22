@@ -6,6 +6,7 @@ import {
   MAT_DIALOG_DATA
 } from "@angular/material/dialog";
 
+
 export interface time_weekday {
   time: string;
   monday: string;
@@ -32,14 +33,15 @@ const ELEMENT_DATA: time_weekday[] = [
   styleUrls: ["./std-schedule.component.scss"]
 })
 export class StdScheduleComponent {
+ 
 
-  weekDays=[
-    { name: "Monday"},
-    { name:"Tuesday"},
-    { name:"Wednesday"},
-    { name:"Thursday"},
-    { name:"Friday"}
-  ]
+  weekDays = [
+    { name: "Monday" },
+    { name: "Tuesday" },
+    { name: "Wednesday" },
+    { name: "Thursday" },
+    { name: "Friday" }
+  ];
 
   displayedColumns: string[] = [
     "time",

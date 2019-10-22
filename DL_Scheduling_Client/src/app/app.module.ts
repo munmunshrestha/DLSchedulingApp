@@ -11,15 +11,14 @@ import {
   MatRadioModule,
   MatCheckboxModule,
   MatInputModule,
-  MatCardModule
-  
+  MatCardModule 
 } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import {MatDialogModule} from '@angular/material/dialog';
 import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
 
-
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 //jqwidget
 import { jqxBarGaugeModule } from "jqwidgets-ng/jqxbargauge";
 import { jqxSchedulerModule } from "jqwidgets-ng/jqxscheduler";
@@ -44,6 +43,7 @@ import { StdUnavailabilityService } from './services/std-unavailability.service'
 import { LeaveRequestService } from './services/leave-request.service';
 import { AuthService } from './services/auth.service';
 import { AppHeaderComponent } from './components/app-header/app-header.component';
+import { WebsocketComponent } from './components/websocket/websocket.component';
 
 
 
@@ -63,6 +63,7 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
     UserListComponent,
     UserFormComponent,
     AppHeaderComponent,
+    WebsocketComponent,
   ],
   entryComponents: [
     StdScheduleAddComponent
@@ -91,7 +92,9 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
-    MatIconModule
+    MatIconModule,
+        FullCalendarModule // for FullCalendar!
+
   ],
   providers: [UserService, StdUnavailabilityService, LeaveRequestService, AuthService],
   bootstrap: [AppComponent]

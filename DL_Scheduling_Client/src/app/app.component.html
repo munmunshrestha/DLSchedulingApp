@@ -25,6 +25,13 @@
    
     <router-outlet></router-outlet>
     <app-header></app-header>
+    <full-calendar defaultView="timeGridWeek" [plugins]="calendarPlugins" 
+ 
+      
+  ></full-calendar>
 
-  
-    
+
+<!--   
+       [editable]="true"
+  [weekends]="true"
+  [eventSources]="eventSources[0].events" -->
