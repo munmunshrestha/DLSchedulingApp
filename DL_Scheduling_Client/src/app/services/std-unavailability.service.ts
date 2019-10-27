@@ -1,23 +1,50 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { stdUnavailability } from '../models/std-unavailability';
-import { Observable } from 'rxjs/observable';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { stdUnavailability } from "../models/std-unavailability";
+import { Observable } from "rxjs/observable";
+
+interface myData {
+  success: boolean;
+  message: string;
+}
+
+interface event {
+  title: string;
+  start: string;
+  end: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class StdUnavailabilityService {
+  constructor(private http: HttpClient) {}
 
-private stdUrl: string;
+  // public findAll(): Observable<stdUnavailability[]> {
+  //   return this.http.get<stdUnavailability[]>(this.stdUrl.concat("all"));
+  // }
 
-constructor(private http: HttpClient) {
-    this.stdUrl = 'http://localhost:8080/stdUnavailability/';
+  // public save(stdUnavailability: stdUnavailability) {
+  //   return this.http.post<stdUnavailability>(
+  //     this.stdUrl.concat("add"),
+  //     stdUnavailability
+  //   );
+  // }
+
+  sendData(start, end, day, is_class, course_id, location) {
+    // let stdData=JSON.stringify(std) **assyncronous function below so cannot do this
+
+    return this.http.post<myData>("/api/std-schedule.php", {
+      start,
+      end,
+      day,
+      is_class,
+      course_id,
+      location
+    });
   }
- 
-  public findAll(): Observable<stdUnavailability[]> {
-    return this.http.get<stdUnavailability[]>(this.stdUrl.concat('all'));
+
+  getData() {
+    return this.http.get<event[]>("/api/std-schedule-read.php");
   }
- 
-  public save(stdUnavailability: stdUnavailability) {
-    return this.http.post<stdUnavailability>(this.stdUrl.concat('add'), stdUnavailability);
-  }}
+}

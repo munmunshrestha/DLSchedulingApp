@@ -1,30 +1,28 @@
-import { Component} from '@angular/core';
-import timeGridPlugin from '@fullcalendar/timegrid';
+import { Component } from "@angular/core";
+import { Router } from '@angular/router';
 
- 
+
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"]
 })
- 
 export class AppComponent {
-    //fullcalender timeline
-  calendarPlugins = [timeGridPlugin];
+    // currentUser: Users;
 
-  eventSources:any=[
-    {
-      events: [ // put the array in the `events` property
-        {
-        title: 'Meeting',
-        start: '2019-10-15T10:30:00'
-      },
-      {
-        title: 'Lunch',
-        start: '2019-10-21T10:30:00',
-        end: '2019-10-21T12:30:00'      
-      }
-    ]
+    constructor(
+        private router: Router,
+        // private authenticationService: AuthenticationService
+    ) {
+        // this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
     }
-]
+
+    // get isAdmin() {
+    //     return this.currentUser && this.currentUser.role === Role.Admin;
+    // }
+
+    // logout() {
+    //     // this.authenticationService.logout();
+    //     this.router.navigate(['/login']);
+    // }
 }

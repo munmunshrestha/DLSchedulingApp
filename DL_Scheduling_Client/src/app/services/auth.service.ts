@@ -11,12 +11,11 @@ export class AuthService {
 
   private loggedInStatus = false
 
-  constructor(private http: HttpClient) { 
-
-  }
+  constructor(private http: HttpClient) {}
 
   setLoggedIn(value: boolean) {
     this.loggedInStatus = value
+    localStorage.setItem
   }
 
   get isLoggedIn() {
@@ -25,7 +24,7 @@ export class AuthService {
 
   getUserDetails(username, password) {
     // post these details to API server return user info if correct
-    return this.http.post<myData>('/user/all', {
+    return this.http.post<myData>('/api/auth.php', {
       username,
       password
     })

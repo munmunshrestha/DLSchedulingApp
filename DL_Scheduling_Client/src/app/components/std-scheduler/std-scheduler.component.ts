@@ -12,11 +12,11 @@ export class StdSchedulerComponent implements OnInit {
 
 ngOnInit() {
     
-        this.stdService.findAll().subscribe(data => {
-            this.getdata(data);
+        // this.stdService.findAll().subscribe(data => {
+        //     this.getdata(data);
             
-        });
-        console.log(this.stddata);
+        // });
+        // console.log(this.stddata);
 }
 constructor(private stdService: StdUnavailabilityService){}
   @ViewChild('schedulerReference', {static: false}) scheduler: jqxSchedulerComponent;

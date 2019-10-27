@@ -1,37 +1,27 @@
-<!-- <header>
-  <div class="container">
-    <nav>
-      <ul>
-        <li><a href="#" routerLink="/login">Login</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<div>    -->
 
-    <!-- <div style="height: 88vh;"> -->
-      <!-- <header>
-  <div class="container">
-    <nav>
-      <ul>
-        <li><a href="#" routerLink="/login">Login</a></li>
-        <li><a href="#" routerLink="/stdSchedule">My Schedule</a></li>
-        <li><a href="#" routerLink="/DLSchedule">DL Schedule</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
-<div>    -->
-   
+
+<router-outlet></router-outlet>
+<app-header></app-header>
+
+<!-- <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>-->
+
+<!-- main app container -->
+<!-- <div class="container">
     <router-outlet></router-outlet>
-    <app-header></app-header>
-    <full-calendar defaultView="timeGridWeek" [plugins]="calendarPlugins" 
- 
-      
-  ></full-calendar>
+</div> -->
 
-
-<!--   
-       [editable]="true"
-  [weekends]="true"
-  [eventSources]="eventSources[0].events" -->
+<!-- credits -->
+<!-- <div class="text-center mt-4">
+    <p>
+        <a href="#" target="_top">Angular 8 - Role Based Authorization Tutorial with Example</a>
+    </p>
+    <p>
+        <a href="http://jasonwatmore.com" target="_top">JasonWatmore.com</a>
+    </p>
+</div>  -->

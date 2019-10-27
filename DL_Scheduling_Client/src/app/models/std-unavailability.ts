@@ -9,12 +9,11 @@ export class stdUnavailability{
     // std_end_time: Time;
     // std_class_location:string
 
-    id: number;
     std_user_id: number;
     std_not_class: boolean;
     course_id: string;
-    start: Time;
-    end: Time;
+    start: String;
+    end: String;
     day: Array<String>=[];
     location: String;
 }

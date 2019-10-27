@@ -12,11 +12,41 @@ import { UserListComponent } from "./components/user-list/user-list.component";
 import { UserFormComponent } from "./components/user-form/user-form.component";
 import { StdRequestLeaveComponent } from "./components/std-request-leave/std-request-leave.component";
 import { WebsocketComponent } from "./components/websocket/websocket.component";
+import { FullcalenderComponent } from "./components/fullcalender/fullcalender.component";
+import {AdminComponent} from "./components/admin/admin.component";
+ //user authentication
+import { AuthGuard } from './services/auth.guard';
+import {LogoutComponent} from "./components/logout/logout.component";
+
 
 const routes: Routes = [
-  { path: "login", component: LoginComponent },
-  { path: "", component: LoginComponent },
-  { path: "home", component: HomeComponent },
+
+  {
+    path: "login",
+    component: LoginComponent
+  },
+
+  {
+    path: "admin",
+    component: AdminComponent,
+    canActivate: [AuthGuard]
+    // data: { roles: [Role.Admin] }
+  },
+  {
+    path: "logout",
+    component: LogoutComponent
+  },
+  {
+    path: "",
+    component: HomeComponent,
+    
+  },
+
+  // otherwise redirect to home
+  // { path: "**", redirectTo: "" },
+  // { path: "login", component: LoginComponent },
+  // { path: "", component: LoginComponent },
+  // { path: "home", component: HomeComponent },
   { path: "stdAdd", component: StdScheduleAddComponent },
   { path: "stdSchedule", component: StdScheduleComponent },
   { path: "DLSchedule", component: DLscheduleComponent },
@@ -24,7 +54,8 @@ const routes: Routes = [
   { path: "users", component: UserListComponent },
   { path: "adduser", component: UserFormComponent },
   { path: "leaveRequest", component: StdRequestLeaveComponent },
-  { path: "scheduler", component: StdSchedulerComponent }
+  { path: "scheduler", component: StdSchedulerComponent },
+  { path: "fullcalender", component: FullcalenderComponent }
 ];
 
 @NgModule({

@@ -11,14 +11,19 @@ import {
   MatRadioModule,
   MatCheckboxModule,
   MatInputModule,
-  MatCardModule 
+  MatCardModule
 } from "@angular/material";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgbModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
-import {MatDialogModule} from '@angular/material/dialog';
-import { MatToolbarModule, MatIconModule, MatSidenavModule, MatListModule } from  '@angular/material';
+import { MatDialogModule } from "@angular/material/dialog";
+import {
+  MatToolbarModule,
+  MatIconModule,
+  MatSidenavModule,
+  MatListModule
+} from "@angular/material";
 
-import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
+import { FullCalendarModule } from "@fullcalendar/angular"; // for FullCalendar!
 //jqwidget
 import { jqxBarGaugeModule } from "jqwidgets-ng/jqxbargauge";
 import { jqxSchedulerModule } from "jqwidgets-ng/jqxscheduler";
@@ -27,25 +32,32 @@ import { MatButtonModule } from "@angular/material/button";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { StdSchedulerComponent } from './components/std-scheduler/std-scheduler.component';
+import { StdSchedulerComponent } from "./components/std-scheduler/std-scheduler.component";
 import { HomeComponent } from "./components/home/home.component";
 import { TrialtableComponent } from "./components/trialtable/trialtable.component";
 import { DLscheduleComponent } from "./components/dlschedule/dlschedule.component";
 import { StdScheduleComponent } from "./components/std-schedule/std-schedule.component";
 import { StdScheduleAddComponent } from "./components/std-schedule-add/std-schedule-add.component";
-import { LoginComponent } from './components/login/login.component';
-import { DlClassAddComponent } from './components/dl-class-add/dl-class-add.component';
-import { StdRequestLeaveComponent } from './components/std-request-leave/std-request-leave.component';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
-import { UserService } from './services/user.service';
-import { StdUnavailabilityService } from './services/std-unavailability.service';
-import { LeaveRequestService } from './services/leave-request.service';
-import { AuthService } from './services/auth.service';
-import { AppHeaderComponent } from './components/app-header/app-header.component';
-import { WebsocketComponent } from './components/websocket/websocket.component';
+import { LoginComponent } from "./components/login/login.component";
+import { DlClassAddComponent } from "./components/dl-class-add/dl-class-add.component";
+import { StdRequestLeaveComponent } from "./components/std-request-leave/std-request-leave.component";
+import { UserListComponent } from "./components/user-list/user-list.component";
+import { UserFormComponent } from "./components/user-form/user-form.component";
+import { UserService } from "./services/user.service";
+import { StdUnavailabilityService } from "./services/std-unavailability.service";
+import { LeaveRequestService } from "./services/leave-request.service";
+import { AuthService } from "./services/auth.service";
+import { AppHeaderComponent } from "./components/app-header/app-header.component";
+import { WebsocketComponent } from "./components/websocket/websocket.component";
+import { FullcalenderComponent } from "./components/fullcalender/fullcalender.component";
 
+//user authentication
+import { AdminComponent } from "./components/admin/admin.component";
+// import { JwtInterceptor } from "./helpers/jwt.interceptor";
+// import { ErrorInterceptor } from "./helpers/error.itercptor";
 
+import { AuthGuard } from "./services/auth.guard";
+import { LogoutComponent } from './components/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -64,10 +76,11 @@ import { WebsocketComponent } from './components/websocket/websocket.component';
     UserFormComponent,
     AppHeaderComponent,
     WebsocketComponent,
+    FullcalenderComponent,
+    AdminComponent,
+    LogoutComponent
   ],
-  entryComponents: [
-    StdScheduleAddComponent
-],
+  entryComponents: [StdScheduleAddComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -93,10 +106,18 @@ import { WebsocketComponent } from './components/websocket/websocket.component';
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-        FullCalendarModule // for FullCalendar!
-
+    FullCalendarModule // for FullCalendar!
   ],
-  providers: [UserService, StdUnavailabilityService, LeaveRequestService, AuthService],
+  providers: [
+    
+    // StdUnavailabilityService,
+    // LeaveRequestService,
+    AuthService,
+    AuthGuard,
+    UserService
+    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
