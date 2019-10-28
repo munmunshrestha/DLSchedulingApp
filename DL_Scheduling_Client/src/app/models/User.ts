@@ -1,5 +1,8 @@
 export  class  User {
     id: number;
-    name:  string;
+    fname:  string;
+    lname:  string;
     email:  string;
+    password:  string="Olemiss2019";
+    isAdmin: boolean=false;
 }

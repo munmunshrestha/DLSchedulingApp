@@ -1,6 +1,4 @@
-import {Time} from '@angular/common';
-
-export class stdUnavailability{
+export class dlSchedule{
     // std_unavailability_id: number;
     // std_user_id: number;
     // std_is_class: boolean;
@@ -9,11 +7,11 @@ export class stdUnavailability{
     // std_end_time: Time;
     // std_class_location:string
 
-    std_user_id: number;
-    std_not_class: boolean;
+    dl_user_id: number;
     course_id: string;
     start: String;
     end: String;
     day: Array<number>=[];
     location: String;
+
 }

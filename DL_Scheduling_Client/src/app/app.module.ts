@@ -58,6 +58,8 @@ import { AdminComponent } from "./components/admin/admin.component";
 
 import { AuthGuard } from "./services/auth.guard";
 import { LogoutComponent } from './components/logout/logout.component';
+import { StdWorkersComponent } from './components/std-workers/std-workers.component';
+import { StdWorkersAddComponent } from './components/std-workers-add/std-workers-add.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     WebsocketComponent,
     FullcalenderComponent,
     AdminComponent,
-    LogoutComponent
+    LogoutComponent,
+    StdWorkersComponent,
+    StdWorkersAddComponent
   ],
   entryComponents: [StdScheduleAddComponent],
   imports: [

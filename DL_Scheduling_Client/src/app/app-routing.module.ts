@@ -17,6 +17,8 @@ import {AdminComponent} from "./components/admin/admin.component";
  //user authentication
 import { AuthGuard } from './services/auth.guard';
 import {LogoutComponent} from "./components/logout/logout.component";
+import {StdWorkersAddComponent} from "./components/std-workers-add/std-workers-add.component";
+import {StdWorkersComponent} from "./components/std-workers/std-workers.component";
 
 
 const routes: Routes = [
@@ -38,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    component: HomeComponent,
+    component: LoginComponent,
     
   },
 
@@ -51,8 +53,8 @@ const routes: Routes = [
   { path: "stdSchedule", component: StdScheduleComponent },
   { path: "DLSchedule", component: DLscheduleComponent },
   { path: "DLadd", component: DlClassAddComponent },
-  { path: "users", component: UserListComponent },
-  { path: "adduser", component: UserFormComponent },
+  { path: "StdWorker", component: StdWorkersComponent },
+  { path: "addStdWorker", component: StdWorkersAddComponent },
   { path: "leaveRequest", component: StdRequestLeaveComponent },
   { path: "scheduler", component: StdSchedulerComponent },
   { path: "fullcalender", component: FullcalenderComponent }

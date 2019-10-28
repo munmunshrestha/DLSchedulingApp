@@ -24,7 +24,7 @@ export class FullcalenderComponent implements OnInit {
 
     //fullcalender timeline
   calendarPlugins = [timeGridPlugin];
-  duration = "00:30";
+
 
   // eventSources= 
   // [

@@ -1,5 +1,8 @@
 export  class  calendarEvent {
     title: string;
-    start:  string;
-    end:  string;
+    startTime:  string;
+    endTime:  string;
+    startRecur:string;
+    endRecur:string;
+    daysOfWeek:number[];
 }

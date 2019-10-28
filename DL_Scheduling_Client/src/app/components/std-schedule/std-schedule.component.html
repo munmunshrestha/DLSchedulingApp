@@ -2,7 +2,7 @@
   <!-- <div class="table-responsive"> -->
 
   <div class="card-body">
-    <h4 class="card-title">My Schedule</h4>
+    <h2 class="card-title">My Schedule</h2>
     <!-- <table mat-table [dataSource]="dataSource" class="table table-hover">
       <ng-container matColumnDef="time">
         <th mat-header-cell *matHeaderCellDef>Time</th>
@@ -38,75 +38,35 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table> -->
 
-    <table class="table">
-      <thead>
-        <tr>
-          <!-- <div *ngFor="let item of weekDays"> -->
-          <th scope="col"></th>
-          <th scope="col">8:00</th>
-          <th scope="col">8:30</th>
-          <th scope="col">9:00</th>
-          <th scope="col">9:30</th>
-          <th scope="col">10:00</th>
-          <th scope="col">10:30</th>
-          <th scope="col">11:00</th>
-          <th scope="col">11:30</th>
-          <th scope="col">12:00</th>
-          <th scope="col">12:30</th>
-          <th scope="col">1:00</th>
-          <th scope="col">1:30</th>
-          <th scope="col">2:00</th>
-          <th scope="col">2:30</th>
-          <th scope="col">3:00</th>
-          <th scope="col">3:30</th>
-          <th scope="col">4:00</th>
-          <th scope="col">4:30</th>
-          <th scope="col">5:00</th>
-          <th scope="col">5:30</th>
-          <th scope="col">6:00</th>
-          <th scope="col">6:30</th>
-          <th scope="col">7:00</th>
-          <th scope="col">7:30</th>
-          <th scope="col">8:00</th>
-          <th scope="col">8:30</th>
-          <th scope="col">9:00</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">Monday</th>
-        </tr>
-        <tr>
-          <th scope="row">Tuesday</th>
-        </tr>
-        <tr>
-          <th scope="row">Wednesday</th>
-        </tr>
-        <tr>
-          <th scope="row">Thursday</th>
-        </tr>
-        <tr>
-          <th scope="row">Friday</th>
-        </tr>
-
-        <!--<td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr> -->
-      </tbody>
-    </table>
+    <full-calendar
+  defaultView="timeGridWeek"
+  [plugins]="calendarPlugins"
+  [editable]="true"
+  [weekends]="false"
+  [minTime]="{
+    hours: 8,
+    minutes: 00
+  }"
+  [maxTime]="{
+    hours: 22,
+    minutes: 00
+  }"
+  [slotDuration]="{
+    hours: 0,
+    minutes: 30
+  }"
+  [allDaySlot]=false
+  [visibleRange]="{
+    start: '2019-07-26',
+    end: '2019-12-13'
+  }"
+  [titleFormat]="{
+    weekday:'long'
+  }"
+  [events]="eventSources"
+  [slotEventOverlap]=false
+  [height]=790
+></full-calendar>
 
     <button mat-raised-button (click)="openDialog()">Add Schedule</button>
     <!-- <button mat-raised-button (click)="openDialog-leave()">Request Leave</button> -->

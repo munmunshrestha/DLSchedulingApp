@@ -33,11 +33,11 @@ export class StdScheduleAddComponent implements OnInit {
   startTimeJson: any;
   endTimeJson: any;
   weekDays: any = [
-    { checked: false, name: "Monday" },
-    { checked: false, name: "Tuesday" },
-    { checked: false, name: "Wednesday" },
-    { checked: false, name: "Thursday" },
-    { checked: false, name: "Friday" }
+    { id: 1, checked: false, name: "Monday" },
+    { id: 2, checked: false, name: "Tuesday" },
+    { id: 3, checked: false, name: "Wednesday" },
+    { id: 4, checked: false, name: "Thursday" },
+    { id: 5, checked: false, name: "Friday" }
   ];
 
   resetStartTime() {
@@ -154,7 +154,7 @@ export class StdScheduleAddComponent implements OnInit {
 
     this.weekDays.forEach(element => {
       if (element.checked) {
-        this.stdUnavailability.day.push(element.name);
+        this.stdUnavailability.day.push(element.id);
       }
     });
 
@@ -183,7 +183,6 @@ export class StdScheduleAddComponent implements OnInit {
       if (data.success) {
         //redirect the person to admin
         this.cancel();
-        console.log(data.message);
       } else {
         window.alert(data.message);
       }

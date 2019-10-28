@@ -15,10 +15,10 @@ import {UserFormComponent} from '../user-form/user-form.component'
 })
 export class UserListComponent implements OnInit {
  
-  // users: User[];
+  users: User[];
  
-  // constructor(private userService: UserService, public dialog: MatDialog) {
-  // }
+  constructor(private userService: UserService, public dialog: MatDialog) {
+  }
  
 
   ngOnInit() {
@@ -27,10 +27,10 @@ export class UserListComponent implements OnInit {
   //   });
   }
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(UserFormComponent, {
-  //     width: "600px"
-  //   });
-  // }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UserFormComponent, {
+      width: "600px"
+    });
+  }
 }
 

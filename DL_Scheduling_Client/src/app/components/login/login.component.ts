@@ -6,17 +6,23 @@ import { first } from "rxjs/operators";
 
 import { AuthService } from "./../../services/auth.service";
 
-@Component({ templateUrl: "login.component.html" })
+@Component({
+  selector: "app-login",
+  templateUrl: "login.component.html"
+})
 export class LoginComponent implements OnInit {
   // loginForm: FormGroup;
   // loading = false;
   // submitted = false;
   // returnUrl: string;
   // error = '';
+  email:string;
+  password:string;
 
-  constructor( private Auth: AuthService,
-    private router:Router) //     private formBuilder: FormBuilder,
-  //     private route: ActivatedRoute,
+  constructor(
+    private Auth: AuthService,
+    private router: Router //     private formBuilder: FormBuilder,
+  ) //     private route: ActivatedRoute,
   //     private router: Router,
   //     private authenticationService: AuthenticationService
   {
@@ -61,21 +67,24 @@ export class LoginComponent implements OnInit {
 
   loginUser(event) {
     event.preventDefault();
-    const target = event.target
-    const username = target.querySelector("#username").value
-    const password = target.querySelector("#password").value
-    console.log(username,password);
-   
-    this.Auth.getUserDetails(username, password).subscribe(data=>{
-        if (data.success){
-            //redirect the person to admin
-            this.router.navigate(["admin"])
-            this.Auth.setLoggedIn(true)
-        }else{
-            window.alert(data.message)
-        }
-    })
     
+    console.log(this.email, this.password);
+    let email=this.email;
+    let password=this.password;
 
+    this.Auth.getUserDetails(email, password).subscribe(data => {
+      if (data.success) {
+        this.Auth.setLoggedIn(true);
+        // if (data.message=="Admin"){
+        //redirect the person to admin
+          this.router.navigate(["/admin"]);
+        // }
+        // else{
+        //   this.router.navigate(["/stdSchedule"]);
+        // }
+      } else {
+        window.alert(data.message);
+      }
+    });
   }
 }

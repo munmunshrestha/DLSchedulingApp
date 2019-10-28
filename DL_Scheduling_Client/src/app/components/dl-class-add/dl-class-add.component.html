@@ -2,49 +2,67 @@
   <h2 mat-dialog-title>Enter Distance Learning Classes:</h2>
 
   <mat-dialog-content>
-    <form class="form-container" name="addStdSchedule">
+    <form
+      id="stdform"
+      class="form-container"
+      name="addDlSchedule"
+      #stdAddForm="ngForm"
+    >
       <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70%">
         <div fxLayout="column">
           <mat-form-field>
-            <input matInput placeholder="Course ID" />
+            <input
+              matInput
+              name="courseId"
+              placeholder="Course ID"
+              [(ngModel)]="dlSchedule.course_id"
+            />
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Location" />
+            <input
+              matInput
+              name="location"
+              placeholder="Location"
+              [(ngModel)]="dlSchedule.location"
+            />
           </mat-form-field>
 
           <label for="startTime">Start Time:</label>
           <ngb-timepicker
             name="startTime"
-            [(ngModel)]="time"
             [meridian]="meridian"
-            [ngModelOptions]="{ standalone: true }"
-          ></ngb-timepicker>
+            [(ngModel)]="startTimeJson"
+          >
+          </ngb-timepicker>
           <button class="btn btn-sm btn-outline-meridian"></button>
 
           <label for="endTime">End Time:</label>
           <ngb-timepicker
             name="endTime"
-            [(ngModel)]="time"
             [meridian]="meridian"
-            [ngModelOptions]="{ standalone: true }"
+            [(ngModel)]="endTimeJson"
           ></ngb-timepicker>
           <button class="btn btn-sm btn-outline-meridian"></button>
         </div>
-        <div fxLayout="column">
-          <mat-checkbox>Monday</mat-checkbox>
-          <mat-checkbox>Tuesday</mat-checkbox>
-          <mat-checkbox>Wedday</mat-checkbox>
-          <mat-checkbox>Thursday</mat-checkbox>
-          <mat-checkbox>Friday</mat-checkbox>
+        <div fxLayout="column" fxLayoutAlign="space-between">
+          <div *ngFor="let item of weekDays; let i = index">
+            <mat-checkbox
+              #ref
+              value="{{ item.name }}"
+              name="{{ item.name }}"
+              [(ngModel)]="item.checked"
+              >{{ item.name }}</mat-checkbox
+            >
+          </div>
         </div>
       </div>
     </form>
   </mat-dialog-content>
-
   <mat-dialog-actions>
     <div fxLayout="row" fxLayoutAlign="space-around end">
-      <button mat-raised-button>Save</button>
+      <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
+
       <button
         mat-raised-button
         type="button"

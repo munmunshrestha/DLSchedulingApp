@@ -5,27 +5,11 @@ import {
   MatDialogRef,
   MAT_DIALOG_DATA
 } from "@angular/material/dialog";
+import timeGridPlugin from '@fullcalendar/timegrid';
+import {StdUnavailabilityService} from '../../services/std-unavailability.service';
+import {calendarEvent} from '../../models/calendarEvent';
 
 
-export interface time_weekday {
-  time: string;
-  monday: string;
-  tuesday: string;
-  wednesday: string;
-  thursday: string;
-  friday: string;
-}
-
-const ELEMENT_DATA: time_weekday[] = [
-  {
-    time: "8:00 AM",
-    monday: "",
-    tuesday: "",
-    wednesday: "",
-    thursday: "",
-    friday: ""
-  }
-];
 
 @Component({
   selector: "app-std-schedule",
@@ -34,26 +18,18 @@ const ELEMENT_DATA: time_weekday[] = [
 })
 export class StdScheduleComponent {
  
+  constructor(public dialog: MatDialog, private stdService: StdUnavailabilityService) {}
 
-  weekDays = [
-    { name: "Monday" },
-    { name: "Tuesday" },
-    { name: "Wednesday" },
-    { name: "Thursday" },
-    { name: "Friday" }
-  ];
+  eventSources:calendarEvent[];
 
-  displayedColumns: string[] = [
-    "time",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday"
-  ];
-  dataSource = ELEMENT_DATA; //new MatTableDataSource<PeriodicElement>();
+  ngOnInit() {
+    this.stdService.getData().subscribe((events:calendarEvent[])=> {
+    this.eventSources=events;
+    console.log(events)});
 
-  constructor(public dialog: MatDialog) {}
+  }
+
+  calendarPlugins = [timeGridPlugin];
 
   openDialog(): void {
     const dialogRef = this.dialog.open(StdScheduleAddComponent, {
