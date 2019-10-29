@@ -19,6 +19,7 @@ import {calendarEvent} from '../../models/calendarEvent';
 export class StdScheduleComponent {
  
   constructor(public dialog: MatDialog, private stdService: StdUnavailabilityService) {}
+  private dialogRef: MatDialogRef<StdScheduleAddComponent>
 
   eventSources:calendarEvent[];
 
@@ -31,9 +32,12 @@ export class StdScheduleComponent {
 
   calendarPlugins = [timeGridPlugin];
 
+  
   openDialog(): void {
-    const dialogRef = this.dialog.open(StdScheduleAddComponent, {
+    this.dialogRef = this.dialog.open(StdScheduleAddComponent, {
       width: "600px"
     });
+    this.dialogRef.afterClosed().subscribe(() => { this.ngOnInit(); } );
+
   }
 }

@@ -19,6 +19,7 @@ import { AuthGuard } from './services/auth.guard';
 import {LogoutComponent} from "./components/logout/logout.component";
 import {StdWorkersAddComponent} from "./components/std-workers-add/std-workers-add.component";
 import {StdWorkersComponent} from "./components/std-workers/std-workers.component";
+import{DlAssignClassComponent} from "./components/dl-assign-class/dl-assign-class.component"
 
 
 const routes: Routes = [
@@ -31,7 +32,7 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
     // data: { roles: [Role.Admin] }
   },
   {
@@ -57,7 +58,9 @@ const routes: Routes = [
   { path: "addStdWorker", component: StdWorkersAddComponent },
   { path: "leaveRequest", component: StdRequestLeaveComponent },
   { path: "scheduler", component: StdSchedulerComponent },
-  { path: "fullcalender", component: FullcalenderComponent }
+  { path: "fullcalender", component: FullcalenderComponent },
+  { path: "dlAssign", component: DlAssignClassComponent }
+
 ];
 
 @NgModule({

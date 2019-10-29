@@ -2,11 +2,11 @@
   <!-- <div class="table-responsive"> -->
 
   <div class="card-body">
-    <h2 class="card-title">Distance Learning Classes</h2>
+    <h3 class="card-title">Distance Learning Classes</h3>
     <full-calendar
     defaultView="timeGridWeek"
     [plugins]="calendarPlugins"
-    [editable]="true"
+    
     [weekends]="false"
     [minTime]="{
       hours: 8,
@@ -26,13 +26,18 @@
       weekday:'long'
     }"
     [events]="eventSources"
+    (eventClick)="onEventClick($event)"
     [slotEventOverlap]=false
     [height]=790
+
+    [editable]= "true"
+    [droppable]= "true"
   ></full-calendar>
   <!-- [visibleRange]="{
     start: '2019-07-26',
     end: '2019-12-13'
   }" -->
     <button mat-raised-button (click)="openDialog()">Add DL Class</button>
+
   </div>
 </div>

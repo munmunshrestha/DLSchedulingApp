@@ -181,8 +181,8 @@ export class StdScheduleAddComponent implements OnInit {
     console.log(is_class);
     this.stdService.sendData(start, end,day,is_class,course_id, location ).subscribe(data => {
       if (data.success) {
-        //redirect the person to admin
         this.cancel();
+        this.router.navigate(['/stdSchedule']);
       } else {
         window.alert(data.message);
       }

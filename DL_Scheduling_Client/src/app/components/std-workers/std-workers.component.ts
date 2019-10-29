@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "../../models/User";
 import { UserService } from "../../services/user.service";
-import { MatDialog } from "@angular/material/dialog";
-import {StdWorkersAddComponent} from '../std-workers-add/std-workers-add.component';
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { StdWorkersAddComponent } from "../std-workers-add/std-workers-add.component";
 
 @Component({
   selector: "app-std-workers",
@@ -10,22 +10,22 @@ import {StdWorkersAddComponent} from '../std-workers-add/std-workers-add.compone
   styleUrls: ["./std-workers.component.scss"]
 })
 export class StdWorkersComponent implements OnInit {
- 
-  constructor(private userService: UserService, public dialog: MatDialog) {
-  }
+  constructor(private userService: UserService, public dialog: MatDialog) {}
   users: User[];
-
+  private dialogRef: MatDialogRef<StdWorkersAddComponent>;
 
   ngOnInit() {
-    this.userService.getData().subscribe(data=> {
-      this.users=data;
+    this.userService.getData().subscribe(data => {
+      this.users = data;
     });
-  
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(StdWorkersAddComponent, {
+    this.dialogRef = this.dialog.open(StdWorkersAddComponent, {
       width: "600px"
+    });
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
     });
   }
 }

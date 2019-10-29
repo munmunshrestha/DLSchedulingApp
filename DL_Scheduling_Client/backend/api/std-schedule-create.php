@@ -13,6 +13,7 @@
 		$is_class=$_POST["is_class"];
 		$course_id=$_POST["course_id"];
 		$location= $_POST["location"];
+		$id=10614325;
 
 
 
@@ -20,10 +21,10 @@
 			
 			
 			// foreach($day as $dayVal){
-				$query= "INSERT INTO STUDENT_UNAVAILABILITY ( STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION,STD_IS_CLASS, STD_COURSEID ) VALUES (?,?,?,?,?,?)";
+				$query= "INSERT INTO STUDENT_UNAVAILABILITY ( STD_USER_ID, STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION,STD_IS_CLASS, STD_COURSEID ) VALUES (?,?,?,?,?,?,?)";
 				// Execute query
 				$stmt =$mysqli->prepare($query);
-				$stmt -> execute ([$start, $end, $day, $location, $is_class, $course_id]);
+				$stmt -> execute ([$id, $start, $end, $day, $location, $is_class, $course_id]);
 				//Verify $stmt executed - create a SESSION message
 				if($stmt) {
 				?>

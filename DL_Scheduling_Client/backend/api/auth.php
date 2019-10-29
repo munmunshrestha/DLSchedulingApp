@@ -2,11 +2,15 @@
   require_once("dbConnect.php");
   $mysqli = dbConnect::dbConnect();
   $mysqli -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
   session_start();
+
   $_POST = json_decode(file_get_contents('php://input'), true);
+  
   if(isset($_POST) && !empty($_POST)) {
     $email = $_POST['email'];
     $password = $_POST['password'];
+    
     if (isset($email) && $email!=="" && isset($password) && $password!==""){
       $query = "SELECT * FROM USER WHERE EMAIL=? AND PASSWORD=?";
       $stmt=$mysqli->prepare($query);
@@ -16,7 +20,9 @@
       if ($stmt) {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         // $_SESSION['user'] = $ro;
-        if($row['IS_ADMIN']) {
+        if($row['IS_ADMIN']==1) {
+          $user=$_SESSION["admin"];
+
           ?>
           {
             "success": true,
@@ -25,6 +31,7 @@
           <?php
         }
         else{
+          $user=$_SESSION["student"];
           ?>
             {
               "success": true,

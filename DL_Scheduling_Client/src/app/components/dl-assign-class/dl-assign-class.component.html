@@ -1,0 +1,49 @@
+
+      <h2 class="card-title">Distance Learning Classes</h2>
+      <full-calendar
+      [schedulerLicenseKey]= "liscense"
+      [defaultView]="view"
+      [plugins]="calendarPlugins"
+      [resourceLabelText]="resourceText"
+      
+      [aspectRatio]= "aspectRatio"
+      [minTime]="{
+        hours: 8,
+        minutes: 00
+      }"
+      [maxTime]="{
+        hours: 22,
+        minutes: 00
+      }"
+      
+      [titleFormat]="{
+        weekday:'long'
+      }"
+      [weekends]="false"
+      [editable]=true
+      [resources]="resources"
+      [events]="events"
+      [resourceAreaWidth]= 230
+
+     
+    
+    ></full-calendar>
+    <!-- [weekends]="false"
+    [minTime]="{
+      hours: 8,
+      minutes: 00
+    }"
+    [maxTime]="{
+      hours: 22,
+      minutes: 00
+    }"
+    [slotDuration]="{
+      hours: 0,
+      minutes: 30
+    }" -->
+    <!-- [visibleRange]="{
+      start: '2019-07-26',
+      end: '2019-12-13'
+    }" -->
+
+  

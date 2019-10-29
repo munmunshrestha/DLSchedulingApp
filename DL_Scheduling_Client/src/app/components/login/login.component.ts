@@ -66,25 +66,31 @@ export class LoginComponent implements OnInit {
   // }
 
   loginUser(event) {
+    
     event.preventDefault();
     
     console.log(this.email, this.password);
     let email=this.email;
     let password=this.password;
-
-    this.Auth.getUserDetails(email, password).subscribe(data => {
-      if (data.success) {
-        this.Auth.setLoggedIn(true);
-        // if (data.message=="Admin"){
-        //redirect the person to admin
-          this.router.navigate(["/admin"]);
-        // }
-        // else{
-        //   this.router.navigate(["/stdSchedule"]);
-        // }
-      } else {
-        window.alert(data.message);
-      }
-    });
+    if (email==null || password==null){
+      window.alert("Please enter your email and password")
+    }
+    else{
+      this.Auth.getUserDetails(email, password).subscribe(data => {
+        console.log(data);
+        if (data.success) {
+          this.Auth.setLoggedIn(true);
+          if (data.message=="Admin"){
+          //redirect the person to admin
+            this.router.navigate(["/admin"]);
+          }
+          else{
+            this.router.navigate(["/stdSchedule"]);
+          }
+        } else {
+          window.alert(data.message);
+        }
+      });
+    }
   }
 }

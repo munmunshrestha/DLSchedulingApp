@@ -60,6 +60,7 @@ import { AuthGuard } from "./services/auth.guard";
 import { LogoutComponent } from './components/logout/logout.component';
 import { StdWorkersComponent } from './components/std-workers/std-workers.component';
 import { StdWorkersAddComponent } from './components/std-workers-add/std-workers-add.component';
+import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-class.component';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { StdWorkersAddComponent } from './components/std-workers-add/std-workers
     AdminComponent,
     LogoutComponent,
     StdWorkersComponent,
-    StdWorkersAddComponent
+    StdWorkersAddComponent,
+    DlAssignClassComponent
   ],
   entryComponents: [StdScheduleAddComponent],
   imports: [

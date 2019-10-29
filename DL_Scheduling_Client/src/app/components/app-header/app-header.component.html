@@ -15,7 +15,8 @@
   <button mat-icon-button>
     <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
   </button>
-  <div class="float-right">UserName</div>
+  <!-- title -->
+  <div class="float-right"></div>
   <!-- <span class="menu-spacer"></span>
                   <div>
                     <a mat-button [routerLink]="'/accounts'"> Accounts </a>
@@ -36,7 +37,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="'/users'"> Student Workers </a>
+      <a mat-list-item [routerLink]="'/StdWorker'"> Student Workers </a>
       <a mat-list-item [routerLink]="'/stdSchedule'"> Student Schedule </a>
       <a mat-list-item [routerLink]="'/DLSchedule'"> DL Schedule </a>
       <a mat-list-item [routerLink]="'/leaveRequest'"> Leave Request </a>
