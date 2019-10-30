@@ -15,11 +15,10 @@ export class AuthService {
 
   setLoggedIn(value: boolean) {
     this.loggedInStatus = value
-    localStorage.setItem
   }
 
   get isLoggedIn() {
-    return this .loggedInStatus
+    return this.loggedInStatus
   }
 
   getUserDetails(email, password) {

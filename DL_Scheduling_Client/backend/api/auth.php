@@ -16,12 +16,12 @@
       $stmt=$mysqli->prepare($query);
       //  Prepare and execute query
       $stmt->execute([$email, $password]);
-            
-      if ($stmt) {
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+      $row = $stmt->fetch(PDO::FETCH_ASSOC);
+  
+      if (!empty($row)) {
         // $_SESSION['user'] = $ro;
         if($row['IS_ADMIN']==1) {
-          $user=$_SESSION["admin"];
+          $_SESSION["user"]=$row["USER_ID"];
 
           ?>
           {
@@ -31,7 +31,7 @@
           <?php
         }
         else{
-          $user=$_SESSION["student"];
+          $_SESSION["user"]=$row["USER_ID"];
           ?>
             {
               "success": true,

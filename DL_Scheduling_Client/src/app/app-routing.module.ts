@@ -49,22 +49,51 @@ const routes: Routes = [
   {
     path: "home",
     component: HomeComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: "",
+        canActivateChild: [AuthGuard],
+        children: [
+          {
+            path: "stdSchedule",
+            component: StdScheduleComponent
+          },
+          {
+            path: "stdAdd",
+            component: StdScheduleAddComponent
+          },
+          {
+            path: "DLSchedule",
+            component: DLscheduleComponent
+          },
+          {
+            path: "DLadd",
+            component: DlClassAddComponent
+          },
+          {
+            path: "StdWorker",
+            component: StdWorkersComponent
+          },
+          {
+            path: "addStdWorker",
+            component: StdWorkersAddComponent
+          },
+          {
+            path: "leaveRequest",
+            component: StdRequestLeaveComponent
+          },
+          {
+            path: "dlAssign",
+            component: DlAssignClassComponent
+          }
+        ]
+      }
+    ]
   },
-  { path: "stdAdd", component: StdScheduleAddComponent },
-  {
-    path: "stdSchedule",
-    component: StdScheduleComponent,
-    // canActivate: [AuthGuard]
-  },
-  { path: "DLSchedule", component: DLscheduleComponent },
-  { path: "DLadd", component: DlClassAddComponent },
-  { path: "StdWorker", component: StdWorkersComponent },
-  { path: "addStdWorker", component: StdWorkersAddComponent },
-  { path: "leaveRequest", component: StdRequestLeaveComponent },
+
   { path: "scheduler", component: StdSchedulerComponent },
-  { path: "fullcalender", component: FullcalenderComponent },
-  { path: "dlAssign", component: DlAssignClassComponent }
+  { path: "fullcalender", component: FullcalenderComponent }
 ];
 
 @NgModule({

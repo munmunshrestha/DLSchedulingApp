@@ -81,9 +81,11 @@ export class LoginComponent implements OnInit {
           this.Auth.setLoggedIn(true);
           if (data.message == "Admin") {
             //redirect the person to admin
-            this.router.navigate(["/admin"]);
+            this.router.navigate(["home"]);
+            console.log(data.message);
           } else {
-            this.router.navigate(["/stdSchedule"]);
+            this.router.navigate(["home"]);
+            console.log(data.message);
           }
         } else {
           window.alert(data.message);
