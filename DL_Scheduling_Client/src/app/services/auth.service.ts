@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   get isLoggedIn() {
-    return this.loggedInStatus
+    return this .loggedInStatus
   }
 
   getUserDetails(email, password) {

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from "@angular/material";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ActivatedRoute, Router } from '@angular/router';
+import { Inject } from '@angular/core';
 
 import { User } from "../../models/User";
 import { UserService } from "../../services/user.service";
-
+import {MailService} from "@sendgrid/mail";
 
 @Component({
   selector: 'app-std-workers-add',
@@ -15,10 +16,12 @@ export class StdWorkersAddComponent {
 
   user: User;
 
+  
   constructor(private dialogRef: MatDialogRef<StdWorkersAddComponent>,
     private router: Router, 
-
-    private userService: UserService) {
+    private userService: UserService,
+    
+    ) {
       this.user= new User();
 
      }
@@ -41,6 +44,8 @@ export class StdWorkersAddComponent {
         if (data.success) {
           //redirect the person to admin
           this.cancel();
+          window.alert(data.message);
+
         } else {
           window.alert(data.message);
         }
@@ -53,4 +58,8 @@ export class StdWorkersAddComponent {
       this.cancel();
   
     }
+
+
+
+    
 }

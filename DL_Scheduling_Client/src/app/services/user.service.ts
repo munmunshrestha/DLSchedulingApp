@@ -75,6 +75,18 @@ export class UserService {
     return this.http.get<isLoggedIn>("/api/isloggedin.php");
   }
 
+  deleteData(id){
+    return this.http.post<myData>("/api/std-worker-delete.php", {
+      id
+    });
+  }
+
+  editData(id){
+    return this.http.post<myData>("/api/std-worker-edit.php", {
+      id
+    });
+  }
+
   logout() {
     return this.http.get<logoutStatus>("/api/logout.php");
   }

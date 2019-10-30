@@ -13,17 +13,15 @@ import { UserFormComponent } from "./components/user-form/user-form.component";
 import { StdRequestLeaveComponent } from "./components/std-request-leave/std-request-leave.component";
 import { WebsocketComponent } from "./components/websocket/websocket.component";
 import { FullcalenderComponent } from "./components/fullcalender/fullcalender.component";
-import {AdminComponent} from "./components/admin/admin.component";
- //user authentication
-import { AuthGuard } from './services/auth.guard';
-import {LogoutComponent} from "./components/logout/logout.component";
-import {StdWorkersAddComponent} from "./components/std-workers-add/std-workers-add.component";
-import {StdWorkersComponent} from "./components/std-workers/std-workers.component";
-import{DlAssignClassComponent} from "./components/dl-assign-class/dl-assign-class.component"
-
+import { AdminComponent } from "./components/admin/admin.component";
+//user authentication
+import { AuthGuard } from "./services/auth.guard";
+import { LogoutComponent } from "./components/logout/logout.component";
+import { StdWorkersAddComponent } from "./components/std-workers-add/std-workers-add.component";
+import { StdWorkersComponent } from "./components/std-workers/std-workers.component";
+import { DlAssignClassComponent } from "./components/dl-assign-class/dl-assign-class.component";
 
 const routes: Routes = [
-
   {
     path: "login",
     component: LoginComponent
@@ -32,7 +30,7 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
     // data: { roles: [Role.Admin] }
   },
   {
@@ -41,17 +39,24 @@ const routes: Routes = [
   },
   {
     path: "",
-    component: LoginComponent,
-    
+    component: LoginComponent
   },
 
   // otherwise redirect to home
-  // { path: "**", redirectTo: "" },
+  // { path: "**", redirectTo: "login" },
   // { path: "login", component: LoginComponent },
   // { path: "", component: LoginComponent },
-  // { path: "home", component: HomeComponent },
+  {
+    path: "home",
+    component: HomeComponent,
+    // canActivate: [AuthGuard]
+  },
   { path: "stdAdd", component: StdScheduleAddComponent },
-  { path: "stdSchedule", component: StdScheduleComponent },
+  {
+    path: "stdSchedule",
+    component: StdScheduleComponent,
+    // canActivate: [AuthGuard]
+  },
   { path: "DLSchedule", component: DLscheduleComponent },
   { path: "DLadd", component: DlClassAddComponent },
   { path: "StdWorker", component: StdWorkersComponent },
@@ -60,7 +65,6 @@ const routes: Routes = [
   { path: "scheduler", component: StdSchedulerComponent },
   { path: "fullcalender", component: FullcalenderComponent },
   { path: "dlAssign", component: DlAssignClassComponent }
-
 ];
 
 @NgModule({

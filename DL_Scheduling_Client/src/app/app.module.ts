@@ -112,7 +112,8 @@ import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-c
     MatSidenavModule,
     MatListModule,
     MatIconModule,
-    FullCalendarModule // for FullCalendar!
+    FullCalendarModule, // for FullCalendar!
+    
   ],
   providers: [
     

@@ -16,14 +16,13 @@ export class LoginComponent implements OnInit {
   // submitted = false;
   // returnUrl: string;
   // error = '';
-  email:string;
-  password:string;
+  email: string;
+  password: string;
 
   constructor(
     private Auth: AuthService,
-    private router: Router //     private formBuilder: FormBuilder,
-  ) //     private route: ActivatedRoute,
-  //     private router: Router,
+    private router: Router //     private formBuilder: FormBuilder, //     private route: ActivatedRoute,
+  ) //     private router: Router,
   //     private authenticationService: AuthenticationService
   {
     //     // redirect to home if already logged in
@@ -65,26 +64,25 @@ export class LoginComponent implements OnInit {
   //             });
   // }
 
+  
+
   loginUser(event) {
-    
     event.preventDefault();
-    
+
     console.log(this.email, this.password);
-    let email=this.email;
-    let password=this.password;
-    if (email==null || password==null){
-      window.alert("Please enter your email and password")
-    }
-    else{
+    let email = this.email;
+    let password = this.password;
+    if (email == null || password == null) {
+      window.alert("Please enter your email and password");
+    } else {
       this.Auth.getUserDetails(email, password).subscribe(data => {
         console.log(data);
         if (data.success) {
           this.Auth.setLoggedIn(true);
-          if (data.message=="Admin"){
-          //redirect the person to admin
+          if (data.message == "Admin") {
+            //redirect the person to admin
             this.router.navigate(["/admin"]);
-          }
-          else{
+          } else {
             this.router.navigate(["/stdSchedule"]);
           }
         } else {

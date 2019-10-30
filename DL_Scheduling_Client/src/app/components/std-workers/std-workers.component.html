@@ -19,8 +19,8 @@
               <a href="mailto:{{ user.email }}">{{ user.email }}</a>
             </td>
             <td>
-              <button type="button" class="btn btn-link" (click)="onEdit()">Edit</button>
-              <button type="button" class="btn btn-link" (click)="onDelete()">Delete</button>
+              <button type="button" class="btn btn-link" (click)="openDialogEdit(user)">Edit</button>
+              <button type="button" class="btn btn-link" (click)="onDelete(user.id)">Delete</button>
             </td>
           </tr>
         </tbody>
