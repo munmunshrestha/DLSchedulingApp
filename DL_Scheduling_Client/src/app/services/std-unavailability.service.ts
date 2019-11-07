@@ -2,13 +2,20 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { stdUnavailability } from "../models/std-unavailability";
 import { Observable } from "rxjs/observable";
-import {calendarEvent} from "./../models/calendarEvent";
+import { calendarEvent } from "./../models/calendarEvent";
 
 interface myData {
   success: boolean;
   message: string;
 }
 
+interface dayTimeData {
+  startTime: string;
+  endTime: string;
+  noOfGrid: Number;
+  startGrid: Number;
+  daysOfWeek: number[];
+}
 
 @Injectable({
   providedIn: "root"
@@ -27,7 +34,7 @@ export class StdUnavailabilityService {
   //   );
   // }
 
-  sendData(start, end, day, is_class, course_id, location) {
+  sendData(start, end, day, is_class, course_id, location, isDL) {
     // let stdData=JSON.stringify(std) **assyncronous function below so cannot do this
 
     return this.http.post<myData>("/api/std-schedule-create.php", {
@@ -36,11 +43,14 @@ export class StdUnavailabilityService {
       day,
       is_class,
       course_id,
-      location
+      location,
+      isDL
     });
   }
 
   getData() {
-    return this.http.get<calendarEvent[]>("/api/std-schedule-read.php");
+    return this.http.get<dayTimeData>("/api/std-schedule-read.php");
   }
+
+  
 }

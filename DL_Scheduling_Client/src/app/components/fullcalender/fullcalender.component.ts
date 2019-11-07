@@ -15,9 +15,9 @@ export class FullcalenderComponent implements OnInit {
   eventSources:calendarEvent[];
 
   ngOnInit() {
-    this.stdService.getData().subscribe((events:calendarEvent[])=> {
-    this.eventSources=events;
-    console.log(events)});
+    // this.stdService.getData().subscribe((events:calendarEvent[])=> {
+    // this.eventSources=events;
+    // console.log(events)});
 
   }
 

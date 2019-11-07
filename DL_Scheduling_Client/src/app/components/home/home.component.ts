@@ -17,14 +17,18 @@
 //     //   console.log(this.user);
 //     // })
 //   }
-// } 
+// }
 
-
-import { Component } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { Component } from "@angular/core";
+import { first } from "rxjs/operators";
 
 // import {  AuthenticationService } from './../../services/authentication.service';
-import { UserService } from './../../services/user.service';
+import { UserService } from "./../../services/user.service";
+
+interface loggedInUser {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: "app-home",
@@ -35,19 +39,14 @@ export class HomeComponent {
   // loading = false;
   // currentUser: Users;
   // userFromApi: Users;
+  username: String;
+  user: loggedInUser;
 
-  // constructor(
-  //     private userService: UserService,
-  //     privat e authenticationService: AuthenticationService
-  // ) {
-  //     this.currentUser = this.authenticationService.currentUserValue;
-  // }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
-    // this.loading = true;
-    // this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
-    //     this.loading = false;
-    //     this.userFromApi = user;
-    // });
+    this.userService.getLoggedInUser().subscribe(user => {
+      this.username = user.name;
+    });
   }
 }

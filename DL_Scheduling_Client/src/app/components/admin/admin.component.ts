@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from './../../services/user.service';
+import { Component, OnInit } from "@angular/core";
+import { UserService } from "./../../services/user.service";
 
+interface loggedInUser {
+  id: number;
+  name: string;
+}
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss']
+  selector: "app-admin",
+  templateUrl: "./admin.component.html",
+  styleUrls: ["./admin.component.scss"]
 })
 export class AdminComponent implements OnInit {
-
-  message="loading.."
-  constructor(private user: UserService) { }
-
+  constructor(private userService: UserService) {}
+  
+  username: String;
+  user: loggedInUser;
   ngOnInit() {
-    this.user.getSomeData().subscribe(data=>{
-      this.message=data.message
-    })
-
+    this.userService.getLoggedInUser().subscribe(user => {
+      this.username = user.name;
+    });
   }
-
 }

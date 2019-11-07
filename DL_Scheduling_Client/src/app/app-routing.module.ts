@@ -27,12 +27,12 @@ const routes: Routes = [
     component: LoginComponent
   },
 
-  {
-    path: "admin",
-    component: AdminComponent,
-    canActivate: [AuthGuard]
-    // data: { roles: [Role.Admin] }
-  },
+  // {
+  //   path: "admin",
+  //   component: AdminComponent,
+  //   canActivate: [AuthGuard]
+  //   // data: { roles: [Role.Admin] }
+  // },
   {
     path: "logout",
     component: LogoutComponent
@@ -47,22 +47,14 @@ const routes: Routes = [
   // { path: "login", component: LoginComponent },
   // { path: "", component: LoginComponent },
   {
-    path: "home",
-    component: HomeComponent,
+    path: "admin",
+    component: AdminComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: "",
         canActivateChild: [AuthGuard],
         children: [
-          {
-            path: "stdSchedule",
-            component: StdScheduleComponent
-          },
-          {
-            path: "stdAdd",
-            component: StdScheduleAddComponent
-          },
           {
             path: "DLSchedule",
             component: DLscheduleComponent
@@ -86,6 +78,42 @@ const routes: Routes = [
           {
             path: "dlAssign",
             component: DlAssignClassComponent
+          },
+          {
+            path: "logout",
+            component: LogoutComponent
+          }
+         
+        ]
+      }
+    ]
+  },
+  {
+    path: "student",
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: "",
+        canActivateChild: [AuthGuard],
+        children: [
+          {
+            path: "stdSchedule",
+            component: StdScheduleComponent
+          },
+          {
+            path: "stdAdd",
+            component: StdScheduleAddComponent
+          },
+
+          {
+            path: "leaveRequest",
+            component: StdRequestLeaveComponent
+          },
+
+          {
+            path: "logout",
+            component: LogoutComponent
           }
         ]
       }

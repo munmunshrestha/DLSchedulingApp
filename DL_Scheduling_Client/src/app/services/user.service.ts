@@ -41,6 +41,12 @@ interface logoutStatus {
   success: boolean;
 }
 
+interface loggedInUser {
+  id: number;
+  name: string;
+}
+
+
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) {}
@@ -63,9 +69,9 @@ export class UserService {
       isAdmin
     });
   }
-  getSomeData() {
-    return this.http.get<myData>("/api/database.php");
-  }
+  // getSomeData() {
+  //   return this.http.get<myData>("/api/database.php");
+  // }
 
   getData() {
     return this.http.get<User[]>("/api/std-worker-read.php");
@@ -89,5 +95,9 @@ export class UserService {
 
   logout() {
     return this.http.get<logoutStatus>("/api/logout.php");
+  }
+
+  getLoggedInUser(){
+    return this.http.get<loggedInUser>("api/getLoggedInUser.php");
   }
 }

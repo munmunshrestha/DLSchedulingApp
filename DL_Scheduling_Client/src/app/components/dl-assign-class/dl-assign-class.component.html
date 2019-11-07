@@ -1,49 +1,86 @@
+<div class="card my-2">
+  <div class="card-body">
+    <h2 class="card-title">
+      Assign Distance Learning Classes to Student Workers
+    </h2>
 
-      <h2 class="card-title">Distance Learning Classes</h2>
-      <full-calendar
-      [schedulerLicenseKey]= "liscense"
-      [defaultView]="view"
-      [plugins]="calendarPlugins"
-      [resourceLabelText]="resourceText"
-      
-      [aspectRatio]= "aspectRatio"
-      [minTime]="{
-        hours: 8,
-        minutes: 00
-      }"
-      [maxTime]="{
-        hours: 22,
-        minutes: 00
-      }"
-      
-      [titleFormat]="{
-        weekday:'long'
-      }"
-      [weekends]="false"
-      [editable]=true
-      [resources]="resources"
-      [events]="events"
-      [resourceAreaWidth]= 230
+    <mat-form-field>
+      <mat-label>Choose a day to assign class</mat-label>
+      <mat-select [(ngModel)]="selectedDay" name="day">
+        <mat-option *ngFor="let day of weekdays" [value]="day">
+          {{ day }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="ListDLClasses()">Start</button>
 
-     
-    
-    ></full-calendar>
-    <!-- [weekends]="false"
-    [minTime]="{
-      hours: 8,
-      minutes: 00
-    }"
-    [maxTime]="{
-      hours: 22,
-      minutes: 00
-    }"
-    [slotDuration]="{
-      hours: 0,
-      minutes: 30
-    }" -->
-    <!-- [visibleRange]="{
-      start: '2019-07-26',
-      end: '2019-12-13'
-    }" -->
+    <ng-container *ngIf="show">
+      <!-- <div>
+        <mat-form-field>
+            <mat-select [(ngModel)]="selectedStudent" name="course">
+              <mat-option *ngFor="let course of dlClasses" [value]="course">
+                {{ course.course }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-select [(ngModel)]="selectedStudent" name="location">
+                  <mat-option *ngFor="let location of dlClasses.location" [value]="location">
+                    {{ location }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div> -->
 
-  
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Course ID</th>
+            <th scope="col">Location</th>
+            <th scope="col">Available Student Workers</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr *ngFor="let dl of dlClasses">
+            <td>{{ dl.location }}</td>
+            <td>{{ dl.course }}</td>
+            <td>
+                  <mat-form-field>
+                    <mat-select [(ngModel)]="selectedStudent" name="student">
+                      <mat-option *ngFor="let students of dl.students, let i = index" [value]="students">
+                        {{ students }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </td>
+          </tr>
+          <button mat-raised-button (click)="Assign()">Assign</button>
+
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</div>
+
+<!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
+    <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
+
+<!-- <h4>native html select</h4>
+  <mat-form-field>
+    <mat-label>Select your car (required)</mat-label>
+    <select matNativeControl required [formControl]="selectFormControl">
+      <option label="--select something --"></option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+    <mat-error *ngIf="selectFormControl.hasError('required')">
+      This field is required
+    </mat-error>
+    <mat-hint>You can pick up your favorite car here</mat-hint>
+  </mat-form-field> -->
+
+<!-- <div *ngFor="let class of dlClasses"> {{class.course}}</div> -->

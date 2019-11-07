@@ -3,10 +3,10 @@
 
   <div class="card-body">
     <h2 class="card-title">My Schedule</h2>
-    <!-- <table mat-table [dataSource]="dataSource" class="table table-hover">
+    <table mat-table [dataSource]="dataSource" class="table table-hover">
       <ng-container matColumnDef="time">
         <th mat-header-cell *matHeaderCellDef>Time</th>
-        <td mat-cell *matCellDef="let element">{{ element.time }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.value }}</td>
       </ng-container>
 
       <ng-container matColumnDef="monday">
@@ -36,9 +36,9 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table> -->
+    </table>
 
-    <full-calendar
+    <!-- <full-calendar
   defaultView="timeGridWeek"
   [plugins]="calendarPlugins"
   [editable]="true"
@@ -66,7 +66,7 @@
   [events]="eventSources"
   [slotEventOverlap]=false
   [height]=790
-></full-calendar>
+></full-calendar> -->
 
     <button mat-raised-button (click)="openDialog()">Add Schedule</button>
     <!-- <button mat-raised-button (click)="openDialog-leave()">Request Leave</button> -->

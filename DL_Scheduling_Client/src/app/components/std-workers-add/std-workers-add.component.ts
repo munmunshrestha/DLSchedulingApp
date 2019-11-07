@@ -44,7 +44,7 @@ export class StdWorkersAddComponent {
         if (data.success) {
           //redirect the person to admin
           this.cancel();
-          window.alert(data.message);
+          // window.alert(data.message);
 
         } else {
           window.alert(data.message);

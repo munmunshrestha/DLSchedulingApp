@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import {MatSelectModule} from '@angular/material/select';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
@@ -16,6 +17,8 @@ import {
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgbModule, NgbTimepickerModule } from "@ng-bootstrap/ng-bootstrap";
 import { MatDialogModule } from "@angular/material/dialog";
+import {MatTabsModule} from '@angular/material/tabs';
+
 import {
   MatToolbarModule,
   MatIconModule,
@@ -113,7 +116,8 @@ import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-c
     MatListModule,
     MatIconModule,
     FullCalendarModule, // for FullCalendar!
-    
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [
     

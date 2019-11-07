@@ -1,7 +1,7 @@
-<div class="card my-2">
+<!-- <div class="card my-2"> -->
   <!-- <div class="table-responsive"> -->
 
-  <div class="card-body">
+  <!-- <div class="card-body">
     <h3 class="card-title">Distance Learning Classes</h3>
     <full-calendar
     defaultView="timeGridWeek"
@@ -32,12 +32,26 @@
 
     [editable]= "true"
     [droppable]= "true"
-  ></full-calendar>
-  <!-- [visibleRange]="{
-    start: '2019-07-26',
-    end: '2019-12-13'
-  }" -->
+  ></full-calendar> -->
+
+  <div class="card my-2">
+      <!-- <div class="table-responsive"> -->
+    
+      <div class="card-body">
+        <h2 class="card-title">DL Schedule</h2>
+        <mat-tab-group>
+            <mat-tab label="Monday"> Monday
+               
+                 </mat-tab>
+            <mat-tab label="Tuesday"> Tuesday </mat-tab>
+            <mat-tab label="Wednesday"> Wednesday</mat-tab>
+            <mat-tab label="Thusday"> Thusday </mat-tab>
+            <mat-tab label="Friday"> Tuesday </mat-tab>
+          </mat-tab-group>
+        
     <button mat-raised-button (click)="openDialog()">Add DL Class</button>
+    <button mat-raised-button (click)="openAssignPage()">Assign Student Workers</button>
+
 
   </div>
 </div>

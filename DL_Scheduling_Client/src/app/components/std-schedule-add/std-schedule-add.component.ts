@@ -130,11 +130,9 @@ export class StdScheduleAddComponent implements OnInit {
           this.startTimeJson.minute
             .toString()
             .padStart(2, "0")
-            .concat(
-              ":".concat(this.startTimeJson.second.toString().padStart(2, "0"))
+          
             )
-        )
-      );
+        );
     this.endTimeDB = this.endTimeJson.hour
       .toString()
       .padStart(2, "0")
@@ -143,9 +141,7 @@ export class StdScheduleAddComponent implements OnInit {
           this.endTimeJson.minute
             .toString()
             .padStart(2, "0")
-            .concat(
-              ":".concat(this.endTimeJson.second.toString().padStart(2, "0"))
-            )
+            
         )
       );
 
@@ -154,7 +150,7 @@ export class StdScheduleAddComponent implements OnInit {
 
     this.weekDays.forEach(element => {
       if (element.checked) {
-        this.stdUnavailability.day.push(element.id);
+        this.stdUnavailability.day.push(element.name);
       }
     });
 
@@ -170,6 +166,7 @@ export class StdScheduleAddComponent implements OnInit {
     let course_id=this.stdUnavailability.course_id;
     let day=this.stdUnavailability.day;
     let location=this.stdUnavailability.location;
+    let isDL=this.stdUnavailability.is_dl;
 
     //mysql can store 0 or 1 (Tinyint(1))
     if (this.stdUnavailability.std_not_class){
@@ -178,11 +175,12 @@ export class StdScheduleAddComponent implements OnInit {
     else{
       is_class=1;
     }
-    console.log(is_class);
-    this.stdService.sendData(start, end,day,is_class,course_id, location ).subscribe(data => {
+    console.log(start, end,day,is_class,course_id, location);
+    this.stdService.sendData(start, end,day,is_class,course_id, location,isDL ).subscribe(data => {
+      // console.log(data);
       if (data.success) {
         this.cancel();
-        this.router.navigate(['/stdSchedule']);
+        this.router.navigate(['student/stdSchedule']);
       } else {
         window.alert(data.message);
       }

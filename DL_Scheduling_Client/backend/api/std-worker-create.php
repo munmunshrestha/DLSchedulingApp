@@ -39,41 +39,42 @@ if (isset($_POST) && !empty($_POST)) {
 			//     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 			// );
 			$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-			$response = $sendgrid->send($email);
-			if ($sendgrid->send($email)){
-				?>
-				{
-				"success": true,
-				"message": "Data stored IN DB and email sent"
-				}
-			<?php
+			$sendgrid->send($email);
+			// print $response->statusCode() . "\n";
+			// print_r($response->headers());
+			// print $response->body() . "\n";
+			// if ($sendgrid->send($email)) {
+			?>
+			{
+			"success": true,
+			"message": "Data stored IN DB "
 			}
-			else {
+		<?php
+				} else {
 					?>
 			{
 			"success": false,
-			"message": " Data stored IN DBemail not sent"
+			"message": "Data not stored IN DB"
 			}
 		<?php
-			}
-		} else {
+				}
+			} else {
 				?>
 		{
 		"success": false,
-		"message": "Data not stored IN DB"
+		"message": "Incomplete data"
 		}
-<?php
-	}
-}
-else{
-	?>
-	{
-		"success": false,
-		"message": "Data not stored IN DB"
-	}
 	<?php
+		}
+	} else {
+		?>
+	{
+	"success": false,
+	"message": "data not passed"
 	}
+<?php
 }
+
 
 $stmt->NULL;
 dbConnect::dbDisconnect();
