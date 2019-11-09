@@ -1,4 +1,5 @@
 <?php
+
 require_once("dbConnect.php");
 $mysqli = dbConnect::dbConnect();
 $mysqli->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -29,7 +30,9 @@ if ($stmt) {
     while ($dlClass = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $classes[$i]['course'] = $dlClass['DL_COURSE_ID'];
         $classes[$i]['location'] = $dlClass['DL_CLASS_LOCATION'];
-        
+        $classes[$i]['start'] = $dlClass['DL_START_TIME'];
+        $classes[$i]['end'] = $dlClass['DL_END_TIME'];
+
 
         $students = [];
         $count = 0;

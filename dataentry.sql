@@ -271,8 +271,8 @@ VALUES
     (10614325,
         1,
         "csci 2",
-        17,
-        21,
+        4,
+        6,
         "Thursday",
         "Weir" ,
         0);
@@ -305,7 +305,7 @@ INSERT INTO STUDENT_UNAVAILABILITY
     STD_CLASS_LOCATION,
     IS_DL)
 VALUES
-    (10614325,
+    (10101026,
         0,
         null,
         1,

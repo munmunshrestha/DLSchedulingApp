@@ -30,7 +30,7 @@ $id = $_SESSION["user"];
 $query = "SELECT STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION FROM STUDENT_UNAVAILABILITY WHERE STD_USER_ID=?";
 $stmt = $mysqli->prepare($query);
 //  Prepare and execute query
-$stmt->execute([10614325]);
+$stmt->execute([$id]);
 $event = [];
 if ($stmt) {
 

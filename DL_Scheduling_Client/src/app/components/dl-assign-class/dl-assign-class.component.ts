@@ -4,7 +4,9 @@ import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import { ActivatedRoute, Router } from "@angular/router";
 import { DlScheduleService } from "src/app/services/dl-schedule.service";
 import { dlClassInfo } from "src/app/models/dl-class-info";
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from "@angular/material";
+import { SpawnSyncOptions } from "child_process";
+import { dlAvailableStudent } from "src/app/models/dl-AvailableStudent";
 
 @Component({
   selector: "app-dl-assign-class",
@@ -19,35 +21,64 @@ export class DlAssignClassComponent implements OnInit {
   ) {}
 
   dlClasses: dlClassInfo[];
-  selectedDay:string;
-  selectedCourse:string;
-  weekdays:string[]=[
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday"
-  ];
+  selectedDay: string;
+  selectedCourse: string;
+  weekdays: string[] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-  show:boolean;
+  showTable: boolean;
+  showDetails: boolean;
 
   ngOnInit() {
-    this.show=false;
+    this.showTable = false;
+    this.showDetails = false;
   }
 
-  ListDLClasses(){
+  ListDLClasses() {
+    this.showDetails = false;
     // let currentDay = this.route.snapshot.paramMap.get("day");
     this.dlService.getDataForDay(this.selectedDay).subscribe(data => {
       this.dlClasses = data;
       console.log(this.dlClasses);
-      this.show=true;
+      this.showTable = true;
 
-      // let dataSource = new MatTableDataSource(this.dlClasses); 
+      // let dataSource = new MatTableDataSource(this.dlClasses);
     });
   }
 
-  Assign(){
+  values: any;
+  students: dlAvailableStudent[];
+  selectedStudent:any;
+  user_id:number;
 
+
+  onRowClick(dl) {
+    console.log(dl);
+    this.selectedStudent="";
+    this.dlService
+      .getAvailableStudents(this.selectedDay, dl.start, dl.end)
+      .subscribe(data => {
+        this.showDetails = true;
+        this.students = data;
+        console.log(this.students);
+
+        this.values = dl;
+      });
+  }
+
+  Assign() {
+    this.students.forEach(element => {
+      if(element.name==this.selectedStudent){
+        this.user_id=element.id;
+      }
+    });
+    console.log(this.user_id, this.values.course, this.values.location, this.values.start, this.values.end, this.selectedDay, 1, 1)
+    this.dlService.assignDLClass(this.user_id,this.values.id, this.values.course, this.values.location, this.values.start, this.values.end, this.selectedDay, 1, 1)
+    .subscribe(data => {
+      console.log(data.message);
+      this.ListDLClasses();
+      this.showDetails = false;
+
+    });
   }
   // liscense="GPL-My-Project-Is-Open-Source";
   // calendarPlugins=[ resourceTimelinePlugin, interactionPlugin ];

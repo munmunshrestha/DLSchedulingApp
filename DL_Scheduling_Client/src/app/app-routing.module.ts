@@ -71,10 +71,10 @@ const routes: Routes = [
             path: "addStdWorker",
             component: StdWorkersAddComponent
           },
-          {
-            path: "leaveRequest",
-            component: StdRequestLeaveComponent
-          },
+          // {
+          //   path: "leaveRequest",
+          //   component: StdRequestLeaveComponent
+          // },
           {
             path: "dlAssign",
             component: DlAssignClassComponent

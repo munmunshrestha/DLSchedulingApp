@@ -14,7 +14,7 @@ export class stdUnavailability{
     course_id: string;
     start: String;
     end: String;
-    day: String[];
+    day: Array<String>=[];
     location: String;
-    is_dl:boolean;
+    is_dl:number;
 }

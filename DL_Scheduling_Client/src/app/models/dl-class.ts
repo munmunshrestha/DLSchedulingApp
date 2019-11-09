@@ -1,4 +1,4 @@
-export class dlSchedule{
+export class dlClass{
     // std_unavailability_id: number;
     // std_user_id: number;
     // std_is_class: boolean;
@@ -11,7 +11,7 @@ export class dlSchedule{
     course_id: string;
     start: String;
     end: String;
-    day: Array<number>=[];
+    day: Array<String>=[];
     location: String;
 
 }

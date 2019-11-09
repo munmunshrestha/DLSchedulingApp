@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialogRef } from "@angular/material";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import {DlScheduleService} from '../../services/dl-schedule.service';
-import {dlSchedule} from '../../models/dl-schedule';
+import {dlClass} from '../../models/dl-class';
 
 @Component({
   selector: "app-dl-class-add",
@@ -46,13 +46,13 @@ export class DlClassAddComponent {
    });
  }
  selectedDays: String[];
- dlSchedule: dlSchedule;
+ dlSchedule: dlClass;
 
   constructor(private fb: FormBuilder,
     private dialogRef: MatDialogRef<DlClassAddComponent>,
     private dlService: DlScheduleService) 
     {
-      this.dlSchedule= new dlSchedule();
+      this.dlSchedule= new dlClass();
     }
 
   // to close dialog box
@@ -98,7 +98,7 @@ export class DlClassAddComponent {
 
     this.weekDays.forEach(element => {
       if (element.checked) {
-        this.dlSchedule.day.push(element.id);
+        this.dlSchedule.day.push(element.name);
       }
     });
 

@@ -14,7 +14,7 @@
     </mat-form-field>
     <button mat-raised-button (click)="ListDLClasses()">Start</button>
 
-    <ng-container *ngIf="show">
+    <ng-container *ngIf="showTable">
       <!-- <div>
         <mat-form-field>
             <mat-select [(ngModel)]="selectedStudent" name="course">
@@ -39,15 +39,15 @@
           <tr>
             <th scope="col">Course ID</th>
             <th scope="col">Location</th>
-            <th scope="col">Available Student Workers</th>
+            <!-- <th scope="col">Available Student Workers</th> -->
           </tr>
         </thead>
         <tbody>
           
-          <tr *ngFor="let dl of dlClasses">
+          <tr *ngFor="let dl of dlClasses,let j = index" (click)="onRowClick(dl)">
             <td>{{ dl.location }}</td>
             <td>{{ dl.course }}</td>
-            <td>
+            <!-- <td>
                   <mat-form-field>
                     <mat-select [(ngModel)]="selectedStudent" name="student">
                       <mat-option *ngFor="let students of dl.students, let i = index" [value]="students">
@@ -55,9 +55,8 @@
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
-            </td>
+            </td> -->
           </tr>
-          <button mat-raised-button (click)="Assign()">Assign</button>
 
         </tbody>
       </table>
@@ -84,3 +83,20 @@
   </mat-form-field> -->
 
 <!-- <div *ngFor="let class of dlClasses"> {{class.course}}</div> -->
+
+<ng-container *ngIf="showDetails">
+  {{values.course}}
+  {{values.location}}
+
+  <mat-form-field>
+      <mat-select [(ngModel)]="selectedStudent" name="student">
+        <mat-option *ngFor="let student of students" [value]="student.name">
+          {{ student.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button (click)="Assign()">Assign</button>
+
+
+</ng-container>

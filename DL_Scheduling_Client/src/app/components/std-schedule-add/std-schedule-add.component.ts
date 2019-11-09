@@ -147,7 +147,7 @@ export class StdScheduleAddComponent implements OnInit {
 
     this.stdUnavailability.start = this.startTimeDB;
     this.stdUnavailability.end = this.endTimeDB;
-
+    this.stdUnavailability.is_dl=0;
     this.weekDays.forEach(element => {
       if (element.checked) {
         this.stdUnavailability.day.push(element.name);

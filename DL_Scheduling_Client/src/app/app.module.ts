@@ -87,7 +87,7 @@ import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-c
     LogoutComponent,
     StdWorkersComponent,
     StdWorkersAddComponent,
-    DlAssignClassComponent
+    DlAssignClassComponent,
   ],
   entryComponents: [StdScheduleAddComponent],
   imports: [

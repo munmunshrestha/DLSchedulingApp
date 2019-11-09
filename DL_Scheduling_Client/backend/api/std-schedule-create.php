@@ -8,7 +8,7 @@ if (isset($_POST) && !empty($_POST)) {
 
 	$startStr = $_POST["start"];
 	$endStr = $_POST["end"];
-	$day = json_encode($_POST["day"]);
+	$day = $_POST["day"];
 	$is_class = $_POST["is_class"];
 	$course_id = $_POST["course_id"];
 	$location = $_POST["location"];
@@ -42,37 +42,45 @@ if (isset($_POST) && !empty($_POST)) {
 				}
 			}
 		}
-
+		$count=0;
 		foreach ($day as $dayVal) {
-			$query = "INSERT INTO STUDENT_UNAVAILABILITY ( STD_USER_ID, STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION,STD_IS_CLASS, STD_COURSEID ) VALUES (?,?,?,?,?,?,?)";
+			$query = "INSERT INTO STUDENT_UNAVAILABILITY ( STD_USER_ID, STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION,STD_IS_CLASS, STD_COURSEID, IS_DL ) VALUES (?,?,?,?,?,?,?,?)";
 			// Execute query
 			$stmt = $mysqli->prepare($query);
-			$stmt->execute([$id, $startInt, $endInt, $dayVal, $location, $is_class, $course_id]);
-			//Verify $stmt executed - create a SESSION message
-			if ($stmt) {
-				// echo "inside insert "
-				?>
-				{
-				"success": true,
-				"message": "START END IN DB"
-				}
-			<?php
-						} else {
-							// echo "notinside insert "
-
-							?>
-				{
-				"success": false,
-				"message": "Data cannot be stored in DB"
-				}
-	<?php
-				}
+			$stmt->execute([$id, $startInt, $endInt, $dayVal, $location, $is_class, $course_id, $isDL]);
+			//Verify $stmt executed - create a SESSION message	
+			if($stmt){
+				$count++;
 			}
 		}
-	} else {
-		// echo "post empty "
+		if ($count==count($day)){
+			?>
+			{
+			"success": true,
+			"message": "Added to DB"
+			}
+		<?php
+		}
+		else{
+			?>
+			{
+			"success": false,
+			"message": "not inserted in db"
+			}
+		<?php
+		}
 
-		?>
+	}
+	 else {
+				?>
+		{
+		"success": false,
+		"message": "START END notset"
+		}
+	<?php
+	}
+} else {
+	?>
 	{
 	"success": false,
 	"message": "START END notset"

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { stdUnavailability } from "../models/std-unavailability";
 import { Observable } from "rxjs/observable";
 import { calendarEvent } from "./../models/calendarEvent";
+import { dlClassInfo } from '../models/dl-class-info';
 
 interface myData {
   success: boolean;
@@ -52,5 +53,11 @@ export class StdUnavailabilityService {
     return this.http.get<dayTimeData>("/api/std-schedule-read.php");
   }
 
+  getAssignedClass(day){
+    return this.http.get<dlClassInfo[]>(
+      "/api/std-getAssignedDl.php",
+      { params: { dayVal: day } }
+    );
+  }
   
 }
