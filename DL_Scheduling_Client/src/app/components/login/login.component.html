@@ -2,9 +2,20 @@
   <mat-card>
     <mat-card-title>Login</mat-card-title>
     <mat-card-content>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showAlert">
+        <strong>{{alertMsg}}</strong> 
+        <button
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form (submit)="loginUser($event)">
         <p>
-          <mat-form-field>
+          <!-- <mat-form-field>
             <input
               type="text"
               name="email"
@@ -14,11 +25,9 @@
               id="email"
               [(ngModel)]="email"
             />
-          </mat-form-field>
-        </p>
-
-        <p>
-          <mat-form-field>
+          </mat-form-field> 
+        
+        <mat-form-field>
             <input
               type="password"
               name="password"
@@ -28,11 +37,42 @@
               id="password"
               [(ngModel)]="password"
             />
+          </mat-form-field>-->
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Enter your email"
+              [formControl]="email"
+              required
+            />
+            <mat-error *ngIf="email.invalid">{{
+              getErrorMessageEmail()
+            }}</mat-error>
           </mat-form-field>
         </p>
 
-        <p *ngIf="error" class="error">
-          {{ error }}
+        <p>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Enter your password"
+              [type]="hide ? 'password' : 'text'"
+              [formControl]="password"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide"
+            >
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+            </button>
+            <mat-error *ngIf="password.invalid">{{
+              getErrorMessagePassword()
+            }}</mat-error>
+          </mat-form-field>
         </p>
 
         <div class="button">

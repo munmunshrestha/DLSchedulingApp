@@ -1,7 +1,12 @@
 //
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  FormControl
+} from "@angular/forms";
 import { first } from "rxjs/operators";
 
 import { AuthService } from "./../../services/auth.service";
@@ -11,84 +16,51 @@ import { AuthService } from "./../../services/auth.service";
   templateUrl: "login.component.html"
 })
 export class LoginComponent implements OnInit {
-  // loginForm: FormGroup;
-  // loading = false;
-  // submitted = false;
-  // returnUrl: string;
-  // error = '';
-  email: string;
-  password: string;
+  // email: string;
+  // password: string;
+  hide = true;
 
-  constructor(
-    private Auth: AuthService,
-    private router: Router //     private formBuilder: FormBuilder, //     private route: ActivatedRoute,
-  ) //     private router: Router,
-  //     private authenticationService: AuthenticationService
-  {
-    //     // redirect to home if already logged in
-    //     if (this.authenticationService.currentUserValue) {
-    //         this.router.navigate(['/']);
-    //     }
+  email = new FormControl("", [Validators.required, Validators.email]);
+  password = new FormControl("", [Validators.required]);
+
+  getErrorMessageEmail() {
+    return this.email.hasError("required")
+      ? "You must enter a value"
+      : this.email.hasError("email")
+      ? "Not a valid email"
+      : "";
   }
 
-  ngOnInit() {
-    //     this.loginForm = this.formBuilder.group({
-    //         username: ['', Validators.required],
-    //         password: ['', Validators.required]
-    //     });
-    //     // get return url from route parameters or default to '/'
-    //     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+  getErrorMessagePassword() {
+    return this.email.hasError("required") ? "You must enter a value" : "";
   }
 
-  // // convenience getter for easy access to form fields
-  // get f() { return this.loginForm.controls; }
+  constructor(private Auth: AuthService, private router: Router) {}
 
-  // onSubmit() {
-  //     this.submitted = true;
-
-  //     // stop here if form is invalid
-  //     if (this.loginForm.invalid) {
-  //         return;
-  //     }
-
-  //     this.loading = true;
-  //     this.authenticationService.login(this.f.username.value, this.f.password.value)
-  //         .pipe(first())
-  //         .subscribe(
-  //             data => {
-  //                 this.router.navigate([this.returnUrl]);
-  //             },
-  //             error => {
-  //                 this.error = error;
-  //                 this.loading = false;
-  //             });
-  // }
-
-  
+  ngOnInit() {}
+  alertMsg:string;
+  showAlert:boolean;
 
   loginUser(event) {
-    event.preventDefault();
+    console.log(this.email.valid);
+    if (this.email.valid && this.password.valid) {
+      event.preventDefault();
+      let inputEmail = this.email.value;
+      let inputPassword = this.password.value;
 
-    console.log(this.email, this.password);
-    let email = this.email;
-    let password = this.password;
-    if (email == null || password == null) {
-      window.alert("Please enter your email and password");
-    } else {
-      this.Auth.getUserDetails(email, password).subscribe(data => {
+      this.Auth.getUserDetails(inputEmail, inputPassword).subscribe(data => {
         console.log(data);
         if (data.success) {
           this.Auth.setLoggedIn(true);
           if (data.message == "Admin") {
             //redirect the person to admin
             this.router.navigate(["admin"]);
-            console.log(data.message);
           } else {
             this.router.navigate(["student"]);
-            console.log(data.message);
           }
         } else {
-          window.alert(data.message);
+          this.alertMsg=data.message;
+          this.showAlert=true;
         }
       });
     }
