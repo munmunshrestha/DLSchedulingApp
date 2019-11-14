@@ -65,7 +65,6 @@ export class StdScheduleAddComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private stdService: StdUnavailabilityService,
     private dialogRef: MatDialogRef<StdScheduleAddComponent>

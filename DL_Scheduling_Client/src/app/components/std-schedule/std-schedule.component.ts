@@ -14,7 +14,8 @@ import { MatTableDataSource } from "@angular/material";
 export interface timeSelected {
   id: number;
   value: string;
-  selected: boolean;
+  Monday: number;
+  Tuesday:boolean;
 }
 
 // export interface time_weekday {
@@ -79,40 +80,37 @@ export class StdScheduleComponent {
   private dialogRef: MatDialogRef<StdScheduleAddComponent>;
 
  
-  // eventSources:calendarEvent[];
+  // 0=nothing, 1=stdSchedule, 2=DLclass
   data: timeSelected[] = [
-    { id: 1, value: "8:00 AM", selected: false },
-    { id: 2, value: "8:30 AM", selected: false },
-    { id: 3, value: "9:00 AM", selected: false },
-    { id: 4, value: "9:30 AM", selected: false },
-    { id: 5, value: "10:00 AM", selected: false },
-    { id: 6, value: "10:30 AM", selected: false },
-    { id: 7, value: "11:00 AM", selected: false },
-    { id: 8, value: "11:30 AM", selected: false },
-    { id: 9, value: "12:00 PM", selected: false },
-    { id: 10, value: "12:30 PM", selected: false },
-    { id: 12, value: "1:00 PM", selected: false },
-    { id: 13, value: "...", selected: false },
-    { id: 14, value: "9:00 PM", selected: false }
-
-    // { id: 13, value: "1:30 PM", selected: false },
-    // { id: 14, value: "2:00 PM", selected: false },
-    // { id: 15, value: "2:30 PM", selected: false },
-    // { id: 16, value: "3:00 PM", selected: false },
-    // { id: 17, value: "3:30 PM", selected: false },
-    // { id: 18, value: "4:00 PM", selected: false },
-    // { id: 19, value: "4:30 PM", selected: false },
-    // { id: 20, value: "5:00 PM", selected: false },
-    // { id: 21, value: "5:30 PM", selected: false },
-    // { id: 22, value: "6:00 PM", selected: false },
-    // { id: 23, value: "7:00 PM", selected: false },
-    // { id: 24, value: "7:30 PM", selected: false },
-    // { id: 25, value: "8:00 PM", selected: false },
-    // { id: 26, value: "8:30 PM", selected: false },
-    // { id: 27, value: "9:00 PM", selected: false }
+    { id: 1, value: "8:00 AM", Monday: 0, Tuesday:false },
+    { id: 2, value: "8:30 AM", Monday: 0, Tuesday:false },
+    { id: 3, value: "9:00 AM", Monday: 0, Tuesday:false},
+    { id: 4, value: "9:30 AM", Monday: 0, Tuesday:false},
+    { id: 5, value: "10:00 AM", Monday: 0, Tuesday:false},
+    { id: 6, value: "10:30 AM", Monday: 0, Tuesday:false},
+    { id: 7, value: "11:00 AM", Monday: 0, Tuesday:false},
+    { id: 8, value: "11:30 AM", Monday: 0, Tuesday:false},
+    { id: 9, value: "12:00 PM", Monday: 0, Tuesday:false},
+    { id: 10, value: "12:30 PM", Monday: 0, Tuesday:false},
+    { id: 11, value: "1:00 PM", Monday: 0, Tuesday:false},
+    { id: 12, value: "1:30 PM", Monday: 0 , Tuesday:false},
+    { id: 13, value: "2:00 PM", Monday: 0 , Tuesday:false},
+    { id: 14, value: "2:30 PM", Monday: 0 , Tuesday:false},
+    { id: 15, value: "3:00 PM", Monday: 0 , Tuesday:false},
+    { id: 16, value: "3:30 PM", Monday: 0 , Tuesday:false},
+    { id: 17, value: "4:00 PM", Monday: 0 , Tuesday:false},
+    { id: 18, value: "4:30 PM", Monday: 0 , Tuesday:false},
+    { id: 19, value: "5:00 PM", Monday: 0 , Tuesday:false},
+    { id: 20, value: "5:30 PM", Monday: 0 , Tuesday:false},
+    { id: 21, value: "6:00 PM", Monday: 0 , Tuesday:false},
+    { id: 21, value: "7:00 PM", Monday: 0 , Tuesday:false},
+    { id: 23, value: "7:30 PM", Monday: 0 , Tuesday:false},
+    { id: 24, value: "8:00 PM", Monday: 0 , Tuesday:false},
+    { id: 25, value: "8:30 PM", Monday: 0 , Tuesday:false},
+    { id: 26, value: "9:00 PM", Monday: 0 , Tuesday:false}
   ];
 
-  dayTimeData: any[5] = [this.data, this.data, this.data, this.data, this.data];
+  // dayTimeData: any[5] = [this.data, this.data, this.data, this.data, this.data];
 
   displayedColumns: string[] = [
     "time",
@@ -132,26 +130,40 @@ export class StdScheduleComponent {
   //  this.displayTime={hours:8, minutes:30}
   // }
 
+  day: any;
+  start:number;
+  end:number;
+  isDL:number;
   ngOnInit() {
     this.stdService.getData().subscribe(events => {
-      console.log(events);
-      //for each event
-      for (var eachEvent in events) {
-        console.log(events[eachEvent]);
-        //for each days of event
-        for (var days in events[eachEvent].daysOfWeek) {
-          //for each grid
-          let eachDay = events[eachEvent].daysOfWeek[days] - 1;
-          // console.log(this.dayTimeData[eachDay]);
-          // row=days-1;
-          // for (let i = 1; i <= events[eachEvent].noOfGrid; i++) {
-          //   this.dayTimeData[eachDay].timeSelected[
-          //     events[eachEvent].startGrid++
-          //   ].selected = true;
+      // console.log(events['Monday'][0]['startTime']);
+      //for each day
+      for (var eachday in events) {
+      console.log(events[eachday]);
+        this.day=events[eachday];
+        // //for each entry for day
+        for (var entryNum in this.day) {
+          this.start=this.day[entryNum]['startTime']
+          this.end=this.day[entryNum]['endTime']
+          this.isDL=this.day[entryNum]['isDL']
+          console.log(entryNum + " start: "+this.start+ " end: "+this.end);
+          console.log(this.data[this.start-1]['Monday']);
+          for (let i=this.start-1; i<=this.end-1; i++){
+            if (this.isDL==0){
+              this.data[i][eachday]=1;
+            }
+            else if(this.isDL==1){
+              this.data[i][eachday]=2;
+            }
+          }
+          //for each data
+          // for (var item in this.data){
+          //   if (item['id']==this.start)
+
           // }
         }
       }
-      // console.log(this.dayTimeData);
+      console.log(this.data);
     });
   }
 
@@ -165,4 +177,5 @@ export class StdScheduleComponent {
       this.ngOnInit();
     });
   }
+
 }

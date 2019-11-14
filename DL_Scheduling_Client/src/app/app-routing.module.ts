@@ -20,6 +20,7 @@ import { LogoutComponent } from "./components/logout/logout.component";
 import { StdWorkersAddComponent } from "./components/std-workers-add/std-workers-add.component";
 import { StdWorkersComponent } from "./components/std-workers/std-workers.component";
 import { DlAssignClassComponent } from "./components/dl-assign-class/dl-assign-class.component";
+import { TrialtableComponent } from './components/trialtable/trialtable.component';
 
 const routes: Routes = [
   {
@@ -27,12 +28,12 @@ const routes: Routes = [
     component: LoginComponent
   },
 
-  // {
-  //   path: "admin",
-  //   component: AdminComponent,
-  //   canActivate: [AuthGuard]
-  //   // data: { roles: [Role.Admin] }
-  // },
+  {
+    path: "tabletry",
+    component: TrialtableComponent,
+    // canActivate: [AuthGuard]
+    // data: { roles: [Role.Admin] }
+  },
   {
     path: "logout",
     component: LogoutComponent
@@ -57,7 +58,10 @@ const routes: Routes = [
         children: [
           {
             path: "DLSchedule",
-            component: DLscheduleComponent
+            component: DLscheduleComponent,
+            canActivateChild: [AuthGuard],
+
+            
           },
           {
             path: "DLadd",

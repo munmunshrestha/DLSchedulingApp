@@ -11,11 +11,7 @@ interface myData {
 }
 
 interface dayTimeData {
-  startTime: string;
-  endTime: string;
-  noOfGrid: Number;
-  startGrid: Number;
-  daysOfWeek: number[];
+  Monday:any[];
 }
 
 @Injectable({

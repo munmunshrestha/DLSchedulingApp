@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { calendarEvent } from "./../models/calendarEvent";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { dlClassInfo } from "../models/dl-class-info";
-import { dlAvailableStudent } from "../models/dl-AvailableStudent";
+import { dlAvailableStudent } from "../models/dl-availableStudents";
 
 interface myData {
   success: boolean;

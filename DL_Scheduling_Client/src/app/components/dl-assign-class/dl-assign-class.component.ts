@@ -6,7 +6,7 @@ import { DlScheduleService } from "src/app/services/dl-schedule.service";
 import { dlClassInfo } from "src/app/models/dl-class-info";
 import { MatTableDataSource } from "@angular/material";
 import { SpawnSyncOptions } from "child_process";
-import { dlAvailableStudent } from "src/app/models/dl-AvailableStudent";
+import { dlAvailableStudent } from "src/app/models/dl-availableStudents";
 
 @Component({
   selector: "app-dl-assign-class",

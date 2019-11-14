@@ -27,14 +27,26 @@ $lastDate = "2019-12-13";
 //while today is less than semester end date**
 // if($todayDate>=$firstDate && $todayDate<=$lastDate){
 $id = $_SESSION["user"];
-$query = "SELECT STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION FROM STUDENT_UNAVAILABILITY WHERE STD_USER_ID=?";
+$query = "SELECT STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION, IS_DL, STD_IS_CLASS FROM STUDENT_UNAVAILABILITY WHERE STD_USER_ID=?";
 $stmt = $mysqli->prepare($query);
 //  Prepare and execute query
 $stmt->execute([$id]);
 $event = [];
+$monday = [];
+$tuesday = [];
+$wednesday = [];
+$thursday = [];
+$friday = [];
+
+
 if ($stmt) {
 
     $i = 0;
+    $j = 0;
+    $k = 0;
+    $l = 0;
+    $m = 0;
+
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         //for title (if class-location, else - unavailable)
         if ($row['STD_CLASS_LOCATION'] == null) {
@@ -42,38 +54,71 @@ if ($stmt) {
         } else {
             $location = $row['STD_CLASS_LOCATION'];
         }
-        $startTime = $row['STD_START_TIME'];
-        $endTime = $row['STD_END_TIME'];
+        // $startTime = $row['STD_START_TIME'];
+        // $endTime = $row['STD_END_TIME'];
+        $day = $row['STD_DAY'];
         //GETTING START GRID AND NO OF GRID TO COLOR
-        $diff = (strtotime($endTime) - strtotime($startTime));
-        $minutes = $diff / 60;
-        $noOfGrid = ceil($minutes/30);
-        $startGrid=((strtotime($startTime)- strtotime('08:00:00'))/60)/30;
-        // echo sprintf("%02dh %02dm", floor($total / 60), $total % 60);
-
-        // $classDay=$row['STD_DAY'];
-        // if($firstDay==$classDay){
-        //     $classDate=$firstDate;
-        // }
-        // else{
-        //     //next day (indb) from first day
-        //     $classDate=date('Y-m-d', strtotime("next ".$classDay, strtotime($firstDate)));
-        // }
-
-        // $startDateTime=$classDate." ".$row['STD_START_TIME'];
-        // $endDateTime=$classDate." ".$row['STD_END_TIME'];
+        // $diff = (strtotime($endTime) - strtotime($startTime));
+        // $minutes = $diff / 60;
+        // $noOfGrid = ceil($minutes/30);
+        // $startGrid=((strtotime($startTime)- strtotime('08:00:00'))/60)/30;
 
 
+        // $event[$i]['noOfGrid'] = $noOfGrid;
+        // $event[$i]['startGrid'] = $startGrid;
+        // $event[$i]['daysOfWeek'] = json_decode($row["STD_DAY"]);
 
-        // $event[$i]['minutes'] = $minutes;
-        $event[$i]['startTime'] = $row['STD_START_TIME'];
-        $event[$i]['endTime'] = $row['STD_END_TIME'];
-        $event[$i]['noOfGrid'] = $noOfGrid;
-        $event[$i]['startGrid'] = $startGrid;
-        $event[$i]['daysOfWeek'] = json_decode($row["STD_DAY"]);
+        if ($day == "Monday") {
+            $monday[$i]['startTime'] = $row['STD_START_TIME'];
+            $monday[$i]['endTime'] = $row['STD_END_TIME'];
+            $monday[$i]['location'] = $location;
+            $monday[$i]['isClass'] = $row['STD_IS_CLASS'];
+            $monday[$i]['isDL'] = $row['IS_DL'];
 
-        $i++;
+            $i++;
+        } elseif ($day == "Tuesday") {
+            $tuesday[$j]['startTime'] = $row['STD_START_TIME'];
+            $tuesday[$j]['endTime'] = $row['STD_END_TIME'];
+            $tuesday[$j]['location'] = $location;
+            $tuesday[$j]['isClass'] = $row['STD_IS_CLASS'];
+            $tuesday[$j]['isDL'] = $row['IS_DL'];
+
+            $j++;
+        } elseif ($day == "Wednesday") {
+            $wednesday[$k]['startTime'] = $row['STD_START_TIME'];
+            $wednesday[$k]['endTime'] = $row['STD_END_TIME'];
+            $wednesday[$k]['location'] = $location;
+            $wednesday[$k]['isClass'] = $row['STD_IS_CLASS'];
+            $wednesday[$k]['isDL'] = $row['IS_DL'];
+
+            $k++;
+        } elseif ($day == "Thursday") {
+            $thursday[$l]['startTime'] = $row['STD_START_TIME'];
+            $thursday[$l]['endTime'] = $row['STD_END_TIME'];
+            $thursday[$l]['location'] = $location;
+            $thursday[$l]['isClass'] = $row['STD_IS_CLASS'];
+            $thursday[$l]['isDL'] = $row['IS_DL'];
+
+            $l++;
+        } elseif ($day == "Friday") {
+            $friday[$m]['startTime'] = $row['STD_START_TIME'];
+            $friday[$m]['endTime'] = $row['STD_END_TIME'];
+            $friday[$m]['location'] = $location;
+            $friday[$m]['isClass'] = $row['STD_IS_CLASS'];
+            $friday[$m]['isDL'] = $row['IS_DL'];
+
+            $m++;
+        }
     }
+    // $event[$i][$day][$j]=
+
+    $event['Monday'] = $monday;
+    $event['Tuesday'] = $tuesday;
+    $event['Wednesday'] = $wednesday;
+    $event['Thursday'] = $thursday;
+    $event['Friday'] = $friday;
+    // $i++;
+
 
     echo json_encode($event);
 } else {
