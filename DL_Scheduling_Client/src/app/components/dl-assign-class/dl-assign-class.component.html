@@ -7,12 +7,15 @@
     <mat-form-field>
       <mat-label>Choose a day to assign class</mat-label>
       <mat-select [(ngModel)]="selectedDay" name="day">
-        <mat-option *ngFor="let day of weekdays" [value]="day">
+        <mat-option
+          *ngFor="let day of weekdays"
+          [value]="day"
+          (click)="ListDLClasses()"
+        >
           {{ day }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <button mat-raised-button (click)="ListDLClasses()">Start</button>
 
     <ng-container *ngIf="showTable">
       <!-- <div>
@@ -43,8 +46,10 @@
           </tr>
         </thead>
         <tbody>
-          
-          <tr *ngFor="let dl of dlClasses,let j = index" (click)="onRowClick(dl)">
+          <tr
+            *ngFor="let dl of dlClasses; let j = index"
+            (click)="onRowClick(dl)"
+          >
             <td>{{ dl.location }}</td>
             <td>{{ dl.course }}</td>
             <!-- <td>
@@ -57,9 +62,25 @@
                   </mat-form-field>
             </td> -->
           </tr>
-
         </tbody>
       </table>
+    </ng-container>
+
+    <ng-container *ngIf="showDetails">
+      <h4>Course Details</h4>
+      Course ID: {{ values.course }}<br>
+      Location: {{ values.location }}<br>
+      <!-- Start Time: {{ values.start }}<br> -->
+      Available Student Workers:
+      <mat-form-field>
+        <mat-select [(ngModel)]="selectedStudent" name="student">
+          <mat-option *ngFor="let student of students" [value]="student.name">
+            {{ student.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field><br>
+
+      <button mat-raised-button (click)="Assign()">Assign</button>
     </ng-container>
   </div>
 </div>
@@ -83,20 +104,3 @@
   </mat-form-field> -->
 
 <!-- <div *ngFor="let class of dlClasses"> {{class.course}}</div> -->
-
-<ng-container *ngIf="showDetails">
-  {{values.course}}
-  {{values.location}}
-
-  <mat-form-field>
-      <mat-select [(ngModel)]="selectedStudent" name="student">
-        <mat-option *ngFor="let student of students" [value]="student.name">
-          {{ student.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button mat-raised-button (click)="Assign()">Assign</button>
-
-
-</ng-container>

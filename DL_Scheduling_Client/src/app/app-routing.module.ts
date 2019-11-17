@@ -21,6 +21,7 @@ import { StdWorkersAddComponent } from "./components/std-workers-add/std-workers
 import { StdWorkersComponent } from "./components/std-workers/std-workers.component";
 import { DlAssignClassComponent } from "./components/dl-assign-class/dl-assign-class.component";
 import { TrialtableComponent } from './components/trialtable/trialtable.component';
+import { LeaveRequestActionComponent } from './components/leave-request-action/leave-request-action.component';
 
 const routes: Routes = [
   {
@@ -75,10 +76,10 @@ const routes: Routes = [
             path: "addStdWorker",
             component: StdWorkersAddComponent
           },
-          // {
-          //   path: "leaveRequest",
-          //   component: StdRequestLeaveComponent
-          // },
+          {
+            path: "leaveRequest",
+            component: LeaveRequestActionComponent
+          },
           {
             path: "dlAssign",
             component: DlAssignClassComponent

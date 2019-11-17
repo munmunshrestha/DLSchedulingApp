@@ -1,0 +1,33 @@
+<div class="card my-2">
+        <div class="card-body">
+          <h4 class="card-title">Leave Requests</h4>
+      
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Student Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Class To Cover</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let request of requests">
+                <td>{{ request.std_name }}</td>
+                <td>{{ request.date}}</td>
+                <td>
+                  Course ID: {{request.class_toCover.course}}<br>
+                  Time: {{request.class_toCover.start}} - {{request.class_toCover.end}} {{request.class_toCover.day}}<br>
+                  Location: {{request.class_toCover.location}}
+                </td>
+                <td>
+                  <button mat-raised-button (click)="accept(request.id)">Accept</button>
+                  <button mat-raised-button (click)="reject(request.id)">Reject</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button mat-raised-button (click)="openDialog()">Add Student Workers</button>
+        </div>
+      </div>
+      

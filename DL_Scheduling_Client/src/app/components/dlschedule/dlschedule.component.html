@@ -1,38 +1,3 @@
-<!-- <div class="card my-2"> -->
-  <!-- <div class="table-responsive"> -->
-
-  <!-- <div class="card-body">
-    <h3 class="card-title">Distance Learning Classes</h3>
-    <full-calendar
-    defaultView="timeGridWeek"
-    [plugins]="calendarPlugins"
-    
-    [weekends]="false"
-    [minTime]="{
-      hours: 8,
-      minutes: 00
-    }"
-    [maxTime]="{
-      hours: 22,
-      minutes: 00
-    }"
-    [slotDuration]="{
-      hours: 0,
-      minutes: 30
-    }"
-    [allDaySlot]=false
-    
-    [titleFormat]="{
-      weekday:'long'
-    }"
-    [events]="eventSources"
-    (eventClick)="onEventClick($event)"
-    [slotEventOverlap]=false
-    [height]=790
-
-    [editable]= "true"
-    [droppable]= "true"
-  ></full-calendar> -->
 
   <div class="card my-2">
       <!-- <div class="table-responsive"> -->
@@ -40,9 +5,9 @@
       <div class="card-body">
         <h2 class="card-title">DL Schedule</h2>
         <mat-tab-group>
-            <mat-tab label="Monday"> Monday
-               
-                 </mat-tab>
+            <mat-tab label="Monday"> 
+               <app-dl-by-location></app-dl-by-location>
+            </mat-tab>
             <mat-tab label="Tuesday"> Tuesday </mat-tab>
             <mat-tab label="Wednesday"> Wednesday</mat-tab>
             <mat-tab label="Thusday"> Thusday </mat-tab>

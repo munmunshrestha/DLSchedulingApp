@@ -1,25 +1,41 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { LeaveRequest } from '../models/leave-request';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { LeaveRequest } from "../models/leave-request";
+
+interface myData {
+  success: boolean;
+  message: string;
+}
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class LeaveRequestService {
+  private leaveReqUrl: string;
 
-  private leaveReqUrl:string;
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {
-    this.leaveReqUrl = 'http://localhost:8080/leaveRequest/';
+  public acceptRequest(id) {
+    return this.http.post<myData>("/api/leave-request-accept.php", {
+      id
+    });
   }
- 
-  public findAll(): Observable<LeaveRequest[]> {
-    return this.http.get<LeaveRequest[]>(this.leaveReqUrl.concat('all'));
+
+  public rejectRequest(id) {
+    return this.http.post<myData>("/api/leave-request-reject.php", {
+      id
+    });
   }
- 
-  public save(LeaveRequest: LeaveRequest) {
-    return this.http.post<LeaveRequest>(this.leaveReqUrl.concat('add'), LeaveRequest);
+
+  public getRequests(): Observable<LeaveRequest[]> {
+    return this.http.get<LeaveRequest[]>("/api/leave-request-read.php");
+  }
+
+  public save(date, dlClass) {
+    return this.http.post<myData>("/api/leave-request-add.php", {
+      date,
+      dlClass
+    });
   }
 }

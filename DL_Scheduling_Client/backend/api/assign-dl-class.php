@@ -3,16 +3,16 @@ require_once("dbConnect.php");
 $mysqli = dbConnect::dbConnect();
 $mysqli->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+session_start();
 $_POST = json_decode(file_get_contents('php://input'), true);
 if (isset($_POST) && !empty($_POST)) {
-
 
     $day = $_POST["day"];
     $is_class = $_POST["is_class"];
     $course_id = $_POST["course_id"];
     $location = $_POST["location"];
     $isDL = $_POST["isDL"];
-    $userid = $_POST['userId'];
+    $userId = $_SESSION["user"];
     $dlid = $_POST['dlId'];
     $start = $_POST["start"];
     $end = $_POST["end"];
@@ -25,9 +25,9 @@ if (isset($_POST) && !empty($_POST)) {
     $stmt1->execute([$userid, $start, $end, $day, $location, $is_class, $course_id, $isDL]);
     if ($stmt1) {
 
-        $query2 = "UPDATE DLCLASSES SET IS_ASSIGNED = ? WHERE DL_CLASS_ID=?";
+        $query2 = "UPDATE DLCLASSES SET IS_ASSIGNED = ? AND ASSIGNED_USER_ID=? WHERE DL_CLASS_ID=?";
         $stmt2 = $mysqli->prepare($query2);
-        $stmt2->execute([1, $dlid]);
+        $stmt2->execute([1, $userId, $dlid]);
         ?>
 
         {

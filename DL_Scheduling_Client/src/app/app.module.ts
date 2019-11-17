@@ -3,6 +3,8 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {
@@ -64,6 +66,9 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { StdWorkersComponent } from './components/std-workers/std-workers.component';
 import { StdWorkersAddComponent } from './components/std-workers-add/std-workers-add.component';
 import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-class.component';
+import { LeaveRequestActionComponent } from './components/leave-request-action/leave-request-action.component';
+import { DlAvailabilityComponent } from './components/dl-availability/dl-availability.component';
+import { DlByLocationComponent } from './components/dl-by-location/dl-by-location.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +93,9 @@ import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-c
     StdWorkersComponent,
     StdWorkersAddComponent,
     DlAssignClassComponent,
+    LeaveRequestActionComponent,
+    DlAvailabilityComponent,
+    DlByLocationComponent,
   ],
   entryComponents: [StdScheduleAddComponent],
   imports: [
@@ -117,7 +125,9 @@ import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-c
     MatIconModule,
     FullCalendarModule, // for FullCalendar!
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     
@@ -125,7 +135,8 @@ import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-c
     // LeaveRequestService,
     AuthService,
     AuthGuard,
-    UserService
+    UserService,
+    MatDatepickerModule
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

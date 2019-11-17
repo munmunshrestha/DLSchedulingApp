@@ -15,57 +15,11 @@ export interface timeSelected {
   id: number;
   value: string;
   Monday: number;
-  Tuesday:boolean;
+  Tuesday:number;
+  Wednesday: number;
+  Thursday:number;
+  Friday:number;
 }
-
-// export interface time_weekday {
-//   timeSelected:
-// }
-
-// const ELEMENT_DATA: time_weekday[] = [
-//   {
-//     time: "8:00 AM",
-//     monday: "",
-//     tuesday: "",
-//     wednesday: "",
-//     thursday: "",
-//     friday: ""
-//   }
-// ];
-
-// const ELEMENT_DATA = [
-//   {
-//     day: 1,
-//     timeSelected: [
-//       { id: 1, value: "8:00 AM", selected: false },
-//       { id: 2, value: "8:30 AM", selected: false },
-//       { id: 3, value: "9:00 AM", selected: false },
-//       { id: 4, value: "9:30 AM", selected: false },
-//       { id: 5, value: "10:00 AM", selected: false },
-//       { id: 6, value: "10:30 AM", selected: false },
-//       { id: 7, value: "11:00 AM", selected: false },
-//       { id: 8, value: "11:30 AM", selected: false },
-//       { id: 9, value: "12:00 PM", selected: false },
-//       { id: 10, value: "12:30 PM", selected: false },
-//       { id: 12, value: "1:00 PM", selected: false },
-//       { id: 13, value: "1:30 PM", selected: false },
-//       { id: 14, value: "2:00 PM", selected: false },
-//       { id: 15, value: "2:30 PM", selected: false },
-//       { id: 16, value: "3:00 PM", selected: false },
-//       { id: 17, value: "3:30 PM", selected: false },
-//       { id: 18, value: "4:00 PM", selected: false },
-//       { id: 19, value: "4:30 PM", selected: false },
-//       { id: 20, value: "5:00 PM", selected: false },
-//       { id: 21, value: "5:30 PM", selected: false },
-//       { id: 22, value: "6:00 PM", selected: false },
-//       { id: 23, value: "7:00 PM", selected: false },
-//       { id: 24, value: "7:30 PM", selected: false },
-//       { id: 25, value: "8:00 PM", selected: false },
-//       { id: 26, value: "8:30 PM", selected: false },
-//       { id: 27, value: "9:00 PM", selected: false }
-//     ]
-//   }
-// ];
 
 @Component({
   selector: "app-std-schedule",
@@ -82,32 +36,34 @@ export class StdScheduleComponent {
  
   // 0=nothing, 1=stdSchedule, 2=DLclass
   data: timeSelected[] = [
-    { id: 1, value: "8:00 AM", Monday: 0, Tuesday:false },
-    { id: 2, value: "8:30 AM", Monday: 0, Tuesday:false },
-    { id: 3, value: "9:00 AM", Monday: 0, Tuesday:false},
-    { id: 4, value: "9:30 AM", Monday: 0, Tuesday:false},
-    { id: 5, value: "10:00 AM", Monday: 0, Tuesday:false},
-    { id: 6, value: "10:30 AM", Monday: 0, Tuesday:false},
-    { id: 7, value: "11:00 AM", Monday: 0, Tuesday:false},
-    { id: 8, value: "11:30 AM", Monday: 0, Tuesday:false},
-    { id: 9, value: "12:00 PM", Monday: 0, Tuesday:false},
-    { id: 10, value: "12:30 PM", Monday: 0, Tuesday:false},
-    { id: 11, value: "1:00 PM", Monday: 0, Tuesday:false},
-    { id: 12, value: "1:30 PM", Monday: 0 , Tuesday:false},
-    { id: 13, value: "2:00 PM", Monday: 0 , Tuesday:false},
-    { id: 14, value: "2:30 PM", Monday: 0 , Tuesday:false},
-    { id: 15, value: "3:00 PM", Monday: 0 , Tuesday:false},
-    { id: 16, value: "3:30 PM", Monday: 0 , Tuesday:false},
-    { id: 17, value: "4:00 PM", Monday: 0 , Tuesday:false},
-    { id: 18, value: "4:30 PM", Monday: 0 , Tuesday:false},
-    { id: 19, value: "5:00 PM", Monday: 0 , Tuesday:false},
-    { id: 20, value: "5:30 PM", Monday: 0 , Tuesday:false},
-    { id: 21, value: "6:00 PM", Monday: 0 , Tuesday:false},
-    { id: 21, value: "7:00 PM", Monday: 0 , Tuesday:false},
-    { id: 23, value: "7:30 PM", Monday: 0 , Tuesday:false},
-    { id: 24, value: "8:00 PM", Monday: 0 , Tuesday:false},
-    { id: 25, value: "8:30 PM", Monday: 0 , Tuesday:false},
-    { id: 26, value: "9:00 PM", Monday: 0 , Tuesday:false}
+    { id: 1, value: "8:00 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0 },
+    { id: 2, value: "8:30 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 3, value: "9:00 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 4, value: "9:30 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 5, value: "10:00 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 6, value: "10:30 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 7, value: "11:00 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 8, value: "11:30 AM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 9, value: "12:00 PM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 10, value: "12:30 PM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 11, value: "1:00 PM", Monday: 0, Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 12, value: "1:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 14, value: "2:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 14, value: "2:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 13, value: "2:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 14, value: "2:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 15, value: "3:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 16, value: "3:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 17, value: "4:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 18, value: "4:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 19, value: "5:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 20, value: "5:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 21, value: "6:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 21, value: "7:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 23, value: "7:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 24, value: "8:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 25, value: "8:30 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0},
+    { id: 26, value: "9:00 PM", Monday: 0 , Tuesday:0, Wednesday:0, Thursday:0, Friday:0}
   ];
 
   // dayTimeData: any[5] = [this.data, this.data, this.data, this.data, this.data];
