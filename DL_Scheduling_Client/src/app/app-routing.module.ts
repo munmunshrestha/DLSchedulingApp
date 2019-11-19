@@ -110,7 +110,10 @@ const routes: Routes = [
             path: "stdAdd",
             component: StdScheduleAddComponent
           },
-
+          {
+            path: "dlSchedule",
+            component: DLscheduleComponent
+          },
           {
             path: "leaveRequest",
             component: StdRequestLeaveComponent

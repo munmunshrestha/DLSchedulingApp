@@ -39,7 +39,7 @@ export class StdRequestLeaveComponent implements OnInit {
   finalDate: string;
   requested:boolean;
   message:string;
-
+  hasClass:boolean;  
   // classes:string[];
   ngOnInit() {
     this.events = [];
@@ -66,6 +66,12 @@ export class StdRequestLeaveComponent implements OnInit {
     this.stdService.getAssignedClass(this.selectedDay).subscribe(data => {
       this.classes = data;
       // console.log(data);
+      if (this.classes.length!=0){
+        this.hasClass=true;
+      }
+      else{
+        this.hasClass=false;
+      }
       for (let i = 0; i < data.length; i++) {
         this.classes[i].selected = false;
       }

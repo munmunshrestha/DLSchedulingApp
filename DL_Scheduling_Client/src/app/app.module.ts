@@ -52,7 +52,6 @@ import { UserService } from "./services/user.service";
 import { StdUnavailabilityService } from "./services/std-unavailability.service";
 import { LeaveRequestService } from "./services/leave-request.service";
 import { AuthService } from "./services/auth.service";
-import { AppHeaderComponent } from "./components/app-header/app-header.component";
 import { WebsocketComponent } from "./components/websocket/websocket.component";
 import { FullcalenderComponent } from "./components/fullcalender/fullcalender.component";
 
@@ -85,7 +84,6 @@ import { DlByLocationComponent } from './components/dl-by-location/dl-by-locatio
     StdRequestLeaveComponent,
     UserListComponent,
     UserFormComponent,
-    AppHeaderComponent,
     WebsocketComponent,
     FullcalenderComponent,
     AdminComponent,

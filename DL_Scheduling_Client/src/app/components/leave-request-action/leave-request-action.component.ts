@@ -10,12 +10,15 @@ import { LeaveRequest } from "src/app/models/leave-request";
 export class LeaveRequestActionComponent implements OnInit {
   constructor(private leaveService: LeaveRequestService) {}
   requests: LeaveRequest[];
-  requestExist:boolean;
+  requestExist:boolean=false;
   ngOnInit() {
     this.leaveService.getRequests().subscribe(data => {
       this.requests = data;
       if(this.requests.length!=0){
         this.requestExist=true;
+      }
+      else{
+        this.requestExist=false;
       }
       console.log(data);
     });
