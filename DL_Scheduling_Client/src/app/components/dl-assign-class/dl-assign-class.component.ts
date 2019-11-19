@@ -36,7 +36,7 @@ export class DlAssignClassComponent implements OnInit {
   ListDLClasses() {
     this.showDetails = false;
     // let currentDay = this.route.snapshot.paramMap.get("day");
-    this.dlService.getDataForDay(this.selectedDay).subscribe(data => {
+    this.dlService.getClassForDay(this.selectedDay).subscribe(data => {
       this.dlClasses = data;
       console.log(this.dlClasses);
       this.showTable = true;

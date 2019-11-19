@@ -1,22 +1,33 @@
+<div class="card my-2">
+  <!-- <div class="table-responsive"> -->
 
-  <div class="card my-2">
-      <!-- <div class="table-responsive"> -->
-    
-      <div class="card-body">
-        <h2 class="card-title">DL Schedule</h2>
-        <mat-tab-group>
-            <mat-tab label="Monday"> 
-               <app-dl-by-location></app-dl-by-location>
-            </mat-tab>
-            <mat-tab label="Tuesday"> Tuesday </mat-tab>
-            <mat-tab label="Wednesday"> Wednesday</mat-tab>
-            <mat-tab label="Thusday"> Thusday </mat-tab>
-            <mat-tab label="Friday"> Tuesday </mat-tab>
-          </mat-tab-group>
-        
+  <div class="card-body">
+    <h2 class="card-title">DL Schedule</h2>
+    <mat-tab-group
+      [selectedIndex]="selected.value"
+      (selectedIndexChange)="change($event)"
+    >
+      <mat-tab *ngFor="let day of weekdays" [label]="day.value">
+        <!-- <div class="card my-2"> -->
+          <table class="table table-bordered">
+           <!-- <tr>
+              <th *ngFor="let header of headers" class="header">{{header}}</th>
+            </tr> -->
+            <tr >
+                <td *ngFor="let time of timeData" class="timeAlign" >{{time.value}}</td>
+            </tr>
+            <tr *ngFor="let location of dataArray">
+              <!-- <th>One</th> -->
+              <td *ngFor="let val of location" [attr.colspan]="val.grid" [ngStyle]="{'background-color':val.grid>=1? 'yellow' :'transparant'}">{{val.display}}<br>{{val.name}}</td>
+            </tr>
+          </table>
+        <!-- </div> -->
+      </mat-tab>
+    </mat-tab-group>
+
     <button mat-raised-button (click)="openDialog()">Add DL Class</button>
-    <button mat-raised-button (click)="openAssignPage()">Assign Student Workers</button>
-
-
+    <button mat-raised-button (click)="openAssignPage()">
+      Assign Student Workers
+    </button>
   </div>
 </div>

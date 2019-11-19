@@ -27,19 +27,21 @@ export class DlScheduleService {
     });
   }
 
-  getData() {
-    return this.http.get<calendarEvent[]>("/api/dl-schedule-read.php");
-  }
-
-  // getDataToAssign() {
-  //   return this.http.get<dlClassInfo[]>("/api/assign-dl-class-read.php"
-  //   // ,{
-  //     // day
-  //   // }
-  //   );
+  // getData() {
+  //   return this.http.get<calendarEvent[]>("/api/dl-schedule-read.php");
   // }
 
-  getDataForDay(day) {
+  getSchedulebyDay(day) {
+    return this.http.get("/api/dl-schedule-read.php", {
+      params: { dayVal: day }
+    });
+  }
+
+  getDlLocations() {
+    return this.http.get("/api/dl-getLocations.php");
+  }
+
+  getClassForDay(day) {
     return this.http.get<dlClassInfo[]>("/api/dl-getClassToAssign.php", {
       params: { dayVal: day }
     });
@@ -52,7 +54,17 @@ export class DlScheduleService {
     );
   }
 
-  assignDLClass(userId, dlId, course_id, location, start, end, day, is_class, isDL) {
+  assignDLClass(
+    userId,
+    dlId,
+    course_id,
+    location,
+    start,
+    end,
+    day,
+    is_class,
+    isDL
+  ) {
     return this.http.post<myData>("/api/assign-dl-class.php", {
       userId,
       dlId,

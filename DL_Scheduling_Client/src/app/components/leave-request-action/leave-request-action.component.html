@@ -1,7 +1,7 @@
 <div class="card my-2">
         <div class="card-body">
           <h4 class="card-title">Leave Requests</h4>
-      
+          <div *ngIf="requestExist">
           <table class="table table-bordered">
             <thead>
               <tr>
@@ -27,7 +27,8 @@
               </tr>
             </tbody>
           </table>
-          <button mat-raised-button (click)="openDialog()">Add Student Workers</button>
+        </div>
+        <div *ngIf="!requestExist">No Reuests</div>
         </div>
       </div>
       

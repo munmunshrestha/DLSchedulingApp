@@ -1,44 +1,48 @@
 <?php
-    require_once("dbConnect.php");
-    $mysqli = dbConnect::dbConnect();
-	$mysqli -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require_once("dbConnect.php");
+$mysqli = dbConnect::dbConnect();
+$mysqli->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // set the start date of semester-- by admin
-	$firstDate="2019-08-26";
-    $lastDate="2019-12-13";
-      
- 
-        $query = "SELECT DL_COURSE_ID ,
-        DL_START_TIME,
-        DL_END_TIME,
-        DL_CLASS_LOCATION,
-        DL_CLASS_DAY FROM DLCLASSES ";
-        $stmt=$mysqli->prepare($query);
-            //  Prepare and execute query
-        $stmt->execute();
-        $event=[];
-        if ($stmt) {
-    
-        $i = 0;
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+session_start();
 
-            $event[$i]['title'] =$row['DL_COURSE_ID']. " - ". $row['DL_CLASS_LOCATION'] ;
-            $event[$i]['startTime'] = $row['DL_START_TIME'];
-            $event[$i]['endTime'] = $row['DL_END_TIME'];
-            $event[$i]['startRecur']=$firstDate;
-            $event[$i]['endRecur']=date ('Y-m-d', strtotime("+1 day", strtotime($lastDate)));
-            $event[$i]['daysOfWeek']=json_decode($row["DL_CLASS_DAY"]);
-            $i++;
-        }
+$data = json_decode(file_get_contents('php://input'), true);
+$day = $_GET['dayVal'];
 
-        echo json_encode($event);
-        }
-        else
-        {
-        http_response_code(404);
-        }
-    // }
-    // else
-    // {
-    //     http_response_code(404);
-    // }
+//getlocation
+$query1 = "SELECT DISTINCT DL_CLASS_LOCATION FROM DLCLASSES order by DL_CLASS_LOCATION ASC";
+$stmt1 = $mysqli->prepare($query1);
+$stmt1->execute([]);
+// $locations = [];
+
+if ($stmt1) {
+    $i = 0;
+    while ($dlClass = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+        $locations[$dlClass['DL_CLASS_LOCATION']] = [];
+    }
+}
+// print_r($locations);
+
+$query = "SELECT DL.DL_COURSE_ID, DL.DL_START_TIME, DL.DL_END_TIME, DL.DL_CLASS_LOCATION, STD.FIRST_NAME, STD.LAST_NAME FROM DLCLASSES DL LEFT JOIN USER STD ON DL.ASSIGNED_USER_ID=STD.USER_ID where DL_CLASS_DAY=? ";
+$stmt = $mysqli->prepare($query);
+//  Prepare and execute query
+$stmt->execute([$day]);
+$classInfo = [];
+
+if ($stmt) {
+    for ($index=0; $index<count($locations); $index++){
+        $$locations[$index]=0;
+        // echo $Conner;
+    }
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $rowlocation = $row['DL_CLASS_LOCATION'];
+        $locations[$rowlocation][$$rowlocation]['startTime'] = $row['DL_START_TIME'];
+        $locations[$rowlocation][$$rowlocation]['endTime'] = $row['DL_END_TIME'];
+        $locations[$rowlocation][$$rowlocation]['course'] = $row['DL_COURSE_ID'];
+        $locations[$rowlocation][$$rowlocation]['name'] = $row['FIRST_NAME'] ;
+        $$rowlocation++;
+    }
+
+    echo json_encode($locations);
+} else {
+    http_response_code(404);
+}

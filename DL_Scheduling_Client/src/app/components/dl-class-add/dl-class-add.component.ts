@@ -74,9 +74,7 @@ export class DlClassAddComponent {
           this.startTimeJson.minute
             .toString()
             .padStart(2, "0")
-            .concat(
-              ":".concat(this.startTimeJson.second.toString().padStart(2, "0"))
-            )
+            
         )
       );
     this.endTimeDB = this.endTimeJson.hour
@@ -87,9 +85,7 @@ export class DlClassAddComponent {
           this.endTimeJson.minute
             .toString()
             .padStart(2, "0")
-            .concat(
-              ":".concat(this.endTimeJson.second.toString().padStart(2, "0"))
-            )
+           
         )
       );
 
