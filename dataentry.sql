@@ -1,5 +1,13 @@
 -- USER 
-
+-- INSERT INTO USER
+--     (USER_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,IS_ADMIN)
+-- VALUES
+--     (10101000,
+--         "Faye",
+--         "Walter",
+--         "wfwalter@olemiss.edu",
+--         "Olemiss2019",
+--         1);
 -- INSERT INTO USER
 --     (USER_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,IS_ADMIN)
 -- VALUES
@@ -199,12 +207,11 @@ VALUES
         15,
         "Monday",
         "Weir",
-        0);
-        
+        0);        
 	INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,
-    STD_COURSEID,
+ --    STD_COURSEID,
     STD_START_TIME,
     STD_END_TIME,
     STD_DAY,
@@ -218,8 +225,7 @@ VALUES
         15,
         "Wednesday",
         "Weir",
-        0);
-        
+        0);         
 	INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,
@@ -238,7 +244,6 @@ VALUES
         "Friday",
         "Weir",
         0);
-
 INSERT INTO STUDENT_UNAVAILABILITY
  ( STD_USER_ID,
     STD_IS_CLASS ,
@@ -256,8 +261,7 @@ VALUES
         21,
         "Tuesday",
         "Weir",
-        0);
-        
+        0);         
         INSERT INTO STUDENT_UNAVAILABILITY
  ( STD_USER_ID,
     STD_IS_CLASS ,
@@ -276,7 +280,6 @@ VALUES
         "Thursday",
         "Weir" ,
         0);
-
 INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,
@@ -305,7 +308,7 @@ INSERT INTO STUDENT_UNAVAILABILITY
     STD_CLASS_LOCATION,
     IS_DL)
 VALUES
-    (10101026,
+  --   (10101026,
         0,
         null,
         1,
@@ -313,7 +316,6 @@ VALUES
         "Thursday",
         null,
         0);
-
 INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,
@@ -331,8 +333,7 @@ VALUES
         19,
         "Tuesday",
         "Conner",
-        0);
-        
+        0);       
         INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,
@@ -351,7 +352,6 @@ VALUES
         "Thursday",
         "Conner" ,
         0);
-
 INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,
@@ -370,9 +370,8 @@ VALUES
         "Wednesday",
         null ,
         0);
-
 INSERT INTO STUDENT_UNAVAILABILITY
-    ( STD_USER_ID,
+ --    ( STD_USER_ID,
     STD_IS_CLASS ,
     STD_COURSEID,
     STD_START_TIME,
@@ -389,8 +388,7 @@ VALUES
         "Tuesday",
      "JAC" ,
      0);
-     
-     INSERT INTO STUDENT_UNAVAILABILITY
+ --     INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,
     STD_COURSEID,
@@ -408,8 +406,6 @@ VALUES
         "Thursday",
      "JAC",
      0);
-
-
 INSERT INTO STUDENT_UNAVAILABILITY
     ( STD_USER_ID,
     STD_IS_CLASS ,

@@ -31,6 +31,8 @@ $query = "SELECT STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION, IS_D
 $stmt = $mysqli->prepare($query);
 //  Prepare and execute query
 $stmt->execute([$id]);
+// $stmt->execute(['10614325']);
+
 $event = [];
 $monday = [];
 $tuesday = [];
@@ -74,7 +76,7 @@ if ($stmt) {
             $monday[$i]['location'] = $location;
             $monday[$i]['isClass'] = $row['STD_IS_CLASS'];
             $monday[$i]['isDL'] = $row['IS_DL'];
-
+            $monday[$i]['day'] = $day;
             $i++;
         } elseif ($day == "Tuesday") {
             $tuesday[$j]['startTime'] = $row['STD_START_TIME'];
@@ -82,7 +84,7 @@ if ($stmt) {
             $tuesday[$j]['location'] = $location;
             $tuesday[$j]['isClass'] = $row['STD_IS_CLASS'];
             $tuesday[$j]['isDL'] = $row['IS_DL'];
-
+            $tuesday[$j]['day'] = $day;
             $j++;
         } elseif ($day == "Wednesday") {
             $wednesday[$k]['startTime'] = $row['STD_START_TIME'];
@@ -90,6 +92,7 @@ if ($stmt) {
             $wednesday[$k]['location'] = $location;
             $wednesday[$k]['isClass'] = $row['STD_IS_CLASS'];
             $wednesday[$k]['isDL'] = $row['IS_DL'];
+            $wednesday[$k]['day'] = $day;
 
             $k++;
         } elseif ($day == "Thursday") {
@@ -98,6 +101,7 @@ if ($stmt) {
             $thursday[$l]['location'] = $location;
             $thursday[$l]['isClass'] = $row['STD_IS_CLASS'];
             $thursday[$l]['isDL'] = $row['IS_DL'];
+            $thursday[$l]['day'] = $day;
 
             $l++;
         } elseif ($day == "Friday") {
@@ -106,19 +110,27 @@ if ($stmt) {
             $friday[$m]['location'] = $location;
             $friday[$m]['isClass'] = $row['STD_IS_CLASS'];
             $friday[$m]['isDL'] = $row['IS_DL'];
+            $friday[$m]['day'] = $day;
 
             $m++;
         }
     }
-    // $event[$i][$day][$j]=
 
+    // $event['Monday'] = $monday;
+    // $event['Tuesday'] = $tuesday;
+    // $event['Wednesday'] = $wednesday;
+    // $event['Thursday'] = $thursday;
+    // $event['Friday'] = $friday;
     $event['Monday'] = $monday;
     $event['Tuesday'] = $tuesday;
     $event['Wednesday'] = $wednesday;
     $event['Thursday'] = $thursday;
     $event['Friday'] = $friday;
-    // $i++;
-
+    // array_push($event,$monday);
+    // array_push($event,$tuesday);
+    // array_push($event,$wednesday);
+    // array_push($event,$thursday);
+    // array_push($event,$friday);
 
     echo json_encode($event);
 } else {

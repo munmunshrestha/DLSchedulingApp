@@ -35,7 +35,6 @@
             [(ngModel)]="startTimeJson"
           >
           </ngb-timepicker>
-          <button class="btn btn-sm btn-outline-meridian"></button>
 
           <label for="endTime">End Time:</label>
           <ngb-timepicker
@@ -43,7 +42,7 @@
             [meridian]="meridian"
             [(ngModel)]="endTimeJson"
           ></ngb-timepicker>
-          <button class="btn btn-sm btn-outline-meridian"></button>
+          <!-- <button class="btn btn-sm btn-outline-meridian"></button> -->
         </div>
         <div fxLayout="column" fxLayoutAlign="space-between">
           <div *ngFor="let item of weekDays; let i = index">

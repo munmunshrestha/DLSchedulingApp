@@ -46,7 +46,7 @@ export class StdUnavailabilityService {
   }
 
   getData() {
-    return this.http.get<dayTimeData>("/api/std-schedule-read.php");
+    return this.http.get("/api/std-schedule-read.php");
   }
 
   getAssignedClass(day) {

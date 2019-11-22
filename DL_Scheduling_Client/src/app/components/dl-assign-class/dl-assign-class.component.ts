@@ -7,6 +7,8 @@ import { dlClassInfo } from "src/app/models/dl-class-info";
 import { MatTableDataSource } from "@angular/material";
 import { SpawnSyncOptions } from "child_process";
 import { dlAvailableStudent } from "src/app/models/dl-availableStudents";
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: "app-dl-assign-class",
@@ -17,7 +19,8 @@ export class DlAssignClassComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private dlService: DlScheduleService
+    private dlService: DlScheduleService,
+    private _location: Location
   ) {}
 
   dlClasses: dlClassInfo[];
@@ -79,6 +82,10 @@ export class DlAssignClassComponent implements OnInit {
       this.showDetails = false;
 
     });
+  }
+
+  backClicked() {
+    this._location.back();
   }
   // liscense="GPL-My-Project-Is-Open-Source";
   // calendarPlugins=[ resourceTimelinePlugin, interactionPlugin ];

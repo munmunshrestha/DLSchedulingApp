@@ -113,11 +113,12 @@ export class DLscheduleComponent implements OnInit {
       }
 
       this.dlService.getSchedulebyDay(this.day).subscribe(data => {
+        console.log(data);
         this.schedule = data;
         let x = 0;
 
         Object.values(data).forEach(locationVal => {
-          if (Object.values(locationVal).length != 0) {
+          if (locationVal.length != 0) {
             // console.log("length= "+Object.values(locationVal).length);
             Object.values(locationVal).forEach(rec => {
               //parsing string to int

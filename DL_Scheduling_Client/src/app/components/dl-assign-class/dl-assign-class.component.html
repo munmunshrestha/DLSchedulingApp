@@ -1,5 +1,6 @@
 <div class="card my-2">
   <div class="card-body">
+    <a (click)="backClicked()" class="previous round">&#8249;</a>
     <h2 class="card-title">
       Assign Distance Learning Classes to Student Workers
     </h2>
@@ -50,8 +51,8 @@
             *ngFor="let dl of dlClasses; let j = index"
             (click)="onRowClick(dl)"
           >
-            <td>{{ dl.location }}</td>
             <td>{{ dl.course }}</td>
+            <td>{{ dl.location }}</td>
             <!-- <td>
                   <mat-form-field>
                     <mat-select [(ngModel)]="selectedStudent" name="student">

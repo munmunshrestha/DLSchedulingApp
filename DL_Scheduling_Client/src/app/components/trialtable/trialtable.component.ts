@@ -1,233 +1,114 @@
-  
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener } from "@angular/core";
 import { MatSnackBar } from "@angular/material";
+import { StdUnavailabilityService } from "src/app/services/std-unavailability.service";
 
-export interface MouseEvent {
-  rowId:     number;
-  colId:     number;
-  cellsType: string;
+export interface scheduleByWeekday {
+  noOfGrid: number;
+  display: string;
 }
 
-export interface PeriodicElement {
-  name:     string;
-  position: number;
-  weight:   number;
-  symbol:   string;
+export interface timeSelected {
+  id: number;
+  value: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1 , name: 'Hydrogen' , weight: 1.0079 , symbol: 'H' },
-  {position: 2 , name: 'Helium'   , weight: 4.0026 , symbol: 'He'},
-  {position: 3 , name: 'Lithium'  , weight: 6.941  , symbol: 'Li'},
-  {position: 4 , name: 'Beryllium', weight: 9.0122 , symbol: 'Be'},
-  {position: 5 , name: 'Boron'    , weight: 10.811 , symbol: 'B' },
-  {position: 6 , name: 'Carbon'   , weight: 12.0107, symbol: 'C' },
-  {position: 7 , name: 'Nitrogen' , weight: 14.0067, symbol: 'N' },
-  {position: 8 , name: 'Oxygen'   , weight: 15.9994, symbol: 'O' },
-  {position: 9 , name: 'Fluorine' , weight: 18.9984, symbol: 'F' },
-  {position: 10, name: 'Neon'     , weight: 20.1797, symbol: 'Ne'},
-];
 @Component({
-  selector: 'app-trialtable',
-  templateUrl: './trialtable.component.html',
-  styleUrls: ['./trialtable.component.scss']
+  selector: "app-trialtable",
+  templateUrl: "./trialtable.component.html",
+  styleUrls: ["./trialtable.component.scss"]
 })
 export class TrialtableComponent {
+  constructor(private stdService: StdUnavailabilityService) {}
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA; //new MatTableDataSource<PeriodicElement>();
-  tableMouseDown:   MouseEvent;
-  tableMouseUp:     MouseEvent;
-  FIRST_EDITABLE_ROW: number = 0;
-  LAST_EDITABLE_ROW:  number = ELEMENT_DATA.length - 1; // = 9
-  FIRST_EDITABLE_COL: number = 1;                       // first column pos is not editable --> so start from index 1
-  LAST_EDITABLE_COL:  number = this.displayedColumns.length - 1; // = 3
-  newCellValue:       string = '';
-
-
-  /**
-   * NOTE: nbRows    of selectedCellsState must = nbRows of the tabl
-   * nbColumns of selectedCellsState must = nbColumns of all selectable cells in the table
-   */
-  selectedCellsState: boolean[][] = [
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
-    [false, false, false],
-    [false, false, false]
+  timeData: timeSelected[] = [
+    { id: 0, value: "" },
+    { id: 1, value: "8:00 AM" },
+    { id: 2, value: "8:30 AM" },
+    { id: 3, value: "9:00 AM" },
+    { id: 4, value: "9:30 AM" },
+    { id: 5, value: "10:00 AM" },
+    { id: 6, value: "10:30 AM" },
+    { id: 7, value: "11:00 AM" },
+    { id: 8, value: "11:30 AM" },
+    { id: 9, value: "12:00 PM" },
+    { id: 10, value: "12:30 PM" },
+    { id: 11, value: "1:00 PM" },
+    { id: 12, value: "1:30 PM" },
+    { id: 13, value: "2:00 PM" },
+    { id: 14, value: "2:30 PM" },
+    { id: 15, value: "3:00 PM" },
+    { id: 16, value: "3:30 PM" },
+    { id: 17, value: "4:00 PM" },
+    { id: 18, value: "4:30 PM" },
+    { id: 19, value: "5:00 PM" },
+    { id: 20, value: "5:30 PM" },
+    { id: 21, value: "6:00 PM" },
+    { id: 21, value: "6:30 PM" },
+    { id: 23, value: "7:00 PM" },
+    { id: 24, value: "7:30 PM" },
+    { id: 25, value: "8:00 PM" },
+    { id: 26, value: "8:30 PM" },
+    { id: 27, value: "9:00 PM" }
   ];
 
-  constructor(public snackBar: MatSnackBar) {}
+  // monday: scheduleByWeekday[];
+  // tuesday: scheduleByWeekday[];
+  // wednesday: scheduleByWeekday[];
+  // thursday: scheduleByWeekday[];
+  // friday: scheduleByWeekday[];
+  dataArray: any[][] = [[], [], [], [], []];
 
-  /**
-   * Update table's dataSource
-   * @param text
-   */
-  updateSelectedCellsValues(text: string) {
-
-    if (text == null) { return; }
-
-    if(this.tableMouseDown && this.tableMouseUp) {
-      if(this.tableMouseDown.cellsType === this.tableMouseUp.cellsType) {
-
-        const dataCopy: PeriodicElement[] = this.dataSource.slice(); // copy and mutate
-        let startCol: number;
-        let endCol:   number;
-        let startRow: number;
-        let endRow:   number;
-
-        if(this.tableMouseDown.colId <= this.tableMouseUp.colId) {
-          startCol = this.tableMouseDown.colId;
-          endCol   = this.tableMouseUp.colId;
-        } else {
-          endCol   = this.tableMouseDown.colId;
-          startCol = this.tableMouseUp.colId;
+  ngOnInit() {
+    this.stdService.getData().subscribe(data => {
+      console.log("data= "+data);
+      let y = 0;
+      //setting 1st element of each array in dataArray to weekday
+      Object.keys(data).forEach(eachDay => {
+        console.log("eachDay= "+eachDay);
+        let locationval = {
+          display: eachDay
+        };
+        this.dataArray[y++][0] = locationval;
+      });
+      //initializing remaining elements
+      for (let i = 0; i < 5; i++) {
+        for (let j = 1; j < this.timeData.length; j++) {
+          this.dataArray[i][j] = "";
         }
+      }
+      // this.schedule = data;
+      let x = 0;
 
-        if(this.tableMouseDown.rowId <= this.tableMouseUp.rowId) {
-          startRow = this.tableMouseDown.rowId;
-          endRow   = this.tableMouseUp.rowId;
-        } else {
-          endRow   = this.tableMouseDown.rowId;
-          startRow = this.tableMouseUp.rowId;
-        }
+      Object.values(data).forEach(eachDayData => {
+        console.log("eachDayData= "+eachDayData);
+          if (eachDayData.length != 0) {
+            // console.log("length= "+eachSchedule.length);
+          
+            eachDayData.forEach(rec => {
+              //parsing string to int
+              console.log("rec " + rec);
+              let noOfGrid = +rec["endTime"] - +rec["startTime"];
 
-        //--Edit cells from the same column
-        if(startCol === endCol) {
-          console.log('--Edit cells from the same column');
-          for(let i = startRow; i <= endRow; i++) {
-            dataCopy[i][this.displayedColumns[startCol]] = text;
+              //change span size for class rows and delete extra elements
+              this.dataArray[x].splice(+rec["startTime"], noOfGrid - 1);
+
+              let val = {
+                grid: noOfGrid,
+                display: rec["location"],
+                // name: rec["name"],
+                isDL:rec["isDL"],
+                isClass:rec["isClass"]
+              };
+              this.dataArray[x][+rec["startTime"]] = val;
+            });
           }
-        } else {
-          //--Edit cells starting and ending not on the same column
-          console.log('--Edit cells starting and ending not on the same column');
+          x++;
+        
+        // console.log(data);
 
-          for(let i = startRow; i <= endRow; i++) {
-            for(let j = startCol; j <= endCol; j++) {
-              dataCopy[i][this.displayedColumns[j]] = text;
-            }
-          }
-        }
-        console.log('--update: ' + startRow + ', '+ startCol + ' to ' + endRow + ', '+ endCol);
-        this.dataSource = dataCopy;
-
-      } else {
-        this.openSnackBar('The selected cells don\'t have the same type.', 'OK');
-      }
-    }
-  }
-
-  /**
-   * @param rowId
-   * @param colId
-   * @param cellsType
-   */
-  onMouseDown(rowId: number, colId: number, cellsType: string) {
-
-    this.tableMouseDown = {rowId: rowId, colId: colId, cellsType: cellsType};
-  }
-
-  /**
-   * @param rowId
-   * @param colId
-   * @param cellsType
-   */
-  onMouseUp(rowId: number, colId: number, cellsType: string) {
-
-    this.tableMouseUp = {rowId: rowId, colId: colId, cellsType: cellsType};
-    if(this.tableMouseDown) {
-      this.newCellValue = '';
-      this.updateSelectedCellsState(this.tableMouseDown.colId, this.tableMouseUp.colId, this.tableMouseDown.rowId, this.tableMouseUp.rowId);
-    }
-  }
-
-  /**
-   * Update selectedCols && selectedRows arrays
-   * @param mouseDownColId
-   * @param mouseUpColId
-   * @param mouseDownRowId
-   * @param mouseUpRowId
-   */
-  private updateSelectedCellsState(mouseDownColId: number, mouseUpColId: number, mouseDownRowId: number, mouseUpRowId: number) {
-
-    // init selected cells
-    for (let i = this.FIRST_EDITABLE_ROW; i <= this.LAST_EDITABLE_ROW; i++) {
-      for (let j = this.FIRST_EDITABLE_COL; j <= this.LAST_EDITABLE_COL; j++) {
-        this.selectedCellsState[i][j] = false;
-      }
-    }
-    // update selected cells
-    let startCol: number;
-    let endCol:   number;
-    let startRow: number;
-    let endRow:   number;
-    if (mouseDownColId <= mouseUpColId) {
-      startCol = mouseDownColId;
-      endCol   = mouseUpColId;
-    } else {
-      endCol   = mouseDownColId;
-      startCol = mouseUpColId;
-    }
-
-    if (mouseDownRowId <= mouseUpRowId) {
-      startRow = mouseDownRowId;
-      endRow   = mouseUpRowId;
-    } else {
-      endRow   = mouseDownRowId;
-      startRow = mouseUpRowId;
-    }
-    for (let i = startRow; i <= endRow; i++) {
-      for (let j = startCol; j <= endCol; j++) {
-        this.selectedCellsState[i][j] = true;
-      }
-    }
-  }
-
-  /**
-   * After the user enters a new value, all selected cells must be updated
-   * document:keyup
-   * @param event
-   */
-  @HostListener('document:keyup', ['$event'])
-  onKeyUp(event: KeyboardEvent): void {
-
-    // If no cell is selected then ignore keyUp event
-    if(this.tableMouseDown && this.tableMouseUp) {
-
-      let specialKeys: string[] = ['Enter', 'PrintScreen', 'Escape', 'cControl', 'NumLock', 'PageUp', 'PageDown', 'End',
-        'Home', 'Delete', 'Insert', 'ContextMenu', 'Control', 'ControlAltGraph', 'Alt', 'Meta', 'Shift', 'CapsLock',
-        'TabTab', 'ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp', 'Pause', 'ScrollLock', 'Dead', '',
-        'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'];
-
-      if(event.key === 'Backspace') { // 'delete' key is pressed
-        const end: number = this.newCellValue.length - 1;
-        this.newCellValue = this.newCellValue.slice(0, end);
-
-      } else if(this.indexOfInArray(event.key, specialKeys) === -1) {
-        this.newCellValue += event.key;
-      }
-      this.updateSelectedCellsValues(this.newCellValue);
-    }
-  }
-
-  indexOfInArray(item: string, array: string[]): number {
-    let index: number = -1;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i] === item) { index = i; }
-    }
-    return index;
-  }
-
-  /**
-   * @param message
-   * @param action
-   */
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, { duration: 4000 });
+        // console.log(this.dataArray);
+        // console.log("y");
+      });
+    });
   }
 }

@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php'; // If you're using Composer (recommended)
+// require 'vendor/autoload.php'; // If you're using Composer (recommended)
 // // Comment out the above line if not using Composer
 // // require("<PATH TO>/sendgrid-php.php");
 // // If not using Composer, uncomment the above line and
@@ -16,12 +16,23 @@ require 'vendor/autoload.php'; // If you're using Composer (recommended)
 //     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
 // );
 // $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-// // try {
+// try {
 //  $sendgrid->send($email);
-    // print $response->statusCode() . "\n";
-    // print_r($response->headers());
-    // print $response->body() . "\n";
+//     print $response->statusCode() . "\n";
+//     print_r($response->headers());
+//     print $response->body() . "\n";
 // } catch (Exception $e) {
 //     echo 'Caught exception: '. $e->getMessage() ."\n";
 // }
+
+// the message
+$msg = "First line of text\nSecond line of text";
+
+// use wordwrap() if lines are longer than 70 characters
+$msg = wordwrap($msg,70);
+
+// send email
+mail("mshresth@go.olemiss.edu","My subject",$msg);
+
+
 ?>
