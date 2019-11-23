@@ -117,4 +117,13 @@ export class StdScheduleComponent {
       });
     });
   }
+
+  openDialog(): void {
+    this.dialogRef = this.dialog.open(StdScheduleAddComponent, {
+      width: "600px"
+    });
+    this.dialogRef.afterClosed().subscribe(() => {
+      this.ngOnInit();
+    });
+  }
 }
