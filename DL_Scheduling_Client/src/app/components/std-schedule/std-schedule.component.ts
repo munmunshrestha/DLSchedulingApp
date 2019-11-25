@@ -57,11 +57,6 @@ export class StdScheduleComponent {
     { id: 27, value: "9:00 PM" }
   ];
 
-  // monday: scheduleByWeekday[];
-  // tuesday: scheduleByWeekday[];
-  // wednesday: scheduleByWeekday[];
-  // thursday: scheduleByWeekday[];
-  // friday: scheduleByWeekday[];
   dataArray: any[][] = [[], [], [], [], []];
 
   ngOnInit() {
@@ -110,10 +105,6 @@ export class StdScheduleComponent {
           }
           x++;
         
-        // console.log(data);
-
-        // console.log(this.dataArray);
-        // console.log("y");
       });
     });
   }
