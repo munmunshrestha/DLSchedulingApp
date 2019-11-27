@@ -1,39 +1,44 @@
-table {
-    width: 100%;
-    // border-style: solid;
-    // border-color: black;
-    align-self: center;
-  }
-//   .ng-container[name="wed"] {
-//     // flex: 1;
-//     // min-height: 48px;
-//     // display: flex;
-//     // align-items: center;
-//     background-color:grey;
+// table {
+//     width: 100%;
+//     // border-style: solid;
+//     // border-color: black;
+//     align-self: center;
+//   }
+// //   .ng-container[name="wed"] {
+// //     // flex: 1;
+// //     // min-height: 48px;
+// //     // display: flex;
+// //     // align-items: center;
+// //     background-color:grey;
+// // }
+
+// .header{
+//   text-align:center;
+//   width: 90vw;
+//   // height:500px;
 // }
 
-.header{
-  text-align:center;
-  width: 90vw;
-  // height:500px;
-}
+// .time{
+//   text-align:center;
+//   width:50vw;
+// }
 
-.time{
-  text-align:center;
-  width:50vw;
-}
+// .timeAlign{
+//   text-align:center;
 
-.timeAlign{
-  text-align:center;
-
-}
+// }
 
 td{
   height:10%;
 }
 
-.grey{
-  border-color: red;
+.main{
+  padding:3vw 3vw 3vw 3vw;
 }
 
+.titleTxt{
+  font-size: 2em;
+  font-variant: small-caps;
+  // box-align:right
+}
   

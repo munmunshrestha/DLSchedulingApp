@@ -1,55 +1,48 @@
-<div class="card my-2">
-  <div class="card-body">
-    <div class="alert alert-success" role="alert" *ngIf="requested">
-      {{ message }}
-    </div>
-    <h2 class="card-title">
-      Request a Leave
-    </h2>
-    <mat-form-field>
-      <input
-        #input
-        matInput
-        [min]="minDate"
-        [max]="maxDate"
-        [matDatepicker]="picker"
-        placeholder="Choose a date"
-        [(ngModel)]="date"
-        (dateChange)="addEvent($event)"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+<!-- <div class="card my-2">
+  <div class="card-body"> -->
+<div class="alert alert-success" role="alert" *ngIf="requested">
+  {{ message }}
+</div>
+<div class="main">
+  <b class="titleTxt">
+    Request a Leave
+  </b>
+  <br>
+  <mat-form-field>
+    <input
+      #input
+      matInput
+      [min]="minDate"
+      [max]="maxDate"
+      [matDatepicker]="picker"
+      placeholder="Choose a date"
+      [(ngModel)]="date"
+      (dateChange)="addEvent($event)"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
-    <!-- <mat-form-field *ngIf="showClasses">
-    <mat-label>Classes to Cover</mat-label>
-      <mat-select [(ngModel)]="selectedClass" name="dlClass" multiple>
-        <mat-option *ngFor="let class of classes">
-          {{ class.course }} ({{class.location}})
-        </mat-option>
-      </mat-select>
-      {{selectedClass}}
-
-    </mat-form-field> -->
-
-    <div *ngIf="showClasses">
-      <div *ngIf="hasClass">
-        <div *ngFor="let item of classes">
-          <mat-checkbox
-            #ref
-            value="{{ item.course }}"
-            name="{{ item.course }}"
-            [(ngModel)]="item.selected"
-            >Course ID: {{ item.course }}<br />
-            Location: {{ item.location }}<br />
-            Time: {{ item.start }}-{{ item.end }}<br
-          /></mat-checkbox>
-        </div>
-        <button mat-raised-button (click)="request()">
-          Request
-        </button>
+  <div *ngIf="showClasses">
+    <div *ngIf="hasClass">
+      <div *ngFor="let item of classes">
+        <mat-checkbox
+          #ref
+          value="{{ item.course }}"
+          name="{{ item.course }}"
+          [(ngModel)]="item.selected"
+          color="primary"
+          >Course ID: {{ item.course }}<br />
+          Location: {{ item.location }}<br />
+          Time: {{ item.start }}-{{ item.end }}<br
+        /></mat-checkbox>
       </div>
-      <div *ngIf="!hasClass">You do not have any work hours on {{ date }}</div>
+      <button mat-raised-button (click)="request()">
+        Request
+      </button>
     </div>
+    <div *ngIf="!hasClass">You do not have any work hours on {{ selectedDay }} {{finalDate}}</div>
   </div>
 </div>
+<!-- </div>
+</div> -->

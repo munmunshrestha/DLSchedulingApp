@@ -1,5 +1,5 @@
 <div>
-  <h2 mat-dialog-title>Enter Class Schedule/ Unavailability:</h2>
+  <h2 mat-dialog-title class="titleTxt">Enter Class Schedule/ Unavailability:</h2>
 
   <mat-dialog-content>
     <form
@@ -38,7 +38,7 @@
               [(ngModel)]="startTimeJson"
             >
             </ngb-timepicker>
-            <button class="btn btn-sm btn-outline-meridian"></button>
+            <!-- <button class="btn btn-sm btn-outline-meridian"></button> -->
          
              
             <label for="endTime">End Time:</label>
@@ -47,16 +47,17 @@
             [meridian]="meridian"
             [(ngModel)]="endTimeJson"
           ></ngb-timepicker>
-          <button class="btn btn-sm btn-outline-meridian"></button>
+          <!-- <button class="btn btn-sm btn-outline-meridian"></button> -->
 
           <!-- <mat-radio-group formControlName="entryType"> -->
           <mat-radio-group
             [(ngModel)]="stdUnavailability.std_not_class"
             name="isClass"
             (change)="onChange($event)"
+            color="primary"
           >
             <mat-radio-button value="false">Class</mat-radio-button>
-            <mat-radio-button value="true" name="notclass"
+            <mat-radio-button value="true" name="notclass" 
               >Unavailable</mat-radio-button
             >
           </mat-radio-group>
@@ -89,6 +90,7 @@
               value="{{ item.name }}"
               name="{{ item.name }}"
               [(ngModel)]="item.checked"
+              color="primary"
               >{{ item.name }}</mat-checkbox
             >
             <!-- 
