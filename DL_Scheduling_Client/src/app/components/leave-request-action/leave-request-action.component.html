@@ -1,8 +1,7 @@
-<div class="card my-2">
-        <div class="card-body">
-          <h4 class="card-title">Leave Requests</h4>
+<div class="main">
+    <b class="titleTxt">Leave Requests</b>
           <div *ngIf="requestExist">
-          <table class="table table-bordered">
+          <table class="table table-hover">
             <thead>
               <tr>
                 <th scope="col">Student Name</th>
@@ -21,14 +20,16 @@
                   Location: {{request.class_toCover.location}}
                 </td>
                 <td>
-                  <button mat-raised-button (click)="accept(request.id)">Accept</button>
-                  <button mat-raised-button (click)="reject(request.id)">Reject</button>
+                  <a (click)="accept(request.id)">
+                      <mat-icon class="icon">check_circle</mat-icon></a>
+                  <a (click)="reject(request.id)">
+                    <mat-icon class="icon">cancel</mat-icon></a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-        <div *ngIf="!requestExist">No Reuests</div>
+        <div class="bodytxt" *ngIf="!requestExist">No Reqest</div>
         </div>
-      </div>
+
       

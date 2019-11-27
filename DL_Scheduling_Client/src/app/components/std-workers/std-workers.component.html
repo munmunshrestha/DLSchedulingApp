@@ -1,8 +1,7 @@
-<div class="card my-2">
-    <div class="card-body">
-      <h4 class="card-title">Student Workers</h4>
+<div class="main">
+    <b class="titleTxt">Student Workers</b>
   
-      <table class="table table-bordered">
+      <table class="table table-hover" >
         <thead>
           <tr>
             <th scope="col">Student ID Number</th>
@@ -19,13 +18,14 @@
               <a href="mailto:{{ user.email }}">{{ user.email }}</a>
             </td>
             <td>
-              <button type="button" class="btn btn-link" (click)="openDialogEdit(user)">Edit</button>
-              <button type="button" class="btn btn-link" (click)="onDelete(user.id)">Delete</button>
+                <a (click)="openDialogEdit(user)">
+                    <mat-icon class="icon">edit</mat-icon></a>
+              <a (click)="onDelete(user.id)"><mat-icon >delete</mat-icon></a>
             </td>
           </tr>
         </tbody>
       </table>
       <button mat-raised-button (click)="openDialog()">Add Student Workers</button>
     </div>
-  </div>
+
   

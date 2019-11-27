@@ -1,5 +1,6 @@
-<h2 mat-dialog-title>Enter New Student Worker:</h2>
-<mat-dialog-content width=40>
+<div>
+  <h2 mat-dialog-title class="titleTxt">Enter New Student Worker:</h2>
+  <mat-dialog-content width="40">
     <form
       id="stdform"
       class="form-container"
@@ -7,42 +8,41 @@
       #stdAddForm="ngForm"
     >
       <div fxLayout="column" fxLayoutAlign="space-around " fxFlex="70%">
-       
-          <mat-form-field>
-            <input
-              matInput
-              name="studentId"
-              placeholder="Student ID Number"
-              [(ngModel)]="user.id"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            name="studentId"
+            placeholder="Student ID Number"
+            [(ngModel)]="user.id"
+          />
+        </mat-form-field>
 
-          <mat-form-field>
-            <input
-              matInput
-              name="firstname"
-              placeholder="First Name"
-              [(ngModel)]="user.fname"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            name="firstname"
+            placeholder="First Name"
+            [(ngModel)]="user.fname"
+          />
+        </mat-form-field>
 
-          <mat-form-field>
-            <input
-              matInput
-              name="lastname"
-              placeholder="Last Name"
-              [(ngModel)]="user.lname"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            name="lastname"
+            placeholder="Last Name"
+            [(ngModel)]="user.lname"
+          />
+        </mat-form-field>
 
-          <mat-form-field>
-            <input
-              matInput
-              name="email"
-              placeholder="Email"
-              [(ngModel)]="user.email"
-            />
-          </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="user.email"
+          />
+        </mat-form-field>
       </div>
     </form>
   </mat-dialog-content>
@@ -60,4 +60,4 @@
       </button>
     </div>
   </mat-dialog-actions>
-
+</div>
