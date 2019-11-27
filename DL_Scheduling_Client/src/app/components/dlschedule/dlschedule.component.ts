@@ -157,9 +157,9 @@ export class DLscheduleComponent implements OnInit {
     this.ngOnInit();
   }
 
-  getDay(): string {
-    return this.day;
-  }
+  // getDay(): string {
+  //   return this.day;
+  // }
 
   openDialog(): void {
     this.dialogRef = this.dialog.open(DlClassAddComponent, {

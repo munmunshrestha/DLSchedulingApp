@@ -24,6 +24,7 @@ import { first } from "rxjs/operators";
 
 // import {  AuthenticationService } from './../../services/authentication.service';
 import { UserService } from "./../../services/user.service";
+import { Router } from "@angular/router";
 
 interface loggedInUser {
   id: number;
@@ -42,11 +43,16 @@ export class HomeComponent {
   username: String;
   user: loggedInUser;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit() {
     this.userService.getLoggedInUser().subscribe(user => {
       this.username = user.name;
     });
+  }
+
+  titleClick() {
+    console.log("clicked");
+    this.router.navigate(["student/home"]);
   }
 }

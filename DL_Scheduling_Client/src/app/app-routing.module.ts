@@ -22,6 +22,7 @@ import { StdWorkersComponent } from "./components/std-workers/std-workers.compon
 import { DlAssignClassComponent } from "./components/dl-assign-class/dl-assign-class.component";
 import { TrialtableComponent } from './components/trialtable/trialtable.component';
 import { LeaveRequestActionComponent } from './components/leave-request-action/leave-request-action.component';
+import { DlByLocationComponent } from './components/dl-by-location/dl-by-location.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: "logout",
     component: LogoutComponent
+  },
+  {
+    path: "scheduleby",
+    component: DlByLocationComponent
   },
   {
     path: "",
@@ -58,11 +63,13 @@ const routes: Routes = [
         canActivateChild: [AuthGuard],
         children: [
           {
+            path: "home",
+            component: DlByLocationComponent,
+          },
+          {
             path: "DLSchedule",
             component: DLscheduleComponent,
-            canActivateChild: [AuthGuard],
-
-            
+            canActivateChild: [AuthGuard], 
           },
           {
             path: "DLadd",
@@ -96,12 +103,16 @@ const routes: Routes = [
   {
     path: "student",
     component: HomeComponent,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     children: [
       {
         path: "",
-        canActivateChild: [AuthGuard],
+        // canActivateChild: [AuthGuard],
         children: [
+          {
+            path: "home",
+            component: DlByLocationComponent,
+          },
           {
             path: "stdSchedule",
             component: StdScheduleComponent

@@ -1,24 +1,42 @@
-<mat-toolbar color="primary">
-    <button mat-icon-button>
-      <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
-    </button>
-    <!-- title -->
-    <!-- <div class="float-right">{{username}}</div> -->
+<!-- <img src="../../../assets/outreach2.png"> -->
 
+  <mat-toolbar color="primary" class="main">
+      <!-- <div class="mainPadding"> -->
+    <span>
+      <button mat-icon-button>
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+      </button>
+    </span>
+    <span
+       class ="titleTxt">Dl Scheduling
+    </span>
+    <span class="spacer"></span>
+    <span><button mat-icon-button><mat-icon >person_outline</mat-icon> </button></span>
+    <span class="name">{{ username }}</span>
   </mat-toolbar>
-  
+
   <mat-sidenav-container>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-          <a mat-list-item [routerLink]="'../admin'"> Home </a>
+        <a mat-list-item [routerLink]="'home'">
+          <mat-icon>home</mat-icon>&nbsp; Home
+        </a>
 
-        <a mat-list-item [routerLink]="'StdWorker'"> Student Workers </a>
-        <a mat-list-item [routerLink]="'DLSchedule'"> DL Schedule </a>
-        <a mat-list-item [routerLink]="'leaveRequest'"> Leave Request </a>
-        <a mat-list-item [routerLink]="'logout'"> Logout </a>
-  
-  
-      
+        <a mat-list-item [routerLink]="'StdWorker'">
+          <mat-icon>people</mat-icon>&nbsp; Student Workers
+        </a>
+        <a mat-list-item [routerLink]="'DLSchedule'">
+          <mat-icon>event</mat-icon>&nbsp; DL Schedule
+        </a>
+        <a mat-list-item [routerLink]="'leaveRequest'">
+          <mat-icon>filter_none</mat-icon>&nbsp;Leave Request
+        </a>
+        <a mat-list-item [routerLink]="'settings'">
+          <mat-icon>settings</mat-icon>&nbsp;Settings
+        </a>
+        <a mat-list-item [routerLink]="'logout'">
+          <mat-icon>exit_to_app</mat-icon>&nbsp;Logout
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -27,4 +45,4 @@
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
-  
+

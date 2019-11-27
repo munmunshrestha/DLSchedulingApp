@@ -18,8 +18,14 @@ if (isset($_POST) && !empty($_POST)) {
 		$fname = $_POST["fname"];
 		$lname = $_POST["lname"];
 		$isAdmin = $_POST["isAdmin"];
-		// if (isset($id) && $id!=="" && isset($email) && $email!=="" && isset($password) && $password!=="" && isset($fname) && $fname!=="" && isset($lname) && $lname!==""){
+		// $id = 1233344;
+		// $emailInput = 'mshresth@go.olemiss.edu';
+		// $password = 'Olemiss2019';
+		// $fname = 'try';
+		// $lname = 'try';
+		// $isAdmin = 0;
 
+		// if (isset($id) && $id!=="" && isset($email) && $email!=="" && isset($password) && $password!=="" && isset($fname) && $fname!=="" && isset($lname) && $lname!==""){
 
 		// foreach($day as $dayVal){
 		$query = "INSERT INTO USER (USER_ID,FIRST_NAME,LAST_NAME,EMAIL,PASSWORD,IS_ADMIN) VALUES (?,?,?,?,?,?)";
@@ -28,22 +34,18 @@ if (isset($_POST) && !empty($_POST)) {
 		$stmt->execute([$id, $fname, $lname, $emailInput, $password, $isAdmin]);
 		//Verify $stmt executed - create a SESSION message
 		if ($stmt) {
-			require 'vendor/autoload.php';
-			$email = new \SendGrid\Mail\Mail();
-			$email->setFrom("munmun.shrestha@outlook.com", "Admin");
-			$email->setSubject("Login to DL Scheduling App as a Student Worker");
-			$email->addTo("munmunshrestha1@gmail.com", "Student Worker");
-			$email->addContent("text/plain", "You have been added as a student worker in Distance Learning Scheduling app. 
-	Access your account on: ...");
-			// $emailSend->addContent(
-			//     "text/html", "<strong>and easy to do anywhere, even with PHP</strong>"
-			// );
-			$sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-			$sendgrid->send($email);
-			// print $response->statusCode() . "\n";
-			// print_r($response->headers());
-			// print $response->body() . "\n";
-			// if ($sendgrid->send($email)) {
+			//send email if student workers added
+			$to = "munmun.shrestha@outlook.com";
+			$subject = "Account created in DL Scheduling";
+			$txt = "Hello " .$fname. " ". $lname. ", \n\t You have been added as a student worker in Distance Learning Department. You can access your account in DL Scheduling App. <br>
+					Email: ".$emailInput."\n
+					Password: Olemiss2019 \n
+					Please change your password once you login";
+			// $headers = "From: munmunshrestha1@gmail.com";
+
+			mail($to, $subject, $txt);
+
+			echo "to: " .$to. " subject: ". $subject ." txt: ".$txt;
 			?>
 			{
 			"success": true,
@@ -51,6 +53,7 @@ if (isset($_POST) && !empty($_POST)) {
 			}
 		<?php
 				} else {
+					echo "error"
 					?>
 			{
 			"success": false,
@@ -60,11 +63,11 @@ if (isset($_POST) && !empty($_POST)) {
 				}
 			} else {
 				?>
-		{
-		"success": false,
-		"message": "Incomplete data"
-		}
-	<?php
+ 		{
+ 		"success": false,
+ 		"message": "Incomplete data"
+ 		}
+ 	<?php
 		}
 	} else {
 		?>

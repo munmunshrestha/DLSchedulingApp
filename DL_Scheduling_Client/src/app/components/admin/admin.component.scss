@@ -1,0 +1,35 @@
+.toolbar{
+    // background-color: navy;
+    height: 80px;
+}
+
+.titleTxt{
+    // font-family:"Alegreya Sans SC 300";
+    font-size: 1.5em;
+    font-variant: small-caps
+}
+
+.name{
+    font-size: 1em;
+    font-variant: small-caps
+}
+
+// .person_outline {
+//     padding-top: 10px 
+//   }
+.right{
+    padding-right:3vw
+}
+
+.left{
+    padding-left:3vw
+}
+
+.main{
+    padding:0 3vw 0 3vw;
+}
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
