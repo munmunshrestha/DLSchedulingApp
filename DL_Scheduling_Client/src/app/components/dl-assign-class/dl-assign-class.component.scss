@@ -22,3 +22,26 @@ a {
   .round {
     border-radius: 50%;
   }
+
+  .main{
+    padding:3vw 3vw 3vw 3vw;
+  }
+  
+  .titleTxt{
+    font-size: 2em;
+    font-variant: small-caps;
+    // box-align:right
+  }
+
+  .bodyTitleTxt{
+    font-size: 1.5em;
+    font-variant: small-caps;
+    // box-align:right
+  }
+
+  .select{
+    width:250px;
+  }
+  table {
+    width: 100%;
+  }

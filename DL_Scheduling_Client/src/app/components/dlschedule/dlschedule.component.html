@@ -1,6 +1,45 @@
-<app-dl-by-location></app-dl-by-location>
-
+<!-- <app-dl-by-location></app-dl-by-location> -->
 <div class="main">
+  <b class="titleTxt">Fall 2019-2020</b>
+  <mat-tab-group
+    [selectedIndex]="selected.value"
+    (selectedIndexChange)="change($event)"
+  >
+    <mat-tab *ngFor="let day of weekdays" [label]="day.value">
+      <table class="table table-bordered">
+        <tr>
+          <td
+            *ngFor="let time of timeData"
+            [attr.colspan]="2"
+            class="timeAlign"
+          >
+            {{ time.value }}
+          </td>
+        </tr>
+        <tr *ngFor="let location of dataArray">
+          <td
+            *ngFor="let val of location"
+            (click)="openDialog2(val)"
+            [attr.colspan]="val.grid"
+            [ngStyle]="{
+              'background-color': val.dl ? '#FFFF66' : 'transparant'
+            }"
+          >
+          <!-- <select *ngIf="val.dl">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select> -->
+            {{ val.display }}<br /><b>{{ val.name }}</b>
+          </td>
+        </tr>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div class="button">
   <button mat-raised-button (click)="openDialog()">Add DL Class</button>
   &nbsp;<button mat-raised-button (click)="openAssignPage()">
     Assign Student Workers

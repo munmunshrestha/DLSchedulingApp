@@ -66,8 +66,9 @@ import { StdWorkersComponent } from './components/std-workers/std-workers.compon
 import { StdWorkersAddComponent } from './components/std-workers-add/std-workers-add.component';
 import { DlAssignClassComponent } from './components/dl-assign-class/dl-assign-class.component';
 import { LeaveRequestActionComponent } from './components/leave-request-action/leave-request-action.component';
-import { DlAvailabilityComponent } from './components/dl-availability/dl-availability.component';
 import { DlByLocationComponent } from './components/dl-by-location/dl-by-location.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { DlscheduleEditComponent } from './components/dlschedule-edit/dlschedule-edit.component';
 
 @NgModule({
   declarations: [
@@ -92,8 +93,9 @@ import { DlByLocationComponent } from './components/dl-by-location/dl-by-locatio
     StdWorkersAddComponent,
     DlAssignClassComponent,
     LeaveRequestActionComponent,
-    DlAvailabilityComponent,
     DlByLocationComponent,
+    SettingsComponent,
+    DlscheduleEditComponent,
   ],
   entryComponents: [StdScheduleAddComponent],
   imports: [

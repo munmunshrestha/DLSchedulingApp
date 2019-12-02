@@ -22,7 +22,7 @@ if (isset($_POST) && !empty($_POST)) {
 
     $query1 = "INSERT INTO STUDENT_UNAVAILABILITY ( STD_USER_ID, STD_START_TIME, STD_END_TIME, STD_DAY, STD_CLASS_LOCATION,STD_IS_CLASS, STD_COURSEID, IS_DL ) VALUES (?,?,?,?,?,?,?,?)";
     $stmt1 = $mysqli->prepare($query1);
-    $stmt1->execute([$userId, $start, $end, $day, $location, $is_class, $course_id, $isDL]);
+    $stmt1->execute([$userId, ($start-1), $end, $day, $location, $is_class, $course_id, $isDL]);
     if ($stmt1) {
         $isAssigned=1;
         $query2 = "UPDATE DLCLASSES SET ASSIGNED_USER_ID=? WHERE DL_CLASS_ID=?";

@@ -1,8 +1,7 @@
 <div class="col-md-6 offset-md-3 mt-5">
   <mat-card>
     <mat-card-title><b class="titleTxt">Login </b></mat-card-title>
-    <mat-card-content>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showAlert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="showAlert">
         <strong>{{alertMsg}}</strong> 
         <button
           type="button"
@@ -13,6 +12,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+    <mat-card-content>
+      
       <form (submit)="loginUser($event)">
         <p>
           <!-- <mat-form-field>

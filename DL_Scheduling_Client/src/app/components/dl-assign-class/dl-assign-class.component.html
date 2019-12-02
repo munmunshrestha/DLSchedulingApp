@@ -1,107 +1,181 @@
-<div class="card my-2">
-  <div class="card-body">
-    <a (click)="backClicked()" class="previous round">&#8249;</a>
+<!-- <div class="card my-2">
+  <div class="card-body">     
     <h2 class="card-title">
-      Assign Distance Learning Classes to Student Workers
-    </h2>
+-->
+<!-- <a (click)="backClicked()" class="previous round">&#8249;</a> -->
+<div class="main">
+  <b class="titleTxt">Assign Distance Learning Classes to Student Workers</b>
+  <br />
+  <mat-form-field class="select">
+    <mat-label>Choose a day to assign class</mat-label>
+    <mat-select [(ngModel)]="selectedDay" name="day">
+      <mat-option
+        *ngFor="let day of weekdays"
+        [value]="day"
+        (click)="ListDLClasses()"
+      >
+        {{ day }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Choose a day to assign class</mat-label>
-      <mat-select [(ngModel)]="selectedDay" name="day">
-        <mat-option
-          *ngFor="let day of weekdays"
-          [value]="day"
-          (click)="ListDLClasses()"
+  <ng-container *ngIf="showTable">
+    <!-- <div class="card my-2">
+      <div class="card-body"> -->
+        <!-- <b class="bodyTitleTxt">DL Classes on {{ selectedDay }}</b> -->
+<!-- 
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          class="mat-elevation-z8 table-hover"
         >
-          {{ day }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+          <ng-container matColumnDef="course">
+            <th mat-header-cell *matHeaderCellDef>Course ID</th>
+            <td mat-cell *matCellDef="let element">{{ element.course }}</td>
+          </ng-container>
 
-    <ng-container *ngIf="showTable">
-      <!-- <div>
-        <mat-form-field>
-            <mat-select [(ngModel)]="selectedStudent" name="course">
-              <mat-option *ngFor="let course of dlClasses" [value]="course">
-                {{ course.course }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div>
-            <mat-form-field>
-                <mat-select [(ngModel)]="selectedStudent" name="location">
-                  <mat-option *ngFor="let location of dlClasses.location" [value]="location">
-                    {{ location }}
+          <ng-container matColumnDef="location">
+            <th mat-header-cell *matHeaderCellDef>Location</th>
+            <td mat-cell *matCellDef="let element">{{ element.location }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="expandedDetail">
+            <td mat-cell *matCellDef="let element" [attr.colspan]="2">
+              <div
+                class="example-element-detail"
+                [@detailExpand]="
+                  element == expandedElement ? 'expanded' : 'collapsed'
+                "
+              >
+                <table class="table table-hover">
+                  <tr>
+                    <th>Course ID</th>
+                    <td>{{ values.course }}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Location</th>
+                    <td>{{ values.location }}</td>
+                  </tr>
+                  <tr>
+                    <th>Start Time</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>End Time</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Available Student Workers</th>
+                    <td>
+                      <mat-form-field>
+                        <mat-select
+                          [(ngModel)]="selectedStudent"
+                          name="student"
+                        >
+                          <mat-option
+                            *ngFor="let student of students"
+                            [value]="student.name"
+                          >
+                            {{ student.name }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            (click)="onRowClick(row)"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="
+              expandedElement = expandedElement === element ? null : element
+            "
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table> -->
+
+        <table class="table table-hover mat-elevation-z8">
+          <thead>
+            <tr>
+              <th scope="col">Course ID</th>
+              <th scope="col">Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let dl of dlClasses; let j = index"
+              (click)="onRowClick(dl)"
+            >
+              <td>{{ dl.course }}</td>
+              <td>{{ dl.location }}</td>
+            </tr>
+          </tbody>
+        </table>
+      <!-- </div>
+    </div> -->
+  </ng-container>
+
+  <ng-container *ngIf="showDetails">
+    <div class="card my-6">
+      <div class="card-body">
+        <b class="bodyTitleTxt">Course Details</b><br />
+        <table class="table table-hover">
+          <tr>
+            <th>Course ID</th>
+            <td>{{ values.course }}</td>
+          </tr>
+
+          <tr>
+            <th>Location</th>
+            <td>{{ values.location }}</td>
+          </tr>
+          <tr>
+            <th>Start Time</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>End Time</th>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Available Student Workers</th>
+            <td>
+              <mat-form-field>
+                <mat-select [(ngModel)]="selectedStudent" name="student">
+                  <mat-option
+                    *ngFor="let student of students"
+                    [value]="student.name"
+                  >
+                    {{ student.name }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-            </div> -->
-
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">Course ID</th>
-            <th scope="col">Location</th>
-            <!-- <th scope="col">Available Student Workers</th> -->
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let dl of dlClasses; let j = index"
-            (click)="onRowClick(dl)"
-          >
-            <td>{{ dl.course }}</td>
-            <td>{{ dl.location }}</td>
-            <!-- <td>
-                  <mat-form-field>
-                    <mat-select [(ngModel)]="selectedStudent" name="student">
-                      <mat-option *ngFor="let students of dl.students, let i = index" [value]="students">
-                        {{ students }}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-            </td> -->
-          </tr>
-        </tbody>
-      </table>
-    </ng-container>
+        </table>
 
-    <ng-container *ngIf="showDetails">
-      <h4>Course Details</h4>
-      Course ID: {{ values.course }}<br>
-      Location: {{ values.location }}<br>
-      <!-- Start Time: {{ values.start }}<br> -->
-      Available Student Workers:
-      <mat-form-field>
-        <mat-select [(ngModel)]="selectedStudent" name="student">
-          <mat-option *ngFor="let student of students" [value]="student.name">
-            {{ student.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field><br>
+        <!-- Course ID: {{ values.course }}<br />
+        Location: {{ values.location }}<br /> -->
+        <!-- Start Time: {{ values.start }}<br> -->
+        <!-- Available Student Workers:
+        <mat-form-field>
+          <mat-select [(ngModel)]="selectedStudent" name="student">
+            <mat-option *ngFor="let student of students" [value]="student.name">
+              {{ student.name }}
+            </mat-option>
+          </mat-select> </mat-form-field
+        ><br /> -->
 
-      <button mat-raised-button (click)="Assign()">Assign</button>
-    </ng-container>
-  </div>
+        <button mat-raised-button (click)="Assign()">Assign</button>
+      </div>
+    </div>
+  </ng-container>
 </div>
-
-<!-- <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>
-    <mat-hint>{{animalControl.value?.sound}}</mat-hint> -->
-
-<!-- <h4>native html select</h4>
-  <mat-form-field>
-    <mat-label>Select your car (required)</mat-label>
-    <select matNativeControl required [formControl]="selectFormControl">
-      <option label="--select something --"></option>
-      <option value="saab">Saab</option>
-      <option value="mercedes">Mercedes</option>
-      <option value="audi">Audi</option>
-    </select>
-    <mat-error *ngIf="selectFormControl.hasError('required')">
-      This field is required
-    </mat-error>
-    <mat-hint>You can pick up your favorite car here</mat-hint>
-  </mat-form-field> -->
-
-<!-- <div *ngFor="let class of dlClasses"> {{class.course}}</div> -->

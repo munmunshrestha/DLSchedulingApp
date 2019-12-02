@@ -23,6 +23,7 @@ import { DlAssignClassComponent } from "./components/dl-assign-class/dl-assign-c
 import { TrialtableComponent } from './components/trialtable/trialtable.component';
 import { LeaveRequestActionComponent } from './components/leave-request-action/leave-request-action.component';
 import { DlByLocationComponent } from './components/dl-by-location/dl-by-location.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -92,6 +93,10 @@ const routes: Routes = [
             component: DlAssignClassComponent
           },
           {
+            path: "settings",
+            component: SettingsComponent
+          },
+          {
             path: "logout",
             component: LogoutComponent
           }
@@ -129,7 +134,10 @@ const routes: Routes = [
             path: "leaveRequest",
             component: StdRequestLeaveComponent
           },
-
+          {
+            path: "settings",
+            component: SettingsComponent
+          },
           {
             path: "logout",
             component: LogoutComponent

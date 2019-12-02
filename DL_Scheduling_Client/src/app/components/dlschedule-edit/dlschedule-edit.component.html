@@ -1,0 +1,79 @@
+
+<div>
+        <h2 mat-dialog-title class="titleTxt">Edit Distance Learning Class:</h2>
+    
+      <mat-dialog-content>
+        <form
+          id="stdform"
+          class="form-container"
+          name="addDlSchedule"
+          #stdAddForm="ngForm"
+        >
+          <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="70%">
+            <div fxLayout="column">
+              <mat-form-field>
+                <input
+                  matInput
+                  name="courseId"
+                  placeholder="Course ID"
+                  [(ngModel)]="dlSchedule.course_id"
+                />
+              </mat-form-field>
+    
+              <mat-form-field>
+                <input
+                  matInput
+                  name="location"
+                  placeholder="Location"
+                  [(ngModel)]="dlSchedule.location"
+                />
+              </mat-form-field>
+    
+              <label for="startTime">Start Time:</label>
+              <ngb-timepicker
+                name="startTime"
+                [meridian]="meridian"
+                [(ngModel)]="startTimeJson"
+              >
+              </ngb-timepicker>
+    
+              <label for="endTime">End Time:</label>
+              <ngb-timepicker
+                name="endTime"
+                [meridian]="meridian"
+                [(ngModel)]="endTimeJson"
+              ></ngb-timepicker>
+              <!-- <button class="btn btn-sm btn-outline-meridian"></button> -->
+            </div>
+            <div fxLayout="column" fxLayoutAlign="space-between">
+              <div *ngFor="let item of weekDays; let i = index">
+                <mat-checkbox
+                  #ref
+                  value="{{ item.name }}"
+                  name="{{ item.name }}"
+                  [(ngModel)]="item.checked"
+                  color="primary"
+    
+                  >{{ item.name }}</mat-checkbox
+                >
+              </div>
+            </div>
+          </div>
+        </form>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <div fxLayout="row" fxLayoutAlign="space-around end">
+          <button mat-raised-button type="submit" (click)="onSubmit()">Save</button>
+    
+          <button
+            mat-raised-button
+            type="button"
+            class="Discard-btn"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </mat-dialog-actions>
+    </div>
+    

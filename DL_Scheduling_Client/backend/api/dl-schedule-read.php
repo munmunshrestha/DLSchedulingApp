@@ -39,6 +39,7 @@ if ($stmt) {
         $locations[$rowlocation][$$rowlocation]['endTime'] = $row['DL_END_TIME'];
         $locations[$rowlocation][$$rowlocation]['course'] = $row['DL_COURSE_ID'];
         $locations[$rowlocation][$$rowlocation]['name'] = $row['FIRST_NAME'] ;
+        $locations[$rowlocation][$$rowlocation]['location']=$row['DL_CLASS_LOCATION'];
         $$rowlocation++;
     }
 

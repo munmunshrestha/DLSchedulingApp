@@ -1,12 +1,14 @@
 <?php
     require_once("dbConnect.php");
     $mysqli = dbConnect::dbConnect();
-	$mysqli -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $mysqli -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $id = $_SESSION["user"];
 
-        $query = "SELECT USER_ID,FIRST_NAME,LAST_NAME,EMAIL FROM USER WHERE !IS_ADMIN";
+        $query = "SELECT USER_ID,FIRST_NAME,LAST_NAME,EMAIL FROM USER WHERE USER_ID=?";
         $stmt=$mysqli->prepare($query);
             //  Prepare and execute query
-        $stmt->execute();
+        $stmt->execute([$id]);
         $students=[];
         if ($stmt) {
     
