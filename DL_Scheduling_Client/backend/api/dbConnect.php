@@ -11,14 +11,7 @@ class dbConnect
   public static function dbConnect()
   {
     require_once("database.php");
-    // header("Access-Control-Allow-Origin: *");
-    // header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
-    // header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-    // define("DBHOST", "localhost:3306");
-    // define("USERNAME", "mshresth");
-    // define("PASSWORD", "Chicago12!");
-    // define("DBNAME", "DLScheduling");
     session_start();
     //catch a potential error, if unable to connect
     try {
