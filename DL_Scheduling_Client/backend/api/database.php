@@ -21,7 +21,7 @@ header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 define ("DBHOST","localhost:3306");
-define ("USERNAME","mshresth");
-define ("PASSWORD","Chicago12!");
+define ("USERNAME","username");
+define ("PASSWORD","password");
 define ("DBNAME", "DLScheduling");
 ?>
